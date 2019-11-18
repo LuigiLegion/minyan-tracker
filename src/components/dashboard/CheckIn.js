@@ -12,36 +12,17 @@ class CheckIn extends Component {
   }
 
   handleChange(event) {
-    // this.setState({ disabledFriday: true, checkedSwitch: false });
-
-    // console.log('curDisabledFridayVal: ', event.target.type);
-
-    // event.preventdefault();
-
     const curDay = event.target.value;
-
-    console.log('curDay: ', curDay);
-
     const curCheckedVal = event.target.checked;
 
-    console.log('curCheckedVal: ', curCheckedVal);
-
     if (curCheckedVal) {
-      console.log('in the ELSE');
-
       this.setState({ ['checked' + curDay]: true });
     } else {
-      console.log('in the OUTER IF');
-
       const changeConfirmation = window.confirm(
-        'Are you sure you want to cancel your check-in status?'
+        'Are you sure you want to cancel your RSVP?'
       );
 
-      console.log('changeConfirmation: ', changeConfirmation);
-
       if (changeConfirmation) {
-        console.log('in the INNER IF');
-
         this.setState({ ['checked' + curDay]: false });
       }
     }
@@ -78,6 +59,7 @@ class CheckIn extends Component {
                     checked={this.state.checkedSaturday}
                     onChange={event => this.handleChange(event)}
                   />
+
                   <span>Saturday Shacharit</span>
                 </label>
               </div>
