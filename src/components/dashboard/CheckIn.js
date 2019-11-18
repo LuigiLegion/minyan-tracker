@@ -17,30 +17,34 @@ class CheckIn extends Component {
               <span className="bold-text-style">Check-In</span>
             </span>
 
-            <form action="#">
-              <p>
+            <form action="#" className="check-in-form">
+              <div>
                 <label>
                   <input type="checkbox" />
                   <span>Friday Maariv</span>
                 </label>
-              </p>
+              </div>
 
-              <p>
+              <div>
                 <label>
                   <input type="checkbox" />
                   <span>Saturday Shacharit</span>
                 </label>
-              </p>
-
-              <div className="switch">
-                <label>
-                  Disable
-                  <input type="checkbox" />
-                  <span className="lever" />
-                  Enable
-                </label>
               </div>
             </form>
+
+            <span className="card-title">
+              <span className="bold-text-style">Change Check-In</span>
+            </span>
+
+            <div className="switch">
+              <label>
+                Disable
+                <input type="checkbox" />
+                <span className="lever" />
+                Enable
+              </label>
+            </div>
           </div>
         </div>
       </div>
