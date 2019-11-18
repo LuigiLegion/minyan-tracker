@@ -6,6 +6,7 @@ class CheckIn extends Component {
     this.state = {
       disabledFriday: false,
       disabledSaturday: false,
+      checkedSwitch: false,
       boolSwitch: true,
     };
 
@@ -14,18 +15,19 @@ class CheckIn extends Component {
     this.handleSwitch = this.handleSwitch.bind(this);
   }
 
-  componentDidMount() {}
+  // componentDidMount() {}
 
   handleClickFriday() {
-    this.setState({ disabledFriday: true });
+    this.setState({ disabledFriday: true, checkedSwitch: false });
   }
 
   handleClickSaturday() {
-    this.setState({ disabledSaturday: true });
+    this.setState({ disabledSaturday: true, checkedSwitch: false });
   }
 
   handleSwitch() {
     const curBoolSwitchVal = this.state.boolSwitch;
+
     this.setState({
       disabledFriday: !curBoolSwitchVal,
       disabledSaturday: !curBoolSwitchVal,
@@ -34,6 +36,8 @@ class CheckIn extends Component {
   }
 
   render() {
+    console.log('this.state.checkedSwitch: ', this.state.checkedSwitch);
+
     return (
       <div className="section">
         <div className="card z-depth-0">
@@ -73,7 +77,11 @@ class CheckIn extends Component {
             <div className="switch">
               <label>
                 Disable
-                <input type="checkbox" onClick={this.handleSwitch} />
+                <input
+                  type="checkbox"
+                  defaultChecked={this.state.checkedSwitch}
+                  onClick={this.handleSwitch}
+                />
                 <span className="lever" />
                 Enable
               </label>
