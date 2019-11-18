@@ -7,10 +7,15 @@ class CheckIn extends Component {
       disabled: false,
     };
 
+    this.handleClick = this.handleClick.bind(this);
     this.handleSwitch = this.handleSwitch.bind(this);
   }
 
   componentDidMount() {}
+
+  handleClick() {
+    this.setState({ disabled: true });
+  }
 
   handleSwitch() {
     const curDisabledVal = this.state.disabled;
@@ -29,14 +34,22 @@ class CheckIn extends Component {
             <form action="#" className="check-in-form">
               <div>
                 <label>
-                  <input type="checkbox" disabled={this.state.disable} />
+                  <input
+                    type="checkbox"
+                    disabled={this.state.disable}
+                    onClick={this.handleClick}
+                  />
                   <span>Friday Maariv</span>
                 </label>
               </div>
 
               <div>
                 <label>
-                  <input type="checkbox" disabled={this.state.disabled} />
+                  <input
+                    type="checkbox"
+                    disabled={this.state.disabled}
+                    onClick={this.handleClick}
+                  />
                   <span>Saturday Shacharit</span>
                 </label>
               </div>
