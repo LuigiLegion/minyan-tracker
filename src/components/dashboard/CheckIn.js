@@ -4,40 +4,50 @@ class CheckIn extends Component {
   constructor() {
     super();
     this.state = {
-      disabledFriday: false,
-      disabledSaturday: false,
-      checkedSwitch: false,
-      boolSwitch: true,
+      checkedFriday: false,
+      checkedSaturday: false,
     };
 
-    this.handleClickFriday = this.handleClickFriday.bind(this);
-    this.handleClickSaturday = this.handleClickSaturday.bind(this);
-    this.handleSwitch = this.handleSwitch.bind(this);
+    this.handleChange = this.handleChange.bind(this);
   }
 
-  // componentDidMount() {}
+  handleChange(event) {
+    // this.setState({ disabledFriday: true, checkedSwitch: false });
 
-  handleClickFriday() {
-    this.setState({ disabledFriday: true, checkedSwitch: false });
-  }
+    // console.log('curDisabledFridayVal: ', event.target.type);
 
-  handleClickSaturday() {
-    this.setState({ disabledSaturday: true, checkedSwitch: false });
-  }
+    // event.preventdefault();
 
-  handleSwitch() {
-    const curBoolSwitchVal = this.state.boolSwitch;
+    const curDay = event.target.value;
 
-    this.setState({
-      disabledFriday: !curBoolSwitchVal,
-      disabledSaturday: !curBoolSwitchVal,
-      boolSwitch: !curBoolSwitchVal,
-    });
+    console.log('curDay: ', curDay);
+
+    const curCheckedVal = event.target.checked;
+
+    console.log('curCheckedVal: ', curCheckedVal);
+
+    if (curCheckedVal) {
+      console.log('in the ELSE');
+
+      this.setState({ ['checked' + curDay]: true });
+    } else {
+      console.log('in the OUTER IF');
+
+      const changeConfirmation = window.confirm(
+        'Are you sure you want to cancel your check-in status?'
+      );
+
+      console.log('changeConfirmation: ', changeConfirmation);
+
+      if (changeConfirmation) {
+        console.log('in the INNER IF');
+
+        this.setState({ ['checked' + curDay]: false });
+      }
+    }
   }
 
   render() {
-    console.log('this.state.checkedSwitch: ', this.state.checkedSwitch);
-
     return (
       <div className="section">
         <div className="card z-depth-0">
@@ -46,14 +56,16 @@ class CheckIn extends Component {
               <span className="bold-text-style">Check-In</span>
             </span>
 
-            <form action="#" className="check-in-form">
+            <form className="check-in-form">
               <div>
                 <label>
                   <input
                     type="checkbox"
-                    disabled={this.state.disabledFriday}
-                    onClick={this.handleClickFriday}
+                    value="Friday"
+                    checked={this.state.checkedFriday}
+                    onChange={event => this.handleChange(event)}
                   />
+
                   <span>Friday Maariv</span>
                 </label>
               </div>
@@ -62,30 +74,14 @@ class CheckIn extends Component {
                 <label>
                   <input
                     type="checkbox"
-                    disabled={this.state.disabledSaturday}
-                    onClick={this.handleClickSaturday}
+                    value="Saturday"
+                    checked={this.state.checkedSaturday}
+                    onChange={event => this.handleChange(event)}
                   />
                   <span>Saturday Shacharit</span>
                 </label>
               </div>
             </form>
-
-            <span className="card-title">
-              <span className="bold-text-style">Change Check-In</span>
-            </span>
-
-            <div className="switch">
-              <label>
-                Disable
-                <input
-                  type="checkbox"
-                  defaultChecked={this.state.checkedSwitch}
-                  onClick={this.handleSwitch}
-                />
-                <span className="lever" />
-                Enable
-              </label>
-            </div>
           </div>
         </div>
       </div>
