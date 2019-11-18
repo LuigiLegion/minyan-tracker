@@ -6,9 +6,16 @@ class CheckIn extends Component {
     this.state = {
       disabled: false,
     };
+
+    this.handleSwitch = this.handleSwitch.bind(this);
   }
 
   componentDidMount() {}
+
+  handleSwitch() {
+    const curDisabledVal = this.state.disabled;
+    this.setState({ disabled: !curDisabledVal });
+  }
 
   render() {
     return (
@@ -42,7 +49,7 @@ class CheckIn extends Component {
             <div className="switch">
               <label>
                 Disable
-                <input type="checkbox" />
+                <input type="checkbox" onClick={this.handleSwitch} />
                 <span className="lever" />
                 Enable
               </label>
