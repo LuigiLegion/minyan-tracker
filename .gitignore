@@ -14,6 +14,8 @@
 # misc
 .DS_Store
 .firebase
+/src/config/fbConfig.js
+/src/config/signupConfig.js
 
 npm-debug.log*
 yarn-debug.log*
