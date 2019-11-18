@@ -96,3 +96,7 @@ textarea.materialize-textarea:focus:not([readonly]) {
 .red-text-color {
   color: #ef5350;
 }
+
+.check-in-form {
+  margin-top: 0px;
+}
