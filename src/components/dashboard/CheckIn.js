@@ -4,22 +4,33 @@ class CheckIn extends Component {
   constructor() {
     super();
     this.state = {
-      disabled: false,
+      disabledFriday: false,
+      disabledSaturday: false,
+      boolSwitch: true,
     };
 
-    this.handleClick = this.handleClick.bind(this);
+    this.handleClickFriday = this.handleClickFriday.bind(this);
+    this.handleClickSaturday = this.handleClickSaturday.bind(this);
     this.handleSwitch = this.handleSwitch.bind(this);
   }
 
   componentDidMount() {}
 
-  handleClick() {
-    this.setState({ disabled: true });
+  handleClickFriday() {
+    this.setState({ disabledFriday: true });
+  }
+
+  handleClickSaturday() {
+    this.setState({ disabledSaturday: true });
   }
 
   handleSwitch() {
-    const curDisabledVal = this.state.disabled;
-    this.setState({ disabled: !curDisabledVal });
+    const curBoolSwitchVal = this.state.boolSwitch;
+    this.setState({
+      disabledFriday: !curBoolSwitchVal,
+      disabledSaturday: !curBoolSwitchVal,
+      boolSwitch: !curBoolSwitchVal,
+    });
   }
 
   render() {
@@ -36,8 +47,8 @@ class CheckIn extends Component {
                 <label>
                   <input
                     type="checkbox"
-                    disabled={this.state.disable}
-                    onClick={this.handleClick}
+                    disabled={this.state.disabledFriday}
+                    onClick={this.handleClickFriday}
                   />
                   <span>Friday Maariv</span>
                 </label>
@@ -47,8 +58,8 @@ class CheckIn extends Component {
                 <label>
                   <input
                     type="checkbox"
-                    disabled={this.state.disabled}
-                    onClick={this.handleClick}
+                    disabled={this.state.disabledSaturday}
+                    onClick={this.handleClickSaturday}
                   />
                   <span>Saturday Shacharit</span>
                 </label>
