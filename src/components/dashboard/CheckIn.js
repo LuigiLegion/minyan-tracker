@@ -3,7 +3,9 @@ import React, { Component } from 'react';
 class CheckIn extends Component {
   constructor() {
     super();
-    this.state = {};
+    this.state = {
+      disabled: false,
+    };
   }
 
   componentDidMount() {}
@@ -20,14 +22,14 @@ class CheckIn extends Component {
             <form action="#" className="check-in-form">
               <div>
                 <label>
-                  <input type="checkbox" />
+                  <input type="checkbox" disabled={this.state.disable} />
                   <span>Friday Maariv</span>
                 </label>
               </div>
 
               <div>
                 <label>
-                  <input type="checkbox" />
+                  <input type="checkbox" disabled={this.state.disabled} />
                   <span>Saturday Shacharit</span>
                 </label>
               </div>
