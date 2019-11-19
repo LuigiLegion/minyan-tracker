@@ -11,7 +11,29 @@ import CheckIn from './CheckIn';
 
 class Dashboard extends Component {
   render() {
-    const { auth, notifications } = this.props;
+    const { auth, users, notifications } = this.props;
+    const fridayAttendance = { going: [], notGoing: [] };
+    const saturdayAttendance = { going: [], notGoing: [] };
+
+    let curUser;
+
+    if (users) {
+      for (let i = 0; i < users.length; i++) {
+        curUser = users[i];
+
+        if (curUser.friday) {
+          fridayAttendance.going.push(curUser);
+        } else {
+          fridayAttendance.notGoing.push(curUser);
+        }
+
+        if (curUser.saturday) {
+          saturdayAttendance.going.push(curUser);
+        } else {
+          saturdayAttendance.notGoing.push(curUser);
+        }
+      }
+    }
 
     if (!auth.uid) {
       return <Redirect to="/signin" />;
@@ -20,9 +42,9 @@ class Dashboard extends Component {
         <div className="dashboard container">
           <div className="row">
             <div className="col s12 m6">
-              <FridayMaariv />
+              <FridayMaariv attendance={fridayAttendance} />
 
-              <SaturdayShacharit />
+              <SaturdayShacharit attendance={saturdayAttendance} />
             </div>
 
             <div className="col s12 m5 offset-m1">
@@ -39,12 +61,16 @@ class Dashboard extends Component {
 
 const mapStateToProps = state => ({
   auth: state.firebase.auth,
+  users: state.firestore.ordered.users,
   notifications: state.firestore.ordered.notifications,
 });
 
 export default compose(
   connect(mapStateToProps),
   firestoreConnect([
+    {
+      collection: 'users',
+    },
     {
       collection: 'notifications',
       limit: 3,
