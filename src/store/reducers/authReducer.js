@@ -59,6 +59,8 @@ export const signUpThunkCreator = newUser => {
         lastName: newUser.lastName,
         gender: newUser.gender,
         company: newUser.company,
+        friday: false,
+        saturday: false,
       };
 
       // console.log('newUserObj: ', newUserObj);
