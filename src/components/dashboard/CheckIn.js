@@ -7,10 +7,6 @@ import { checkInThunkCreator } from '../../store/reducers/checkInReducer';
 class CheckIn extends Component {
   constructor() {
     super();
-    this.state = {
-      checkedFriday: false,
-      checkedSaturday: false,
-    };
 
     this.handleChange = this.handleChange.bind(this);
   }
@@ -40,7 +36,9 @@ class CheckIn extends Component {
   }
 
   render() {
-    console.log('props: ', this.props);
+    // console.log('props: ', this.props);
+
+    const { checkedFriday, checkedSaturday } = this.props.checkIn;
 
     return (
       <div className="section">
@@ -56,7 +54,7 @@ class CheckIn extends Component {
                   <input
                     type="checkbox"
                     value="Friday"
-                    checked={this.state.checkedFriday}
+                    checked={checkedFriday}
                     onChange={event => this.handleChange(event)}
                   />
 
@@ -69,7 +67,7 @@ class CheckIn extends Component {
                   <input
                     type="checkbox"
                     value="Saturday"
-                    checked={this.state.checkedSaturday}
+                    checked={checkedSaturday}
                     onChange={event => this.handleChange(event)}
                   />
 
