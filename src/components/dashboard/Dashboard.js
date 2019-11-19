@@ -48,9 +48,9 @@ class Dashboard extends Component {
             </div>
 
             <div className="col s12 m5 offset-m1">
-              <Notifications notifications={notifications} />
-
               <CheckIn />
+
+              <Notifications notifications={notifications} />
             </div>
           </div>
         </div>
