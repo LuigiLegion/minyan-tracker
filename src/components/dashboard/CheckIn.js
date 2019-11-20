@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 
-import { checkInThunkCreator } from '../../store/reducers/checkInReducer';
+import { updateCheckInStatusThunkCreator } from '../../store/reducers/checkInReducer';
 
 class CheckIn extends Component {
   constructor() {
@@ -16,12 +16,12 @@ class CheckIn extends Component {
     const curDay = event.target.value;
 
     const casedCurDay = curDay.toLowerCase();
-    const { auth, checkInThunk } = this.props;
+    const { auth, updateCheckInStatusThunk } = this.props;
 
     if (curCheckedVal) {
       this.setState({ ['checked' + curDay]: true });
 
-      checkInThunk(auth.uid, casedCurDay, true);
+      updateCheckInStatusThunk(auth.uid, casedCurDay, true);
     } else {
       const changeConfirmation = window.confirm(
         'Are you sure you want to cancel your RSVP?'
@@ -30,13 +30,13 @@ class CheckIn extends Component {
       if (changeConfirmation) {
         this.setState({ ['checked' + curDay]: false });
 
-        checkInThunk(auth.uid, casedCurDay, false);
+        updateCheckInStatusThunk(auth.uid, casedCurDay, false);
       }
     }
   }
 
   render() {
-    // console.log('props: ', this.props);
+    // console.log('this.props: ', this.props);
 
     const { checkedFriday, checkedSaturday } = this.props.checkIn;
 
@@ -82,13 +82,17 @@ class CheckIn extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  checkIn: state.checkIn,
-});
+const mapStateToProps = state => {
+  // console.log('state in CheckIn mapStateToProps: ', state);
+
+  return {
+    checkIn: state.checkIn,
+  };
+};
 
 const mapDispatchToProps = dispatch => ({
-  checkInThunk(userId, day, status) {
-    dispatch(checkInThunkCreator(userId, day, status));
+  updateCheckInStatusThunk(userId, day, status) {
+    dispatch(updateCheckInStatusThunkCreator(userId, day, status));
   },
 });
 
