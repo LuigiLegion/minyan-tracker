@@ -67,12 +67,16 @@ class Dashboard extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  auth: state.firebase.auth,
-  users: state.firestore.ordered.users,
-  notifications: state.firestore.ordered.notifications,
-  checkIn: state.checkIn,
-});
+const mapStateToProps = state => {
+  // console.log('state in Dashboard mapStateToProps: ', state);
+
+  return {
+    auth: state.firebase.auth,
+    users: state.firestore.ordered.users,
+    notifications: state.firestore.ordered.notifications,
+    checkIn: state.checkIn,
+  };
+};
 
 const mapDispatchToProps = dispatch => ({
   getCheckInStatusThunk(userId) {
