@@ -8,10 +8,18 @@ import FridayMaariv from './FridayMaariv';
 import SaturdayShacharit from './SaturdayShacharit';
 import Notifications from './Notifications';
 import CheckIn from './CheckIn';
+import { getCheckInStatusThunkCreator } from '../../store/reducers/checkInReducer';
 
 class Dashboard extends Component {
+  componentDidMount() {
+    const { auth } = this.props;
+
+    this.props.getCheckInStatusThunk(auth.uid);
+  }
+
   render() {
     const { auth, users, notifications } = this.props;
+
     const fridayAttendance = { going: [], notGoing: [] };
     const saturdayAttendance = { going: [], notGoing: [] };
 
@@ -63,10 +71,20 @@ const mapStateToProps = state => ({
   auth: state.firebase.auth,
   users: state.firestore.ordered.users,
   notifications: state.firestore.ordered.notifications,
+  checkIn: state.checkIn,
+});
+
+const mapDispatchToProps = dispatch => ({
+  getCheckInStatusThunk(userId) {
+    dispatch(getCheckInStatusThunkCreator(userId));
+  },
 });
 
 export default compose(
-  connect(mapStateToProps),
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  ),
   firestoreConnect([
     {
       collection: 'users',
