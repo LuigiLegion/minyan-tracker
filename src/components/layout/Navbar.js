@@ -69,7 +69,7 @@ class Navbar extends Component {
 }
 
 const mapStateToProps = state => {
-  // console.log('state: ', state);
+  // console.log('state in Navbar mapStateToProps: ', state);
 
   return { auth: state.firebase.auth, profile: state.firebase.profile };
 };

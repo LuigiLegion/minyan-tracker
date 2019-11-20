@@ -1,22 +1,27 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { compose } from 'redux';
+
+import { updateCheckInStatusThunkCreator } from '../../store/reducers/checkInReducer';
 
 class CheckIn extends Component {
   constructor() {
     super();
-    this.state = {
-      checkedFriday: false,
-      checkedSaturday: false,
-    };
 
     this.handleChange = this.handleChange.bind(this);
   }
 
   handleChange(event) {
-    const curDay = event.target.value;
     const curCheckedVal = event.target.checked;
+    const curDay = event.target.value;
+
+    const casedCurDay = curDay.toLowerCase();
+    const { auth, updateCheckInStatusThunk } = this.props;
 
     if (curCheckedVal) {
       this.setState({ ['checked' + curDay]: true });
+
+      updateCheckInStatusThunk(auth.uid, casedCurDay, true);
     } else {
       const changeConfirmation = window.confirm(
         'Are you sure you want to cancel your RSVP?'
@@ -24,11 +29,17 @@ class CheckIn extends Component {
 
       if (changeConfirmation) {
         this.setState({ ['checked' + curDay]: false });
+
+        updateCheckInStatusThunk(auth.uid, casedCurDay, false);
       }
     }
   }
 
   render() {
+    // console.log('this.props: ', this.props);
+
+    const { checkedFriday, checkedSaturday } = this.props.checkIn;
+
     return (
       <div className="section">
         <div className="card z-depth-0">
@@ -43,7 +54,7 @@ class CheckIn extends Component {
                   <input
                     type="checkbox"
                     value="Friday"
-                    checked={this.state.checkedFriday}
+                    checked={checkedFriday}
                     onChange={event => this.handleChange(event)}
                   />
 
@@ -56,7 +67,7 @@ class CheckIn extends Component {
                   <input
                     type="checkbox"
                     value="Saturday"
-                    checked={this.state.checkedSaturday}
+                    checked={checkedSaturday}
                     onChange={event => this.handleChange(event)}
                   />
 
@@ -71,4 +82,23 @@ class CheckIn extends Component {
   }
 }
 
-export default CheckIn;
+const mapStateToProps = state => {
+  // console.log('state in CheckIn mapStateToProps: ', state);
+
+  return {
+    checkIn: state.checkIn,
+  };
+};
+
+const mapDispatchToProps = dispatch => ({
+  updateCheckInStatusThunk(userId, day, status) {
+    dispatch(updateCheckInStatusThunkCreator(userId, day, status));
+  },
+});
+
+export default compose(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )
+)(CheckIn);

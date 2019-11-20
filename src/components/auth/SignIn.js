@@ -81,10 +81,14 @@ export class SignIn extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  auth: state.firebase.auth,
-  authError: state.auth.authError,
-});
+const mapStateToProps = state => {
+  // console.log('state in SignIn mapStateToProps: ', state);
+
+  return {
+    auth: state.firebase.auth,
+    authError: state.auth.authError,
+  };
+};
 
 const mapDispatchToProps = dispatch => ({
   signInThunk(userCredentials) {
