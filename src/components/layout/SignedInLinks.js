@@ -10,20 +10,22 @@ const SignedInLinks = ({ profile, signOutThunk }) => {
       <li>
         <NavLink to="/">
           {profile.firstName ? (
-            <span>Hello, {profile.firstName}.</span>
+            <span className="navbar-text-color">
+              Hello, {profile.firstName}.
+            </span>
           ) : (
-            <span>Hello.</span>
+            <span className="navbar-text-color">Hello.</span>
           )}
         </NavLink>
       </li>
       <li>
         <NavLink to="/placeholder">
-          <span className="bold-text-style">Placeholder</span>
+          <span className="bold-text-style navbar-text-color">Placeholder</span>
         </NavLink>
       </li>
       <li>
         <NavLink to="/" onClick={signOutThunk}>
-          <span className="bold-text-style">Sign Out</span>
+          <span className="bold-text-style navbar-text-color">Sign Out</span>
         </NavLink>
       </li>
     </ul>

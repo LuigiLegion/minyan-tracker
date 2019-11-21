@@ -40,7 +40,9 @@ class SignedOutLinksBurger extends Component {
                 }}
                 to="/signin"
               >
-                <span className="bold-text-style">Sign In</span>
+                <span className="bold-text-style navbar-text-color">
+                  Sign In
+                </span>
               </NavLink>
             </div>
 
@@ -51,7 +53,9 @@ class SignedOutLinksBurger extends Component {
                 }}
                 to="/signup"
               >
-                <span className="bold-text-style">Sign Up</span>
+                <span className="bold-text-style navbar-text-color">
+                  Sign Up
+                </span>
               </NavLink>
             </div>
           </div>
@@ -72,7 +76,7 @@ const burgerStyles = {
     top: '14px',
   },
   bmBurgerBars: {
-    background: '#039be5',
+    background: '#fafafa',
   },
   bmBurgerBarsHover: {
     background: '#a90000',
@@ -80,10 +84,11 @@ const burgerStyles = {
   bmCrossButton: {
     height: '24px',
     width: '24px',
-    backgroundColor: '#424242',
+    backgroundColor: '#fafafa',
+    borderRadius: '20%',
   },
   bmCross: {
-    background: '#bdc3c7',
+    background: '#003459',
   },
   bmMenuWrap: {
     position: 'fixed',
@@ -98,7 +103,7 @@ const burgerStyles = {
   },
   bmItemList: {
     color: '#b8b7ad',
-    backgroundColor: '#039be5',
+    backgroundColor: '#007ea7',
     padding: '0.8em',
   },
   bmItem: {
