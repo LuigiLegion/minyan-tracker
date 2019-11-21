@@ -14,7 +14,7 @@ body {
   color: #fafafa;
   background-size: 100%;
   background-position: bottom;
-  background-color: #212121;
+  background-color: #003459;
 }
 
 code {
@@ -85,18 +85,30 @@ textarea.materialize-textarea:focus:not([readonly]) {
   left: 30px;
 }
 
+.check-in-form {
+  margin-top: 0px;
+}
+
 .bold-text-style {
   font-weight: bold;
 }
 
 .blue-text-color {
-  color: #039be5;
+  color: #357da7;
 }
 
 .red-text-color {
   color: #ef5350;
 }
 
-.check-in-form {
-  margin-top: 0px;
+.checkbox-text-color {
+  color: #424242;
+}
+
+.navbar-background-color {
+  background-color: #357da7;
+}
+
+.navbar-text-color {
+  color: #fafafa;
 }
