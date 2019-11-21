@@ -49,16 +49,16 @@ export const signUpThunkCreator = newUser => {
       const firebase = getFirebase();
       const firestore = getFirestore();
 
-      const newUserData = await firebase
+      const { user } = await firebase
         .auth()
         .createUserWithEmailAndPassword(newUser.email, newUser.password);
 
-      const newUserObj = {
+      const newUserData = {
         email: newUser.email,
         firstName: newUser.firstName,
         lastName: newUser.lastName,
         gender: newUser.gender,
-        company: newUser.company,
+        congregation: newUser.congregation,
         friday: false,
         saturday: false,
       };
@@ -67,8 +67,8 @@ export const signUpThunkCreator = newUser => {
 
       await firestore
         .collection('users')
-        .doc(newUserData.user.uid)
-        .set(newUserObj);
+        .doc(user.uid)
+        .set(newUserData);
 
       dispatch(signUpSuccessActionCreator(newUser));
     } catch (error) {

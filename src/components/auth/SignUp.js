@@ -15,7 +15,7 @@ export class SignUp extends Component {
       firstName: '',
       lastName: '',
       gender: 'Male',
-      company: 'N/A',
+      congregation: 'Sons of Israel',
       accessToken: '',
       accessTokenError: false,
     };
@@ -156,15 +156,15 @@ export class SignUp extends Component {
             </div>
 
             <div className="input-field col s12">
-              <label htmlFor="company">
-                Company<span className="red-text-color">*</span>
+              <label htmlFor="congregation">
+                Congregation<span className="red-text-color">*</span>
               </label>
 
               <br />
               <br />
 
               <select
-                id="company"
+                id="congregation"
                 className="browser-default"
                 required
                 onChange={this.handleChange}
@@ -172,14 +172,16 @@ export class SignUp extends Component {
                 <option value="" disabled>
                   --Please choose an option--
                 </option>
-                <option value="N/A">N/A</option>
-                <option value="Apple">Apple</option>
-                <option value="Facebook">Facebook</option>
-                <option value="Google">Google</option>
-                <option value="GitHub">GitHub</option>
-                <option value="Microsoft">Microsoft</option>
-                <option value="Twitter">Twitter</option>
-                <option value="Yahoo">Yahoo</option>
+                <option value="Sons of Israel">Sons of Israel</option>
+                <option value="Young Israel of Sunnyside">
+                  Young Israel of Sunnyside
+                </option>
+                <option value="Chabad of West Queens">
+                  Chabad of West Queens
+                </option>
+                <option value="Astoria Center of Israel">
+                  Astoria Center of Israel
+                </option>
               </select>
             </div>
 
