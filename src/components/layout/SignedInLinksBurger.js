@@ -39,16 +39,20 @@ class SignedInLinksBurger extends Component {
             <div>
               <NavLink onClick={() => this.closeMenu()} to="/">
                 {this.props.profile.firstName ? (
-                  <span>Hello, {this.props.profile.firstName}.</span>
+                  <span className="navbar-text-color">
+                    Hello, {this.props.profile.firstName}.
+                  </span>
                 ) : (
-                  <span>Hello.</span>
+                  <span className="navbar-text-color">Hello.</span>
                 )}
               </NavLink>
             </div>
 
             <div>
               <NavLink onClick={() => this.closeMenu()} to="/placeholder">
-                <span className="bold-text-style">Placeholder</span>
+                <span className="bold-text-style navbar-text-color">
+                  Placeholder
+                </span>
               </NavLink>
             </div>
 
@@ -60,7 +64,9 @@ class SignedInLinksBurger extends Component {
                 }}
                 to="/"
               >
-                <span className="bold-text-style">Sign Out</span>
+                <span className="bold-text-style navbar-text-color">
+                  Sign Out
+                </span>
               </NavLink>
             </div>
           </div>
@@ -90,7 +96,7 @@ const burgerStyles = {
     top: '14px',
   },
   bmBurgerBars: {
-    background: '#039be5',
+    background: '#fafafa',
   },
   bmBurgerBarsHover: {
     background: '#a90000',
@@ -98,10 +104,11 @@ const burgerStyles = {
   bmCrossButton: {
     height: '24px',
     width: '24px',
-    backgroundColor: '#424242',
+    backgroundColor: '#fafafa',
+    borderRadius: '20%',
   },
   bmCross: {
-    background: '#bdc3c7',
+    background: '#003459',
   },
   bmMenuWrap: {
     position: 'fixed',
@@ -116,7 +123,7 @@ const burgerStyles = {
   },
   bmItemList: {
     color: '#b8b7ad',
-    backgroundColor: '#039be5',
+    backgroundColor: '#007ea7',
     padding: '0.8em',
   },
   bmItem: {

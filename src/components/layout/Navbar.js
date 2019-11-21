@@ -50,13 +50,17 @@ class Navbar extends Component {
 
     return (
       <div className="navbar-fixed">
-        <nav className="nav-wrapper grey darken-3">
+        <nav className="nav-wrapper navbar-background-color">
           <div>
             <NavLink to="/" className="left brand-logo name-text-positioning">
               {largeViewCheck ? (
-                <span className="bold-text-style">MinyanTracker</span>
+                <span className="bold-text-style navbar-text-color">
+                  MinyanTracker
+                </span>
               ) : (
-                <span className="bold-text-style">MTracker</span>
+                <span className="bold-text-style navbar-text-color">
+                  MTracker
+                </span>
               )}
             </NavLink>
 
