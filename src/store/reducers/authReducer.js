@@ -57,6 +57,7 @@ export const signUpThunkCreator = newUser => {
         email: newUser.email,
         firstName: newUser.firstName,
         lastName: newUser.lastName,
+        fullName: `${newUser.firstName} ${newUser.lastName}`,
         gender: newUser.gender,
         congregation: newUser.congregation,
         friday: false,

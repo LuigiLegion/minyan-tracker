@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 
-import { updateCheckInStatusThunkCreator } from '../../store/reducers/checkInReducer';
+import { updateCheckInStatusThunkCreator } from '../../store/reducers/userReducer';
 
 class CheckIn extends Component {
   constructor() {
@@ -15,22 +15,17 @@ class CheckIn extends Component {
     const curCheckedVal = event.target.checked;
     const curDay = event.target.value;
 
-    const casedCurDay = curDay.toLowerCase();
     const { auth, updateCheckInStatusThunk } = this.props;
 
     if (curCheckedVal) {
-      this.setState({ ['checked' + curDay]: true });
-
-      updateCheckInStatusThunk(auth.uid, casedCurDay, true);
+      updateCheckInStatusThunk(auth.uid, curDay, true);
     } else {
       const changeConfirmation = window.confirm(
         'Are you sure you want to cancel your RSVP?'
       );
 
       if (changeConfirmation) {
-        this.setState({ ['checked' + curDay]: false });
-
-        updateCheckInStatusThunk(auth.uid, casedCurDay, false);
+        updateCheckInStatusThunk(auth.uid, curDay, false);
       }
     }
   }
@@ -38,7 +33,9 @@ class CheckIn extends Component {
   render() {
     // console.log('this.props: ', this.props);
 
-    const { checkedFriday, checkedSaturday } = this.props.checkIn;
+    const { friday, saturday } = this.props.user;
+
+    // console.log('friday: ', friday, 'saturday: ', saturday);
 
     return (
       <div className="section">
@@ -53,8 +50,8 @@ class CheckIn extends Component {
                 <label>
                   <input
                     type="checkbox"
-                    value="Friday"
-                    checked={checkedFriday}
+                    value="friday"
+                    checked={friday}
                     onChange={event => this.handleChange(event)}
                   />
 
@@ -66,8 +63,8 @@ class CheckIn extends Component {
                 <label>
                   <input
                     type="checkbox"
-                    value="Saturday"
-                    checked={checkedSaturday}
+                    value="saturday"
+                    checked={saturday}
                     onChange={event => this.handleChange(event)}
                   />
 
@@ -88,7 +85,7 @@ const mapStateToProps = state => {
   // console.log('state in CheckIn mapStateToProps: ', state);
 
   return {
-    checkIn: state.checkIn,
+    user: state.user,
   };
 };
 

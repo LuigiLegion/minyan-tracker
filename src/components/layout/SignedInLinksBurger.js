@@ -97,6 +97,7 @@ const burgerStyles = {
   },
   bmBurgerBars: {
     background: '#fafafa',
+    borderRadius: '15%',
   },
   bmBurgerBarsHover: {
     background: '#a90000',
@@ -105,7 +106,7 @@ const burgerStyles = {
     height: '24px',
     width: '24px',
     backgroundColor: '#fafafa',
-    borderRadius: '20%',
+    borderRadius: '15%',
   },
   bmCross: {
     background: '#003459',

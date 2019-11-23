@@ -4,44 +4,26 @@ import { connect } from 'react-redux';
 import { firestoreConnect } from 'react-redux-firebase';
 import { compose } from 'redux';
 
-import FridayMaariv from './FridayMaariv';
-import SaturdayShacharit from './SaturdayShacharit';
+import Days from './Days';
+// import FridayMaariv from './FridayMaariv';
+// import SaturdayShacharit from './SaturdayShacharit';
 import Notifications from './Notifications';
 import CheckIn from './CheckIn';
-import { getCheckInStatusThunkCreator } from '../../store/reducers/checkInReducer';
+import { getUserDataThunkCreator } from '../../store/reducers/userReducer';
 
 class Dashboard extends Component {
   componentDidMount() {
     const { auth } = this.props;
 
-    this.props.getCheckInStatusThunk(auth.uid);
+    this.props.getUserDataThunk(auth.uid);
   }
 
   render() {
-    const { auth, users, notifications } = this.props;
+    // const { auth, users, notifications, user } = this.props;
 
-    const fridayAttendance = { going: [], notGoing: [] };
-    const saturdayAttendance = { going: [], notGoing: [] };
+    const { auth, notifications, user } = this.props;
 
-    let curUser;
-
-    if (users) {
-      for (let i = 0; i < users.length; i++) {
-        curUser = users[i];
-
-        if (curUser.friday) {
-          fridayAttendance.going.push(curUser);
-        } else {
-          fridayAttendance.notGoing.push(curUser);
-        }
-
-        if (curUser.saturday) {
-          saturdayAttendance.going.push(curUser);
-        } else {
-          saturdayAttendance.notGoing.push(curUser);
-        }
-      }
-    }
+    // console.log('user in Dashboard: ', user);
 
     if (!auth.uid) {
       return <Redirect to="/signin" />;
@@ -49,11 +31,13 @@ class Dashboard extends Component {
       return (
         <div className="dashboard container">
           <div className="row">
-            <div className="col s12 m6">
+            {/* <div className="col s12 m6">
               <FridayMaariv attendance={fridayAttendance} />
 
               <SaturdayShacharit attendance={saturdayAttendance} />
-            </div>
+            </div> */}
+
+            <Days auth={auth} user={user} />
 
             <div className="col s12 m5 offset-m1">
               <CheckIn auth={auth} />
@@ -74,13 +58,14 @@ const mapStateToProps = state => {
     auth: state.firebase.auth,
     users: state.firestore.ordered.users,
     notifications: state.firestore.ordered.notifications,
-    checkIn: state.checkIn,
+    user: state.user,
+    attendance: state.attendance,
   };
 };
 
 const mapDispatchToProps = dispatch => ({
-  getCheckInStatusThunk(userId) {
-    dispatch(getCheckInStatusThunkCreator(userId));
+  getUserDataThunk(userId) {
+    dispatch(getUserDataThunkCreator(userId));
   },
 });
 

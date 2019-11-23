@@ -1,51 +1,56 @@
+import { getUsersAttendanceThunkCreator } from './attendanceReducer';
+
 // Initial State
 const initialState = {
-  checkedFriday: false,
-  checkedSaturday: false,
+  firstName: '',
+  lastName: '',
+  fullName: '',
+  email: '',
+  gender: '',
+  congregation: '',
+  friday: false,
+  saturday: false,
 };
 
 // Actions
-const GOT_CHECK_IN_STATUSES = 'GOT_CHECK_IN_STATUSES';
+const GOT_USER_DATA = 'GOT_USER_DATA';
 const UPDATED_FRIDAY_CHECK_IN_STATUS = 'UPDATED_FRIDAY_CHECK_IN_STATUS';
 const UPDATED_SATURDAY_CHECK_IN_STATUS = 'UPDATED_SATURDAY_CHECK_IN_STATUS';
 
 // Action Creators
-const gotCheckInStatusActionCreator = statusObj => ({
-  type: GOT_CHECK_IN_STATUSES,
-  statusObj,
+const gotUserDataActionCreator = user => ({
+  type: GOT_USER_DATA,
+  user,
 });
 
-const updatedFridayCheckInActionCreator = statusVal => ({
+const updatedFridayCheckInActionCreator = status => ({
   type: UPDATED_FRIDAY_CHECK_IN_STATUS,
-  statusVal,
+  status,
 });
 
-const updatedSaturdayCheckInActionCreator = statusVal => ({
+const updatedSaturdayCheckInActionCreator = status => ({
   type: UPDATED_SATURDAY_CHECK_IN_STATUS,
-  statusVal,
+  status,
 });
 
 // Thunks
-export const getCheckInStatusThunkCreator = userId => {
+export const getUserDataThunkCreator = userId => {
   return async (dispatch, getState, { getFirestore }) => {
     try {
       const firestore = getFirestore();
 
-      // console.log('userId in getCheckInStatusThunkCreator: ', userId);
+      // console.log('userId in getUserDataThunkCreator: ', userId);
 
-      const userData = await firestore
+      const userDataRaw = await firestore
         .collection('users')
         .doc(userId)
         .get();
 
-      const { friday, saturday } = userData.data();
+      const userDataObj = userDataRaw.data();
 
-      const userCheckInStatusesData = {
-        friday,
-        saturday,
-      };
+      dispatch(gotUserDataActionCreator(userDataObj));
 
-      dispatch(gotCheckInStatusActionCreator(userCheckInStatusesData));
+      dispatch(getUsersAttendanceThunkCreator());
     } catch (error) {
       console.error(error);
     }
@@ -64,11 +69,13 @@ export const updateCheckInStatusThunkCreator = (userId, day, status) => {
           [day]: status,
         });
 
-      if (day.toLowerCase() === 'friday') {
+      if (day === 'friday') {
         dispatch(updatedFridayCheckInActionCreator(status));
       } else {
         dispatch(updatedSaturdayCheckInActionCreator(status));
       }
+
+      dispatch(getUsersAttendanceThunkCreator());
     } catch (error) {
       console.error(error);
     }
@@ -76,15 +83,14 @@ export const updateCheckInStatusThunkCreator = (userId, day, status) => {
 };
 
 // Reducer
-const checkInReducer = (state = initialState, action) => {
+const userReducer = (state = initialState, action) => {
   switch (action.type) {
-    case GOT_CHECK_IN_STATUSES:
-      // console.log('GOT_CHECK_IN_STATUSES action.statusObj: ', action.statusObj);
+    case GOT_USER_DATA:
+      // console.log('GOT_USER_DATA action.user: ', action.user);
 
       return {
         ...state,
-        checkedFriday: action.statusObj.friday,
-        checkedSaturday: action.statusObj.saturday,
+        ...action.user,
       };
 
     case UPDATED_FRIDAY_CHECK_IN_STATUS:
@@ -93,7 +99,7 @@ const checkInReducer = (state = initialState, action) => {
       //   action.statusVal
       // );
 
-      return { ...state, checkedFriday: action.statusVal };
+      return { ...state, friday: action.status };
 
     case UPDATED_SATURDAY_CHECK_IN_STATUS:
       // console.log(
@@ -101,11 +107,11 @@ const checkInReducer = (state = initialState, action) => {
       //   action.statusVal
       // );
 
-      return { ...state, checkedSaturday: action.statusVal };
+      return { ...state, saturday: action.status };
 
     default:
       return state;
   }
 };
 
-export default checkInReducer;
+export default userReducer;
