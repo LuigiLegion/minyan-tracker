@@ -16,7 +16,11 @@ const FridayMaariv = ({ attendance }) => {
           <span className="bold-text-style blue-text-color">Going</span>
 
           <ul className="going">
-            {going &&
+            {!going.length ? (
+              <li>
+                <span>None</span>
+              </li>
+            ) : (
               going.map(curUser => {
                 const { fullName } = curUser;
 
@@ -25,7 +29,8 @@ const FridayMaariv = ({ attendance }) => {
                     <span>{fullName}</span>
                   </li>
                 );
-              })}
+              })
+            )}
           </ul>
 
           <hr />
@@ -33,7 +38,11 @@ const FridayMaariv = ({ attendance }) => {
           <span className="bold-text-style blue-text-color">Not Going</span>
 
           <ul className="not-going">
-            {notGoing &&
+            {!notGoing.length ? (
+              <li>
+                <span>None</span>
+              </li>
+            ) : (
               notGoing.map(curUser => {
                 const { fullName } = curUser;
 
@@ -42,7 +51,8 @@ const FridayMaariv = ({ attendance }) => {
                     <span>{fullName}</span>
                   </li>
                 );
-              })}
+              })
+            )}
           </ul>
         </div>
       </div>
