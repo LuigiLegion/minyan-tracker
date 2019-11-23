@@ -18,7 +18,7 @@ const SaturdayShacharit = ({ attendance }) => {
           <ul className="going">
             {!going.length ? (
               <li>
-                <span>None</span>
+                <span className="bold-text-style">None</span>
               </li>
             ) : (
               going.map(curUser => {
@@ -40,7 +40,7 @@ const SaturdayShacharit = ({ attendance }) => {
           <ul className="not-going">
             {!notGoing.length ? (
               <li>
-                <span>None</span>
+                <span className="bold-text-style">None</span>
               </li>
             ) : (
               notGoing.map(curUser => {
