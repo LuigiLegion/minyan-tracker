@@ -18,11 +18,11 @@ const FridayMaariv = ({ attendance }) => {
           <ul className="going">
             {going &&
               going.map(curUser => {
-                const { firstName, lastName } = curUser;
+                const { fullName } = curUser;
 
                 return (
-                  <li key={curUser.id}>
-                    <span>{`${firstName} ${lastName}`}</span>
+                  <li key={curUser.email}>
+                    <span>{fullName}</span>
                   </li>
                 );
               })}
@@ -35,11 +35,11 @@ const FridayMaariv = ({ attendance }) => {
           <ul className="not-going">
             {notGoing &&
               notGoing.map(curUser => {
-                const { firstName, lastName } = curUser;
+                const { fullName } = curUser;
 
                 return (
-                  <li key={curUser.id}>
-                    <span>{`${firstName} ${lastName}`}</span>
+                  <li key={curUser.email}>
+                    <span>{fullName}</span>
                   </li>
                 );
               })}
