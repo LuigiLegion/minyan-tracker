@@ -3,13 +3,13 @@ import { combineReducers } from 'redux';
 import { firestoreReducer } from 'redux-firestore';
 
 import authReducer from './authReducer';
-import checkInReducer from './checkInReducer';
+import userReducer from './userReducer';
 
 const rootReducer = combineReducers({
   firestore: firestoreReducer,
   firebase: firebaseReducer,
   auth: authReducer,
-  checkIn: checkInReducer,
+  user: userReducer,
 });
 
 export default rootReducer;
