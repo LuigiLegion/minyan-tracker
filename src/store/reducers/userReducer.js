@@ -1,3 +1,5 @@
+import { getUsersAttendanceThunkCreator } from './attendanceReducer';
+
 // Initial State
 const initialState = {
   firstName: '',
@@ -21,14 +23,14 @@ const gotUserDataActionCreator = user => ({
   user,
 });
 
-const updatedFridayCheckInActionCreator = statusVal => ({
+const updatedFridayCheckInActionCreator = status => ({
   type: UPDATED_FRIDAY_CHECK_IN_STATUS,
-  statusVal,
+  status,
 });
 
-const updatedSaturdayCheckInActionCreator = statusVal => ({
+const updatedSaturdayCheckInActionCreator = status => ({
   type: UPDATED_SATURDAY_CHECK_IN_STATUS,
-  statusVal,
+  status,
 });
 
 // Thunks
@@ -47,6 +49,8 @@ export const getUserDataThunkCreator = userId => {
       const userDataObj = userDataRaw.data();
 
       dispatch(gotUserDataActionCreator(userDataObj));
+
+      dispatch(getUsersAttendanceThunkCreator());
     } catch (error) {
       console.error(error);
     }
@@ -65,11 +69,13 @@ export const updateCheckInStatusThunkCreator = (userId, day, status) => {
           [day]: status,
         });
 
-      if (day.toLowerCase() === 'friday') {
+      if (day === 'friday') {
         dispatch(updatedFridayCheckInActionCreator(status));
       } else {
         dispatch(updatedSaturdayCheckInActionCreator(status));
       }
+
+      dispatch(getUsersAttendanceThunkCreator());
     } catch (error) {
       console.error(error);
     }
@@ -93,7 +99,7 @@ const userReducer = (state = initialState, action) => {
       //   action.statusVal
       // );
 
-      return { ...state, friday: action.statusVal };
+      return { ...state, friday: action.status };
 
     case UPDATED_SATURDAY_CHECK_IN_STATUS:
       // console.log(
@@ -101,7 +107,7 @@ const userReducer = (state = initialState, action) => {
       //   action.statusVal
       // );
 
-      return { ...state, saturday: action.statusVal };
+      return { ...state, saturday: action.status };
 
     default:
       return state;
