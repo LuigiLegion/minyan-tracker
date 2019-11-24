@@ -1,65 +1,47 @@
-import React, { Component } from 'react';
+// Imports
+import React from 'react';
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { firestoreConnect } from 'react-redux-firebase';
 import { compose } from 'redux';
+import PropTypes from 'prop-types';
 
 import Days from './Days';
-// import FridayMaariv from './FridayMaariv';
-// import SaturdayShacharit from './SaturdayShacharit';
-import Notifications from './Notifications';
-import CheckIn from './CheckIn';
+import Utilities from './Utilities';
 import { getUserDataThunkCreator } from '../../store/reducers/userReducer';
 
-class Dashboard extends Component {
-  componentDidMount() {
-    const { auth } = this.props;
+// Component
+const Dashboard = ({ auth, notifications, getUserDataThunk }) => {
+  // console.log('auth in Dashboard: ', auth);
+  // console.log('notifications in Dashboard: ', notifications);
+  // console.log('getUserDataThunk in Dashboard: ', getUserDataThunk);
 
-    this.props.getUserDataThunk(auth.uid);
-  }
+  getUserDataThunk(auth.uid);
 
-  render() {
-    // const { auth, users, notifications, user } = this.props;
+  if (!auth.uid) {
+    return <Redirect to="/signin" />;
+  } else {
+    return (
+      <div className="dashboard container">
+        <div className="row">
+          <Days />
 
-    const { auth, notifications, user } = this.props;
-
-    // console.log('user in Dashboard: ', user);
-
-    if (!auth.uid) {
-      return <Redirect to="/signin" />;
-    } else {
-      return (
-        <div className="dashboard container">
-          <div className="row">
-            {/* <div className="col s12 m6">
-              <FridayMaariv attendance={fridayAttendance} />
-
-              <SaturdayShacharit attendance={saturdayAttendance} />
-            </div> */}
-
-            <Days auth={auth} user={user} />
-
-            <div className="col s12 m5 offset-m1">
-              <CheckIn auth={auth} />
-
-              <Notifications notifications={notifications} />
-            </div>
-          </div>
+          <Utilities auth={auth} notifications={notifications} />
         </div>
-      );
-    }
+      </div>
+    );
   }
-}
+};
 
+// Container
 const mapStateToProps = state => {
   // console.log('state in Dashboard mapStateToProps: ', state);
 
   return {
     auth: state.firebase.auth,
+    profile: state.firebase.profile,
     users: state.firestore.ordered.users,
     notifications: state.firestore.ordered.notifications,
-    user: state.user,
-    attendance: state.attendance,
   };
 };
 
@@ -85,3 +67,11 @@ export default compose(
     },
   ])
 )(Dashboard);
+
+// Prop Types
+Days.propTypes = {
+  auth: PropTypes.object,
+  profile: PropTypes.object,
+  notifications: PropTypes.array,
+  getUserDataThunk: PropTypes.func,
+};
