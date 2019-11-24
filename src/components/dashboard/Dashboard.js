@@ -63,7 +63,7 @@ export default compose(
     {
       collection: 'notifications',
       limit: 3,
-      orderBy: ['time', 'desc'],
+      orderBy: ['timestamp', 'desc'],
     },
   ])
 )(Dashboard);
