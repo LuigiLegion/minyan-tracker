@@ -1,31 +1,32 @@
-import React, { Component } from 'react';
+// Imports
+import React from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 import FridayMaariv from './FridayMaariv';
 import SaturdayShacharit from './SaturdayShacharit';
 
-class Days extends Component {
-  render() {
-    // const { auth, attendance } = this.props;
+// Component
+const Days = ({ attendance }) => {
+  // console.log('attendance in Days: ', attendance);
 
-    const { attendance } = this.props;
+  const { friday, saturday } = attendance;
 
-    // console.log('auth: ', auth);
+  // console.log('friday in Days: ', friday);
+  // console.log('saturday in Days: ', saturday);
 
-    // console.log('attendance in Days: ', attendance);
+  return (
+    <div className="col s12 m6">
+      <FridayMaariv friday={friday} />
 
-    return (
-      <div className="col s12 m6">
-        <FridayMaariv attendance={attendance.friday} />
+      <SaturdayShacharit saturday={saturday} />
+    </div>
+  );
+};
 
-        <SaturdayShacharit attendance={attendance.saturday} />
-      </div>
-    );
-  }
-}
-
+// Container
 const mapStateToProps = state => {
-  // console.log('state in Dashboard mapStateToProps: ', state);
+  // console.log('state in Days mapStateToProps: ', state);
 
   return {
     attendance: state.attendance,
@@ -33,3 +34,8 @@ const mapStateToProps = state => {
 };
 
 export default connect(mapStateToProps)(Days);
+
+// Prop Types
+Days.propTypes = {
+  attendance: PropTypes.object,
+};

@@ -1,9 +1,14 @@
+// Imports
 import React from 'react';
+import PropTypes from 'prop-types';
 
-const FridayMaariv = ({ attendance }) => {
-  // console.log('FridayMaariv attendance: ', attendance);
+// Component
+const FridayMaariv = ({ friday }) => {
+  // console.log('friday in FridayMaariv: ', attendance);
 
-  const { going, notGoing } = attendance;
+  const { going, notGoing } = friday;
+  // console.log('going in FridayMaariv: ', going);
+  // console.log('notGoing in FridayMaariv: ', notGoing);
 
   return (
     <div className="section">
@@ -18,7 +23,7 @@ const FridayMaariv = ({ attendance }) => {
           <ul className="going">
             {!going.length ? (
               <li>
-                <span>None</span>
+                <span className="bold-text-style">None</span>
               </li>
             ) : (
               going.map(curUser => {
@@ -40,7 +45,7 @@ const FridayMaariv = ({ attendance }) => {
           <ul className="not-going">
             {!notGoing.length ? (
               <li>
-                <span>None</span>
+                <span className="bold-text-style">None</span>
               </li>
             ) : (
               notGoing.map(curUser => {
@@ -61,3 +66,8 @@ const FridayMaariv = ({ attendance }) => {
 };
 
 export default FridayMaariv;
+
+// Prop Types
+FridayMaariv.propTypes = {
+  friday: PropTypes.object,
+};

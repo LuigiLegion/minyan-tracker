@@ -1,10 +1,16 @@
+// Imports
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 import { signOutThunkCreator } from '../../store/reducers/authReducer';
 
+// Component
 const SignedInLinks = ({ profile, signOutThunk }) => {
+  // console.log('profile in SignedInLinks: ', profile);
+  // console.log('signOutThunk in SignedInLinks: ', signOutThunk);
+
   return (
     <ul className="right">
       <li>
@@ -32,6 +38,7 @@ const SignedInLinks = ({ profile, signOutThunk }) => {
   );
 };
 
+// Container
 const mapDispatchToProps = dispatch => ({
   signOutThunk() {
     dispatch(signOutThunkCreator());
@@ -42,3 +49,9 @@ export default connect(
   null,
   mapDispatchToProps
 )(SignedInLinks);
+
+// Prop Types
+SignedInLinks.propTypes = {
+  profile: PropTypes.object,
+  signOutThunk: PropTypes.func,
+};

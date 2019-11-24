@@ -10,7 +10,7 @@ const initialState = {
   },
 };
 
-// Actions
+// Action Types
 const GOT_USERS_ATTENDANCE = 'GOT_USERS_ATTENDANCE';
 
 // Action Creators
@@ -31,14 +31,12 @@ export const getUsersAttendanceThunkCreator = () => {
 
       const { user } = getState();
 
-      // console.log('congregationName: ', congregationName);
+      // console.log('user in getUsersAttendanceThunkCreator: ', user);
 
       const { docs } = await firestore
         .collection('users')
         .where('congregation', '==', user.congregation)
         .get();
-
-      // console.log('usersFromSameCongDataRaw: ', docs);
 
       const fridayAttendance = {
         going: [],
@@ -54,6 +52,8 @@ export const getUsersAttendanceThunkCreator = () => {
 
       for (let doc of docs) {
         curUser = doc.data();
+
+        // console.log('curUser in getUsersAttendanceThunkCreator: ', curUser);
 
         if (curUser.friday) {
           fridayAttendance.going.push(curUser);

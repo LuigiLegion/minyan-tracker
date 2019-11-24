@@ -1,10 +1,13 @@
+// Imports
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 import { signUpThunkCreator } from '../../store/reducers/authReducer';
 import signupAccessToken from '../../config/signupConfig';
 
+// Component
 export class SignUp extends Component {
   constructor() {
     super();
@@ -25,8 +28,8 @@ export class SignUp extends Component {
   }
 
   handleChange(event) {
-    // console.log('event.target.id: ', event.target.id);
-    // console.log('event.target.value: ', event.target.value);
+    // console.log('event.target.id in SignUp handleChange: ', event.target.id);
+    // console.log('event.target.value in SignUp handleChange: ', event.target.value);
 
     this.setState({
       [event.target.id]: event.target.value,
@@ -34,16 +37,20 @@ export class SignUp extends Component {
   }
 
   handleSubmit(event) {
-    // console.log('event.target.id: ', event.target.id);
-    // console.log('event.target.value: ', event.target.value);
+    // console.log('event.target.id in SignUp handleSubmit: ', event.target.id);
+    // console.log('event.target.value in SignUp handleSubmit: ', event.target.value);
 
     event.preventDefault();
+
+    const { signUpThunk } = this.props;
+
+    // console.log('signUpThunk in SignUp handleSubmit: ', signUpThunk);
 
     if (this.state.accessToken === signupAccessToken) {
       this.setState({
         accessTokenError: false,
       });
-      this.props.signUpThunk(this.state);
+      signUpThunk(this.state);
     } else {
       this.setState({
         accessTokenError: true,
@@ -53,6 +60,9 @@ export class SignUp extends Component {
 
   render() {
     const { auth, authError } = this.props;
+
+    // console.log('auth in SignUp: ', auth);
+    // console.log('authError in SignUp: ', authError);
 
     if (auth.uid) {
       return <Redirect to="/" />;
@@ -216,6 +226,7 @@ export class SignUp extends Component {
   }
 }
 
+// Container
 const mapStateToProps = state => {
   // console.log('state in SignUp mapStateToProps: ', state);
 
@@ -235,3 +246,10 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(SignUp);
+
+// Prop Types
+SignUp.propTypes = {
+  auth: PropTypes.object,
+  authError: PropTypes.string,
+  signUpThunk: PropTypes.func,
+};

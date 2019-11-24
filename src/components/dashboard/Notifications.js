@@ -1,7 +1,12 @@
+// Imports
 import React from 'react';
 import moment from 'moment';
+import PropTypes from 'prop-types';
 
+// Component
 const Notifications = ({ notifications }) => {
+  // console.log('notifications in Notifications: ', notifications);
+
   return (
     <div className="section">
       <div className="card z-depth-0">
@@ -37,3 +42,8 @@ const Notifications = ({ notifications }) => {
 };
 
 export default Notifications;
+
+// Prop Types
+Notifications.propTypes = {
+  notifications: PropTypes.array,
+};

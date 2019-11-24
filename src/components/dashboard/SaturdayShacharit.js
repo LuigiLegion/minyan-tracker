@@ -1,9 +1,15 @@
+// Imports
 import React from 'react';
+import PropTypes from 'prop-types';
 
-const SaturdayShacharit = ({ attendance }) => {
-  // console.log('SaturdayShacharit attendance: ', attendance);
+// Component
+const SaturdayShacharit = ({ saturday }) => {
+  // console.log('saturday in SaturdayShacharit: ', attendance);
 
-  const { going, notGoing } = attendance;
+  const { going, notGoing } = saturday;
+
+  // console.log('going in SaturdayShacharit: ', going);
+  // console.log('notGoing in SaturdayShacharit: ', notGoing);
 
   return (
     <div className="section">
@@ -18,7 +24,7 @@ const SaturdayShacharit = ({ attendance }) => {
           <ul className="going">
             {!going.length ? (
               <li>
-                <span>None</span>
+                <span className="bold-text-style">None</span>
               </li>
             ) : (
               going.map(curUser => {
@@ -40,7 +46,7 @@ const SaturdayShacharit = ({ attendance }) => {
           <ul className="not-going">
             {!notGoing.length ? (
               <li>
-                <span>None</span>
+                <span className="bold-text-style">None</span>
               </li>
             ) : (
               notGoing.map(curUser => {
@@ -61,3 +67,8 @@ const SaturdayShacharit = ({ attendance }) => {
 };
 
 export default SaturdayShacharit;
+
+// Prop Types
+SaturdayShacharit.propTypes = {
+  saturday: PropTypes.object,
+};

@@ -1,9 +1,12 @@
+// Imports
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 import { signInThunkCreator } from '../../store/reducers/authReducer';
 
+// Component
 export class SignIn extends Component {
   constructor() {
     super();
@@ -18,6 +21,9 @@ export class SignIn extends Component {
   }
 
   handleChange(event) {
+    // console.log('event.target.id in SignIn handleChange: ', event.target.id);
+    // console.log('event.target.value in SignIn handleChange: ', event.target.value);
+
     this.setState({
       [event.target.id]: event.target.value,
     });
@@ -25,11 +31,19 @@ export class SignIn extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    this.props.signInThunk(this.state);
+
+    const { signInThunk } = this.props;
+
+    // console.log('signInThunk in SignIn handleSubmit: ', signInThunk);
+
+    signInThunk(this.state);
   }
 
   render() {
     const { auth, authError } = this.props;
+
+    // console.log('auth in SignIn: ', auth);
+    // console.log('authError in SignIn: ', authError);
 
     if (auth.uid) {
       return <Redirect to="/" />;
@@ -81,6 +95,7 @@ export class SignIn extends Component {
   }
 }
 
+// Container
 const mapStateToProps = state => {
   // console.log('state in SignIn mapStateToProps: ', state);
 
@@ -100,3 +115,10 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(SignIn);
+
+// Prop Types
+SignIn.propTypes = {
+  auth: PropTypes.object,
+  authError: PropTypes.string,
+  signInThunk: PropTypes.func,
+};

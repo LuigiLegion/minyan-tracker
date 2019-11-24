@@ -18,6 +18,7 @@ exports.userJoined = functions.auth.user().onCreate(user => {
     .get()
     .then(doc => {
       const newlyCreatedUser = doc.data();
+
       const notification = {
         content: 'joined the community',
         user: `${newlyCreatedUser.firstName} ${newlyCreatedUser.lastName}`,

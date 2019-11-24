@@ -1,12 +1,15 @@
+// Imports
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 import SignedInLinks from './SignedInLinks';
 import SignedInLinksBurger from './SignedInLinksBurger';
 import SignedOutLinks from './SignedOutLinks';
 import SignedOutLinksBurger from './SignedOutLinksBurger';
 
+// Component
 class Navbar extends Component {
   constructor() {
     super();
@@ -33,6 +36,10 @@ class Navbar extends Component {
 
   render() {
     const { auth, profile } = this.props;
+
+    // console.log('auth in Navbar: ', auth);
+    // console.log('profile in Navbar: ', profile);
+
     const largeViewCheck = this.state.width > 1007;
     let curLinks;
 
@@ -72,10 +79,20 @@ class Navbar extends Component {
   }
 }
 
+// Container
 const mapStateToProps = state => {
   // console.log('state in Navbar mapStateToProps: ', state);
 
-  return { auth: state.firebase.auth, profile: state.firebase.profile };
+  return {
+    auth: state.firebase.auth,
+    profile: state.firebase.profile,
+  };
 };
 
 export default connect(mapStateToProps)(Navbar);
+
+// Prop Types
+SignedInLinksBurger.propTypes = {
+  auth: PropTypes.object,
+  profile: PropTypes.object,
+};
