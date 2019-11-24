@@ -40,7 +40,7 @@ const mapStateToProps = state => {
   return {
     auth: state.firebase.auth,
     profile: state.firebase.profile,
-    users: state.firestore.ordered.users,
+    updates: state.firestore.ordered.updates,
     notifications: state.firestore.ordered.notifications,
   };
 };
@@ -58,7 +58,8 @@ export default compose(
   ),
   firestoreConnect([
     {
-      collection: 'users',
+      collection: 'updates',
+      orderBy: ['timestamp', 'desc'],
     },
     {
       collection: 'notifications',
@@ -72,6 +73,7 @@ export default compose(
 Days.propTypes = {
   auth: PropTypes.object,
   profile: PropTypes.object,
+  updates: PropTypes.object,
   notifications: PropTypes.array,
   getUserDataThunk: PropTypes.func,
 };
