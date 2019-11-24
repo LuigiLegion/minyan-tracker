@@ -1,9 +1,12 @@
+// Imports
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
+import PropTypes from 'prop-types';
 
 import { updateCheckInStatusThunkCreator } from '../../store/reducers/userReducer';
 
+// Component
 class CheckIn extends Component {
   constructor() {
     super();
@@ -12,10 +15,16 @@ class CheckIn extends Component {
   }
 
   handleChange(event) {
+    // console.log('event.target.checked in CheckIn handleChange: ', event.target.checked);
+    // console.log('event.target.value in CheckIn handleChange: ', event.target.value);
+
     const curCheckedVal = event.target.checked;
     const curDay = event.target.value;
 
     const { auth, updateCheckInStatusThunk } = this.props;
+
+    // console.log('auth in CheckIn: ', auth);
+    // console.log('updateCheckInStatusThunk in CheckIn: ', updateCheckInStatusThunk);
 
     if (curCheckedVal) {
       updateCheckInStatusThunk(auth.uid, curDay, true);
@@ -31,11 +40,10 @@ class CheckIn extends Component {
   }
 
   render() {
-    // console.log('this.props: ', this.props);
+    const { friday, saturday } = this.props;
 
-    const { friday, saturday } = this.props.user;
-
-    // console.log('friday: ', friday, 'saturday: ', saturday);
+    // console.log('friday in CheckIn: ', friday);
+    // console.log('saturday in CheckIn: ', saturday);
 
     return (
       <div className="section">
@@ -81,11 +89,13 @@ class CheckIn extends Component {
   }
 }
 
+// Container
 const mapStateToProps = state => {
   // console.log('state in CheckIn mapStateToProps: ', state);
 
   return {
-    user: state.user,
+    friday: state.user.friday,
+    saturday: state.user.saturday,
   };
 };
 
@@ -101,3 +111,11 @@ export default compose(
     mapDispatchToProps
   )
 )(CheckIn);
+
+// Prop Types
+CheckIn.propTypes = {
+  auth: PropTypes.object,
+  updateCheckInStatusThunk: PropTypes.func,
+  friday: PropTypes.bool,
+  saturday: PropTypes.bool,
+};

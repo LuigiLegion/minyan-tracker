@@ -1,3 +1,4 @@
+// Imports
 import React, { Component } from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
@@ -7,6 +8,7 @@ import SignIn from './components/auth/SignIn';
 import SignUp from './components/auth/SignUp';
 import PlaceholderPage from './components/placeholder/PlaceholderPage';
 
+// Component
 class App extends Component {
   render() {
     return (
