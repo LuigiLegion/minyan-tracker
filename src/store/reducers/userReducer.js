@@ -12,7 +12,7 @@ const initialState = {
   saturday: false,
 };
 
-// Actions
+// Action Types
 const GOT_USER_DATA = 'GOT_USER_DATA';
 const UPDATED_FRIDAY_CHECK_IN_STATUS = 'UPDATED_FRIDAY_CHECK_IN_STATUS';
 const UPDATED_SATURDAY_CHECK_IN_STATUS = 'UPDATED_SATURDAY_CHECK_IN_STATUS';
@@ -37,9 +37,9 @@ const updatedSaturdayCheckInActionCreator = status => ({
 export const getUserDataThunkCreator = userId => {
   return async (dispatch, getState, { getFirestore }) => {
     try {
-      const firestore = getFirestore();
-
       // console.log('userId in getUserDataThunkCreator: ', userId);
+
+      const firestore = getFirestore();
 
       const userDataRaw = await firestore
         .collection('users')
@@ -47,6 +47,8 @@ export const getUserDataThunkCreator = userId => {
         .get();
 
       const userDataObj = userDataRaw.data();
+
+      // console.log('userDataObj in getUserDataThunkCreator: ', userDataObj);
 
       dispatch(gotUserDataActionCreator(userDataObj));
 
@@ -60,6 +62,10 @@ export const getUserDataThunkCreator = userId => {
 export const updateCheckInStatusThunkCreator = (userId, day, status) => {
   return async (dispatch, getState, { getFirestore }) => {
     try {
+      // console.log('userId in updateCheckInStatusThunkCreator: ', userId);
+      // console.log('day in updateCheckInStatusThunkCreator: ', day);
+      // console.log('status in updateCheckInStatusThunkCreator: ', status);
+
       const firestore = getFirestore();
 
       await firestore
