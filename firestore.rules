@@ -5,6 +5,11 @@ service cloud.firestore {
       allow read: if request.auth.uid != null
       allow write: if request.auth.uid == userId
     }
+    match /updates/{updates} {
+    	allow create
+      allow read: if request.auth.uid != null
+      allow write: if request.auth.uid == userId
+    }
     match /notifications/{notifications} {
       allow read: if request.auth.uid != null
     }

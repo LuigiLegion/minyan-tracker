@@ -75,6 +75,16 @@ export const updateCheckInStatusThunkCreator = (userId, day, status) => {
           [day]: status,
         });
 
+      const newUpdateData = {
+        userId,
+        timestamp: firestore.FieldValue.serverTimestamp(),
+      };
+
+      await firestore
+        .collection('updates')
+        .doc()
+        .set(newUpdateData);
+
       if (day === 'friday') {
         dispatch(updatedFridayCheckInActionCreator(status));
       } else {
