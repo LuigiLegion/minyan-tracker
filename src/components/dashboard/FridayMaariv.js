@@ -18,7 +18,7 @@ const FridayMaariv = ({ friday }) => {
             <span className="bold-text-style">Friday Maariv</span>
           </span>
 
-          <span className="bold-text-style blue-text-color">Going</span>
+          <span className="bold-text-style blue-text-color">{`Going (${going.length})`}</span>
 
           <ul className="going">
             {!going.length ? (
@@ -40,7 +40,7 @@ const FridayMaariv = ({ friday }) => {
 
           <hr />
 
-          <span className="bold-text-style blue-text-color">Not Going</span>
+          <span className="bold-text-style blue-text-color">{`Not Going (${notGoing.length})`}</span>
 
           <ul className="not-going">
             {!notGoing.length ? (
