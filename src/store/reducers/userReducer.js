@@ -75,8 +75,10 @@ export const updateCheckInStatusThunkCreator = (userId, day, status) => {
           [day]: status,
         });
 
+      const { user } = getState();
+
       const newUpdateData = {
-        userId,
+        user: user.fullName,
         timestamp: firestore.FieldValue.serverTimestamp(),
       };
 
