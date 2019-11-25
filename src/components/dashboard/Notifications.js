@@ -22,7 +22,7 @@ const Notifications = ({ notifications }) => {
                   <li key={curNotification.id}>
                     <span className="blue-text-color">
                       <span className="bold-text-style">
-                        {curNotification.user}{' '}
+                        {curNotification.user}
                       </span>
                     </span>
 

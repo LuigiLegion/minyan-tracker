@@ -40,10 +40,10 @@ export class SignIn extends Component {
   }
 
   render() {
-    const { auth, authError } = this.props;
+    const { auth, signInAuthError } = this.props;
 
     // console.log('auth in SignIn: ', auth);
-    // console.log('authError in SignIn: ', authError);
+    // console.log('signInAuthError in SignIn: ', signInAuthError);
 
     if (auth.uid) {
       return <Redirect to="/" />;
@@ -86,7 +86,7 @@ export class SignIn extends Component {
             </div>
 
             <div className="red-text center">
-              {authError ? <p>{authError}</p> : null}
+              {signInAuthError ? <p>{signInAuthError}</p> : null}
             </div>
           </form>
         </div>
@@ -101,7 +101,7 @@ const mapStateToProps = state => {
 
   return {
     auth: state.firebase.auth,
-    authError: state.auth.authError,
+    signInAuthError: state.auth.signInAuthError,
   };
 };
 
@@ -119,6 +119,6 @@ export default connect(
 // Prop Types
 SignIn.propTypes = {
   auth: PropTypes.object,
-  authError: PropTypes.string,
+  signInAuthError: PropTypes.string,
   signInThunk: PropTypes.func,
 };

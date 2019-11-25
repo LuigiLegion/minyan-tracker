@@ -59,10 +59,10 @@ export class SignUp extends Component {
   }
 
   render() {
-    const { auth, authError } = this.props;
+    const { auth, signUpAuthError } = this.props;
 
     // console.log('auth in SignUp: ', auth);
-    // console.log('authError in SignUp: ', authError);
+    // console.log('signUpAuthError in SignUp: ', signUpAuthError);
 
     if (auth.uid) {
       return <Redirect to="/" />;
@@ -213,10 +213,10 @@ export class SignUp extends Component {
             <button className="btn blue lighten-1 z-depth-0">Sign Up</button>
 
             <div className="red-text center">
-              {authError ? (
-                <p>{authError}</p>
+              {signUpAuthError ? (
+                <p>{signUpAuthError}</p>
               ) : this.state.accessTokenError ? (
-                'Invalid Access Token! Please try again.'
+                'Invalid access token! Please try again.'
               ) : null}
             </div>
           </form>
@@ -232,7 +232,7 @@ const mapStateToProps = state => {
 
   return {
     auth: state.firebase.auth,
-    authError: state.auth.authError,
+    signUpAuthError: state.auth.signUpAuthError,
   };
 };
 
@@ -250,6 +250,6 @@ export default connect(
 // Prop Types
 SignUp.propTypes = {
   auth: PropTypes.object,
-  authError: PropTypes.string,
+  signUpAuthError: PropTypes.string,
   signUpThunk: PropTypes.func,
 };

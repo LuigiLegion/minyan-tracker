@@ -16,11 +16,11 @@ const Dashboard = ({ auth, notifications, getUserDataThunk }) => {
   // console.log('notifications in Dashboard: ', notifications);
   // console.log('getUserDataThunk in Dashboard: ', getUserDataThunk);
 
-  getUserDataThunk(auth.uid);
-
   if (!auth.uid) {
     return <Redirect to="/signin" />;
   } else {
+    getUserDataThunk(auth.uid);
+
     return (
       <div className="dashboard container">
         <div className="row">
