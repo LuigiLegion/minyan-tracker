@@ -17,13 +17,13 @@ exports.userJoined = functions.auth.user().onCreate(user => {
     .doc(user.uid)
     .get()
     .then(doc => {
-      const newlyCreatedUser = doc.data();
+      const newUser = doc.data();
 
-      const notification = {
-        content: 'joined the community',
-        user: `${newlyCreatedUser.firstName} ${newlyCreatedUser.lastName}`,
-        time: admin.firestore.FieldValue.serverTimestamp(),
+      const newNotification = {
+        content: ' joined the community',
+        user: newUser.fullName,
+        timestamp: admin.firestore.FieldValue.serverTimestamp(),
       };
-      return createNotification(notification);
+      return createNotification(newNotification);
     });
 });
