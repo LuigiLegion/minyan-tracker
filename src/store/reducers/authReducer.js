@@ -1,6 +1,7 @@
 // Initial State
 const initialState = {
-  authError: null,
+  signUpAuthError: null,
+  signInAuthError: null,
 };
 
 // Action Types
@@ -123,22 +124,22 @@ const authReducer = (state = initialState, action) => {
     case SIGN_UP_SUCCESS:
       console.log('Signed up successfully');
 
-      return { ...state, authError: null };
+      return { ...state, signUpAuthError: null };
 
     case SIGN_UP_ERROR:
       console.log('Sign up error!', action.error.message);
 
-      return { ...state, authError: action.error.message };
+      return { ...state, signUpAuthError: action.error.message };
 
     case SIGN_IN_SUCCESS:
       console.log('Signed in successfully');
 
-      return { ...state, authError: null };
+      return { ...state, signInAuthError: null };
 
     case SIGN_IN_ERROR:
       console.log('Sign in error!', action.error.message);
 
-      return { ...state, authError: action.error.message };
+      return { ...state, signInAuthError: action.error.message };
 
     case SIGN_OUT_SUCCESS:
       console.log('Signed out successfully');
