@@ -57,13 +57,15 @@ class SignedInLinksBurger extends Component {
               </NavLink>
             </div>
 
-            <div>
-              <NavLink onClick={() => this.closeMenu()} to="/placeholder">
-                <span className="bold-text-style navbar-text-color">
-                  Placeholder
-                </span>
-              </NavLink>
-            </div>
+            {profile.isAdmin ? (
+              <div>
+                <NavLink onClick={() => this.closeMenu()} to="/admin">
+                  <span className="bold-text-style navbar-text-color">
+                    Admin
+                  </span>
+                </NavLink>
+              </div>
+            ) : null}
 
             <div>
               <NavLink

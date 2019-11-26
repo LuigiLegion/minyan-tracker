@@ -24,11 +24,15 @@ const SignedInLinks = ({ profile, signOutThunk }) => {
           )}
         </NavLink>
       </li>
-      <li>
-        <NavLink to="/placeholder">
-          <span className="bold-text-style navbar-text-color">Placeholder</span>
-        </NavLink>
-      </li>
+
+      {profile.isAdmin ? (
+        <li>
+          <NavLink to="/admin">
+            <span className="bold-text-style navbar-text-color">Admin</span>
+          </NavLink>
+        </li>
+      ) : null}
+
       <li>
         <NavLink to="/" onClick={signOutThunk}>
           <span className="bold-text-style navbar-text-color">Sign Out</span>
