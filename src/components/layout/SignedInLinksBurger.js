@@ -6,7 +6,7 @@ import { slide as Menu } from 'react-burger-menu';
 import PropTypes from 'prop-types';
 
 import { signOutThunkCreator } from '../../store/reducers/authReducer';
-import { burgerStyles, divStyles } from '../../styles';
+import { burgerStyles } from '../../styles';
 
 // Component
 class SignedInLinksBurger extends Component {
@@ -44,7 +44,7 @@ class SignedInLinksBurger extends Component {
           width="50%"
           styles={burgerStyles}
         >
-          <div styles={divStyles}>
+          <div className="remove-outline">
             <div>
               <NavLink onClick={() => this.closeMenu()} to="/">
                 {profile.firstName ? (

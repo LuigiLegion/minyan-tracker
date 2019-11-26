@@ -5,7 +5,7 @@ import { getFirebase, reactReduxFirebase } from 'react-redux-firebase';
 import { getFirestore, reduxFirestore } from 'redux-firestore';
 import { createLogger } from 'redux-logger';
 
-import fbConfig from '../config/fbConfig';
+import firebase from '../config/fbConfig';
 import rootReducer from './reducers/rootReducer';
 
 const middleware = composeWithDevTools(
@@ -13,8 +13,8 @@ const middleware = composeWithDevTools(
     thunkMiddleware.withExtraArgument({ getFirebase, getFirestore }),
     createLogger({ collapsed: true })
   ),
-  reduxFirestore(fbConfig),
-  reactReduxFirebase(fbConfig, {
+  reduxFirestore(firebase),
+  reactReduxFirebase(firebase, {
     useFirestoreForProfile: true,
     userProfile: 'users',
     attachAuthIsReady: true,
