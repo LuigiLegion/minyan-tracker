@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 import { slide as Menu } from 'react-burger-menu';
 
-import { burgerStyles, divStyles } from '../../styles';
+import { burgerStyles } from '../../styles';
 
 // Component
 class SignedOutLinksBurger extends Component {
@@ -36,7 +36,7 @@ class SignedOutLinksBurger extends Component {
           width="50%"
           styles={burgerStyles}
         >
-          <div styles={divStyles}>
+          <div className="remove-outline">
             <div>
               <NavLink
                 onClick={() => {
