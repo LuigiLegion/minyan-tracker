@@ -8,7 +8,7 @@ export const burgerStyles = {
   },
   bmBurgerBars: {
     background: '#fafafa',
-    borderRadius: '15%',
+    borderRadius: '12.5%',
   },
   bmBurgerBarsHover: {
     background: '#a90000',
@@ -44,11 +44,4 @@ export const burgerStyles = {
   bmOverlay: {
     background: 'rgba(0, 0, 0, 0.3)',
   },
-};
-
-export const divStyles = {
-  display: 'flex',
-  flexDirection: 'column',
-  justifyContent: 'center',
-  alignItems: 'center',
 };
