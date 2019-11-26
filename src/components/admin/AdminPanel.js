@@ -6,8 +6,8 @@ import { compose } from 'redux';
 import PropTypes from 'prop-types';
 
 // Component
-const PlaceholderPage = ({ auth }) => {
-  // console.log('auth in PlaceholderPage: ', auth);
+const AdminPanel = ({ auth }) => {
+  // console.log('auth in AdminPanel: ', auth);
 
   if (!auth.uid) {
     return <Redirect to="/signin" />;
@@ -20,12 +20,12 @@ const PlaceholderPage = ({ auth }) => {
               <div className="card z-depth-0">
                 <div className="card-content grey-text text-darken-3">
                   <span className="card-title">
-                    <span className="bold-text-style">Placeholder</span>
+                    <span className="bold-text-style">Reset Attendance</span>
                   </span>
 
                   <ul className="placeholder">
                     <li>
-                      <span>This is a placeholder page.</span>
+                      <span>Reset Button</span>
                     </li>
                   </ul>
                 </div>
@@ -47,9 +47,9 @@ const mapStateToProps = state => {
   };
 };
 
-export default compose(connect(mapStateToProps))(PlaceholderPage);
+export default compose(connect(mapStateToProps))(AdminPanel);
 
 // Prop Types
-PlaceholderPage.propTypes = {
+AdminPanel.propTypes = {
   auth: PropTypes.object,
 };
