@@ -74,8 +74,7 @@ export class SignUp extends Component {
 
             <div className="input-field">
               <label htmlFor="email">
-                Email<span className="red-text-color">*</span> (Example:
-                cody@email.com)
+                Email<span className="red-text-color">*</span>
               </label>
 
               <input
@@ -84,16 +83,14 @@ export class SignUp extends Component {
                 required
                 autoComplete="username"
                 pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
-                title="Example: cody@email.com"
+                title="Example: david@email.com"
                 onChange={this.handleChange}
               />
             </div>
 
             <div className="input-field">
               <label htmlFor="password">
-                Password<span className="red-text-color">*</span> (May only
-                contain one uppercase letter, one lowercase letter, one digit,
-                and at least 8 characters in total)
+                Password<span className="red-text-color">*</span>
               </label>
 
               <input
@@ -109,9 +106,7 @@ export class SignUp extends Component {
 
             <div className="input-field">
               <label htmlFor="firstName">
-                First Name<span className="red-text-color">*</span> (May only
-                contain uppercase and lowercase letters only, and at least 2
-                characters in total)
+                First Name<span className="red-text-color">*</span>
               </label>
 
               <input
@@ -119,16 +114,14 @@ export class SignUp extends Component {
                 id="firstName"
                 required
                 pattern="[A-Za-z]{2,32}"
-                title="May only contain uppercase and lowercase letters only, and at least 2 characters in total"
+                title="May only contain uppercase and lowercase letters, and at least 2 characters in total"
                 onChange={this.handleChange}
               />
             </div>
 
             <div className="input-field">
               <label htmlFor="lastName">
-                Last Name<span className="red-text-color">*</span> (May only
-                contain uppercase and lowercase letters only, and at least 2
-                characters in total)
+                Last Name<span className="red-text-color">*</span>
               </label>
 
               <input
@@ -136,7 +129,7 @@ export class SignUp extends Component {
                 id="lastName"
                 required
                 pattern="[A-Za-z]{2,32}"
-                title="May only contain uppercase and lowercase letters only, and at least 2 characters in total"
+                title="May only contain uppercase and lowercase letters, and at least 2 characters in total"
                 onChange={this.handleChange}
               />
             </div>
@@ -197,8 +190,7 @@ export class SignUp extends Component {
 
             <div className="input-field">
               <label htmlFor="accessToken">
-                Access Token<span className="red-text-color">*</span> (Must
-                match the access token you received via email invitation)
+                Access Token<span className="red-text-color">*</span>
               </label>
               <input
                 type="text"
