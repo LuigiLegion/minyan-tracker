@@ -112,3 +112,7 @@ textarea.materialize-textarea:focus:not([readonly]) {
 .navbar-text-color {
   color: #fafafa;
 }
+
+.remove-outline {
+  outline: none;
+}
