@@ -55,7 +55,7 @@ class CheckIn extends Component {
               <span className="bold-text-style">Check-In</span>
             </span>
 
-            <form className="custom-form">
+            <form className="check-in-form">
               <div>
                 <label>
                   <input
