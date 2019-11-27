@@ -8,7 +8,6 @@ export const burgerStyles = {
   },
   bmBurgerBars: {
     background: '#fafafa',
-    borderRadius: '5%',
   },
   bmBurgerBarsHover: {
     background: '#a90000',
@@ -16,11 +15,9 @@ export const burgerStyles = {
   bmCrossButton: {
     height: '24px',
     width: '24px',
-    backgroundColor: '#fafafa',
-    borderRadius: '15%',
   },
   bmCross: {
-    background: '#003459',
+    background: '#fafafa',
   },
   bmMenuWrap: {
     position: 'fixed',
