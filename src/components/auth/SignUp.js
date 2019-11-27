@@ -70,7 +70,7 @@ export class SignUp extends Component {
     } else {
       return (
         <div className="container">
-          <form onSubmit={this.handleSubmit} className="card white">
+          <form className="card white" onSubmit={this.handleSubmit}>
             <h5 className="grey-text text-darken-3">Sign Up</h5>
 
             <div className="input-field">

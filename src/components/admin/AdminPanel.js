@@ -1,6 +1,6 @@
 // Imports
 import React, { Component } from 'react';
-import { Redirect } from 'react-router-dom';
+import { Redirect, NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { firestoreConnect } from 'react-redux-firebase';
 import { compose } from 'redux';
@@ -61,16 +61,28 @@ class AdminPanel extends Component {
                       <span className="bold-text-style">Admin Panel</span>
                     </span>
 
-                    <form onClick={this.handleSubmit} className="custom-form">
-                      <h5 className="grey-text text-darken-3">Attendance</h5>
+                    <form className="admin-form" onClick={this.handleSubmit}>
+                      <h5 className="grey-text text-darken-3">Attendance:</h5>
 
                       <button
-                        className="btn blue lighten-1 z-depth-0"
+                        className="btn blue lighten-1 z-depth-0 admin-reset-button"
                         disabled={disabled}
                       >
                         Reset
                       </button>
                     </form>
+
+                    <br />
+
+                    <ul>
+                      <li>
+                        <NavLink to="/">
+                          <span className="bold-text-style">
+                            ← Back To Main Page
+                          </span>
+                        </NavLink>
+                      </li>
+                    </ul>
                   </div>
                 </div>
               </div>
