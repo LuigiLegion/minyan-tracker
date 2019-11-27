@@ -206,6 +206,7 @@ export class SignUp extends Component {
               <label htmlFor="accessToken">
                 Access Token<span className="red-text-color">*</span>
               </label>
+
               <input
                 type="text"
                 id="accessToken"
@@ -218,11 +219,11 @@ export class SignUp extends Component {
 
             <button className="btn blue lighten-1 z-depth-0">Sign Up</button>
 
-            <div className="red-text center">
+            <div className="red-text-color bold-text-style center">
               {signUpAuthError ? (
                 <p>{signUpAuthError}</p>
               ) : this.state.accessTokenError ? (
-                'Invalid access token! Please try again.'
+                <p>Invalid access token! Please try again.</p>
               ) : null}
             </div>
           </form>

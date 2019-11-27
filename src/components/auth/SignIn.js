@@ -85,7 +85,7 @@ export class SignIn extends Component {
               <button className="btn blue lighten-1 z-depth-0">Sign In</button>
             </div>
 
-            <div className="red-text center">
+            <div className="red-text-color bold-text-style center">
               {signInAuthError ? <p>{signInAuthError}</p> : null}
             </div>
           </form>
