@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 
 import { signUpThunkCreator } from '../../store/reducers/authReducer';
 import signupAccessToken from '../../config/signupConfig';
+import contactUsEmail from '../../config/emailConfig';
 
 // Component
 export class SignUp extends Component {
@@ -83,7 +84,7 @@ export class SignUp extends Component {
                 required
                 autoComplete="username"
                 pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
-                title="Example: david@email.com"
+                title="Example: cody@email.com"
                 onChange={this.handleChange}
               />
             </div>
@@ -186,6 +187,19 @@ export class SignUp extends Component {
                   Astoria Center of Israel
                 </option>
               </select>
+            </div>
+
+            <div className="gray-text-color">
+              Is your congregation not on the list? Contact us{' '}
+              <a
+                href={`mailto:${contactUsEmail}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bold-text-style"
+              >
+                here
+              </a>{' '}
+              to add it!
             </div>
 
             <div className="input-field">
