@@ -89,7 +89,16 @@ textarea.materialize-textarea:focus:not([readonly]) {
   align-items: center;
 }
 
-.custom-form {
+.check-in-form {
+  margin-top: 0px;
+}
+
+.admin-form {
+  margin-top: 0px;
+  padding: 0px 20px;
+}
+
+.admin-reset-button {
   margin-top: 0px;
 }
 
