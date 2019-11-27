@@ -6,7 +6,7 @@ import Navbar from './components/layout/Navbar';
 import Dashboard from './components/dashboard/Dashboard';
 import SignIn from './components/auth/SignIn';
 import SignUp from './components/auth/SignUp';
-import PlaceholderPage from './components/placeholder/PlaceholderPage';
+import AdminPanel from './components/admin/AdminPanel';
 
 // Component
 class App extends Component {
@@ -20,7 +20,7 @@ class App extends Component {
             <Route exact path="/" component={Dashboard} />
             <Route path="/signin" component={SignIn} />
             <Route path="/signup" component={SignUp} />
-            <Route path="/placeholder" component={PlaceholderPage} />
+            <Route path="/admin" component={AdminPanel} />
           </Switch>
         </div>
       </BrowserRouter>

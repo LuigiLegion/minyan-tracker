@@ -27,11 +27,11 @@ const FridayMaariv = ({ friday }) => {
               </li>
             ) : (
               going.map(curUser => {
-                const { fullName } = curUser;
+                const { fullName, gender } = curUser;
 
                 return (
                   <li key={curUser.email}>
-                    <span>{fullName}</span>
+                    <span>{`${fullName} (${gender})`}</span>
                   </li>
                 );
               })
@@ -49,11 +49,11 @@ const FridayMaariv = ({ friday }) => {
               </li>
             ) : (
               notGoing.map(curUser => {
-                const { fullName } = curUser;
+                const { fullName, gender } = curUser;
 
                 return (
                   <li key={curUser.email}>
-                    <span>{fullName}</span>
+                    <span>{`${fullName} (${gender})`}</span>
                   </li>
                 );
               })
