@@ -5,6 +5,7 @@ import { firestoreReducer } from 'redux-firestore';
 import authReducer from './authReducer';
 import userReducer from './userReducer';
 import attendanceReducer from './attendanceReducer';
+import adminReducer from './adminReducer';
 
 const rootReducer = combineReducers({
   firestore: firestoreReducer,
@@ -12,6 +13,7 @@ const rootReducer = combineReducers({
   auth: authReducer,
   user: userReducer,
   attendance: attendanceReducer,
+  admin: adminReducer,
 });
 
 export default rootReducer;
