@@ -17,10 +17,10 @@ class App extends Component {
           <Navbar>MinyanTracker</Navbar>
 
           <Switch>
-            <Route exact path="/" component={Dashboard} />
             <Route path="/signin" component={SignIn} />
             <Route path="/signup" component={SignUp} />
             <Route path="/admin" component={AdminPanel} />
+            <Route path="/" component={Dashboard} />
           </Switch>
         </div>
       </BrowserRouter>

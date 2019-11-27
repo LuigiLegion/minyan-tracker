@@ -25,7 +25,7 @@ class AdminPanel extends Component {
     // console.log('resetUsersAttendanceThunk in AdminPanel: ', resetUsersAttendanceThunk);
 
     const resetConfirmation = window.confirm(
-      'Are you sure you want to reset all users attendance?'
+      'Are you sure you want to reset all users check-in status?'
     );
 
     // console.log(

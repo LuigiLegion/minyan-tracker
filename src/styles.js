@@ -8,7 +8,7 @@ export const burgerStyles = {
   },
   bmBurgerBars: {
     background: '#fafafa',
-    borderRadius: '10%',
+    borderRadius: '5%',
   },
   bmBurgerBarsHover: {
     background: '#a90000',
