@@ -31,7 +31,9 @@ const FridayMaariv = ({ friday }) => {
 
                 return (
                   <li key={curUser.email}>
-                    <span>{`${fullName} (${gender})`}</span>
+                    <span>{fullName} </span>
+
+                    <span className="italic-text-style"> ({gender})</span>
                   </li>
                 );
               })
@@ -53,7 +55,9 @@ const FridayMaariv = ({ friday }) => {
 
                 return (
                   <li key={curUser.email}>
-                    <span>{`${fullName} (${gender})`}</span>
+                    <span>{fullName} </span>
+
+                    <span className="italic-text-style"> ({gender})</span>
                   </li>
                 );
               })

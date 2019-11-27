@@ -32,7 +32,9 @@ const SaturdayShacharit = ({ saturday }) => {
 
                 return (
                   <li key={curUser.email}>
-                    <span>{`${fullName} (${gender})`}</span>
+                    <span>{fullName} </span>
+
+                    <span className="italic-text-style"> ({gender})</span>
                   </li>
                 );
               })
@@ -54,7 +56,9 @@ const SaturdayShacharit = ({ saturday }) => {
 
                 return (
                   <li key={curUser.email}>
-                    <span>{`${fullName} (${gender})`}</span>
+                    <span>{fullName} </span>
+
+                    <span className="italic-text-style"> ({gender})</span>
                   </li>
                 );
               })
