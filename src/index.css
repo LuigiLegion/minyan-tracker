@@ -93,6 +93,10 @@ textarea.materialize-textarea:focus:not([readonly]) {
   font-weight: bold;
 }
 
+.italic-text-style {
+  font-style: italic;
+}
+
 .blue-text-color {
   color: #357da7;
 }
