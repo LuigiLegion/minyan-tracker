@@ -33,6 +33,8 @@ class CheckIn extends Component {
         'Are you sure you want to cancel your RSVP?'
       );
 
+      // console.log('changeConfirmation in CheckIn handleSubmit: ', changeConfirmation);
+
       if (changeConfirmation) {
         updateCheckInStatusThunk(auth.uid, curDay, false);
       }
@@ -53,7 +55,7 @@ class CheckIn extends Component {
               <span className="bold-text-style">Check-In</span>
             </span>
 
-            <form className="check-in-form">
+            <form className="custom-form">
               <div>
                 <label>
                   <input
