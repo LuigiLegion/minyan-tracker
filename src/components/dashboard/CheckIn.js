@@ -65,7 +65,7 @@ class CheckIn extends Component {
                     onChange={event => this.handleChange(event)}
                   />
 
-                  <span className="checkbox-text-color">Friday Maariv</span>
+                  <span className="gray-text-color">Friday Maariv</span>
                 </label>
               </div>
 
@@ -78,9 +78,7 @@ class CheckIn extends Component {
                     onChange={event => this.handleChange(event)}
                   />
 
-                  <span className="checkbox-text-color">
-                    Saturday Shacharit
-                  </span>
+                  <span className="gray-text-color">Saturday Shacharit</span>
                 </label>
               </div>
             </form>

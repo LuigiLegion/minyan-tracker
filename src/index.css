@@ -32,6 +32,14 @@ form h5 {
   margin: 20px 0;
 }
 
+a {
+  color: #42a5f5;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
 input[type='text']:not(.browser-default):focus:not([readonly]),
 input[type='email']:not(.browser-default):focus:not([readonly]),
 input[type='password']:not(.browser-default):focus:not([readonly]),
@@ -81,10 +89,6 @@ textarea.materialize-textarea:focus:not([readonly]) {
   align-items: center;
 }
 
-.name-text-positioning {
-  left: 30px;
-}
-
 .custom-form {
   margin-top: 0px;
 }
@@ -105,7 +109,7 @@ textarea.materialize-textarea:focus:not([readonly]) {
   color: #ef5350;
 }
 
-.checkbox-text-color {
+.gray-text-color {
   color: #424242;
 }
 
@@ -115,6 +119,14 @@ textarea.materialize-textarea:focus:not([readonly]) {
 
 .navbar-text-color {
   color: #fafafa;
+}
+
+.navbar-logo {
+  left: 30px;
+}
+
+.navbar-logo:hover {
+  text-decoration: none;
 }
 
 .remove-outline {

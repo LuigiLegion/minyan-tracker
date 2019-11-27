@@ -2,6 +2,8 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
+import contactUsEmail from '../../config/emailConfig';
+
 // Component
 const SignedOutLinks = props => {
   return (
@@ -16,6 +18,16 @@ const SignedOutLinks = props => {
         <NavLink to="/signup">
           <span className="bold-text-style navbar-text-color">Sign Up</span>
         </NavLink>
+      </li>
+
+      <li>
+        <a
+          href={`mailto:${contactUsEmail}`}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <span className="bold-text-style navbar-text-color">Contact Us</span>
+        </a>
       </li>
     </ul>
   );
