@@ -4,6 +4,7 @@ import { NavLink } from 'react-router-dom';
 import { slide as Menu } from 'react-burger-menu';
 
 import { burgerStyles } from '../../styles';
+import contactUsEmail from '../../config/emailConfig';
 
 // Component
 class SignedOutLinksBurger extends Component {
@@ -39,10 +40,10 @@ class SignedOutLinksBurger extends Component {
           <div className="remove-outline">
             <div>
               <NavLink
+                to="/signin"
                 onClick={() => {
                   this.closeMenu();
                 }}
-                to="/signin"
               >
                 <span className="bold-text-style navbar-text-color">
                   Sign In
@@ -52,15 +53,28 @@ class SignedOutLinksBurger extends Component {
 
             <div>
               <NavLink
+                to="/signup"
                 onClick={() => {
                   this.closeMenu();
                 }}
-                to="/signup"
               >
                 <span className="bold-text-style navbar-text-color">
                   Sign Up
                 </span>
               </NavLink>
+            </div>
+
+            <div>
+              <a
+                href={`mailto:${contactUsEmail}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => this.closeMenu()}
+              >
+                <span className="bold-text-style navbar-text-color">
+                  Contact Us
+                </span>
+              </a>
             </div>
           </div>
         </Menu>

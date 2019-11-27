@@ -7,6 +7,7 @@ import PropTypes from 'prop-types';
 
 import { signOutThunkCreator } from '../../store/reducers/authReducer';
 import { burgerStyles } from '../../styles';
+import contactUsEmail from '../../config/emailConfig';
 
 // Component
 class SignedInLinksBurger extends Component {
@@ -46,7 +47,7 @@ class SignedInLinksBurger extends Component {
         >
           <div className="remove-outline">
             <div>
-              <NavLink onClick={() => this.closeMenu()} to="/">
+              <NavLink to="/" onClick={() => this.closeMenu()}>
                 {profile.firstName ? (
                   <span className="navbar-text-color">
                     Hello, {profile.firstName}.
@@ -59,7 +60,7 @@ class SignedInLinksBurger extends Component {
 
             {profile.isAdmin ? (
               <div>
-                <NavLink onClick={() => this.closeMenu()} to="/admin">
+                <NavLink to="/admin" onClick={() => this.closeMenu()}>
                   <span className="bold-text-style navbar-text-color">
                     Admin
                   </span>
@@ -68,13 +69,26 @@ class SignedInLinksBurger extends Component {
             ) : null}
 
             <div>
+              <a
+                href={`mailto:${contactUsEmail}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => this.closeMenu()}
+              >
+                <span className="bold-text-style navbar-text-color">
+                  Contact Us
+                </span>
+              </a>
+            </div>
+
+            <div>
               <NavLink
+                to="/"
                 onClick={() => {
                   this.closeMenu();
 
                   signOutThunk();
                 }}
-                to="/"
               >
                 <span className="bold-text-style navbar-text-color">
                   Sign Out

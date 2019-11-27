@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import { signOutThunkCreator } from '../../store/reducers/authReducer';
+import contactUsEmail from '../../config/emailConfig';
 
 // Component
 const SignedInLinks = ({ profile, signOutThunk }) => {
@@ -32,6 +33,16 @@ const SignedInLinks = ({ profile, signOutThunk }) => {
           </NavLink>
         </li>
       ) : null}
+
+      <li>
+        <a
+          href={`mailto:${contactUsEmail}`}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <span className="bold-text-style navbar-text-color">Contact Us</span>
+        </a>
+      </li>
 
       <li>
         <NavLink to="/" onClick={signOutThunk}>
