@@ -30,7 +30,7 @@ class CheckIn extends Component {
       updateCheckInStatusThunk(auth.uid, curDay, true);
     } else {
       const changeConfirmation = window.confirm(
-        'Are you sure you want to cancel your RSVP?'
+        'Are you sure you want to change your check-in status?'
       );
 
       // console.log('changeConfirmation in CheckIn handleSubmit: ', changeConfirmation);
