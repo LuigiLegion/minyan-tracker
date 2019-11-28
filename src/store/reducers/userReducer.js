@@ -10,7 +10,7 @@ const initialState = {
   congregation: '',
   friday: false,
   saturday: false,
-  isAdmin: undefined,
+  isAdmin: false,
 };
 
 // Action Types

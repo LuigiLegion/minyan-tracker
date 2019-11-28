@@ -1,3 +1,5 @@
+import defaultAttendees from '../../config/attendanceConfig';
+
 // Initial State
 const initialState = {
   disabled: false,
@@ -20,9 +22,13 @@ export const resetUsersAttendanceThunkCreator = users => {
       const firestore = getFirestore();
 
       const usersUpdatesPromises = users.reduce((acc, curUser) => {
-        const { id, friday, saturday } = curUser;
+        const { id, email, friday, saturday } = curUser;
 
-        if (friday || saturday) {
+        if (
+          (friday || saturday) &&
+          (email !== defaultAttendees[0].email &&
+            email !== defaultAttendees[1].email)
+        ) {
           acc.push(
             firestore
               .collection('users')
