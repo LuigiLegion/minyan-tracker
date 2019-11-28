@@ -18,11 +18,11 @@ class App extends Component {
           <Navbar>MinyanTracker</Navbar>
 
           <Switch>
-            <Route path="/signup" component={SignUp} />
-            <Route path="/signin" component={SignIn} />
-            <Route path="/admin" component={AdminPanel} />
+            <Route exact path="/signup" component={SignUp} />
+            <Route exact path="/signin" component={SignIn} />
+            <Route exact path="/admin" component={AdminPanel} />
+            <Route exact path="/" component={Dashboard} />
             <Route path="/:wildcard" component={PageNotFound} />
-            <Route path="/" component={Dashboard} />
           </Switch>
         </div>
       </BrowserRouter>
