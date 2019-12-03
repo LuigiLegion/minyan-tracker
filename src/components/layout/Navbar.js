@@ -60,15 +60,9 @@ class Navbar extends Component {
         <nav className="nav-wrapper navbar-background-color">
           <div>
             <NavLink to="/" className="left brand-logo navbar-logo">
-              {largeViewCheck ? (
-                <span className="bold-text-style navbar-text-color">
-                  Minyan Tracker
-                </span>
-              ) : (
-                <span className="bold-text-style navbar-text-color">
-                  MTracker
-                </span>
-              )}
+              <span className="bold-text-style navbar-text-color">
+                {largeViewCheck ? 'Minyan Tracker' : 'MTracker'}
+              </span>
             </NavLink>
 
             {curLinks}
