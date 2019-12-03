@@ -62,7 +62,7 @@ class Navbar extends Component {
             <NavLink to="/" className="left brand-logo navbar-logo">
               {largeViewCheck ? (
                 <span className="bold-text-style navbar-text-color">
-                  MinyanTracker
+                  Minyan Tracker
                 </span>
               ) : (
                 <span className="bold-text-style navbar-text-color">

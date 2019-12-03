@@ -15,7 +15,7 @@ class App extends Component {
     return (
       <BrowserRouter>
         <div className="App">
-          <Navbar>MinyanTracker</Navbar>
+          <Navbar>Minyan Tracker</Navbar>
 
           <Switch>
             <Route exact path="/signup" component={SignUp} />
