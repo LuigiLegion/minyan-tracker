@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 // Component
 const SaturdayShacharit = ({ saturday }) => {
-  // console.log('saturday in SaturdayShacharit: ', attendance);
+  // console.log('saturday in SaturdayShacharit: ', saturday);
 
   const { going, notGoing } = saturday;
 
