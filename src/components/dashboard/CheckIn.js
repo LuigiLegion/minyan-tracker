@@ -42,10 +42,25 @@ class CheckIn extends Component {
   }
 
   render() {
-    const { friday, saturday } = this.props;
+    const {
+      friday,
+      saturday,
+      sunday,
+      monday,
+      tuesday,
+      wednesday,
+      thursday,
+      fridayMincha,
+    } = this.props;
 
     // console.log('friday in CheckIn: ', friday);
     // console.log('saturday in CheckIn: ', saturday);
+    // console.log('sunday in CheckIn: ', sunday);
+    // console.log('monday in CheckIn: ', monday);
+    // console.log('tuesday in CheckIn: ', tuesday);
+    // console.log('wednesday in CheckIn: ', wednesday);
+    // console.log('thursday in CheckIn: ', thursday);
+    // console.log('fridayMincha in CheckIn: ', fridayMincha);
 
     return (
       <div className="section">
@@ -56,6 +71,12 @@ class CheckIn extends Component {
             </span>
 
             <form className="check-in-form">
+              <div className="bold-text-style blue-text-color">
+                Shabbat Services
+              </div>
+
+              <br />
+
               <div>
                 <label>
                   <input
@@ -65,7 +86,12 @@ class CheckIn extends Component {
                     onChange={event => this.handleChange(event)}
                   />
 
-                  <span className="gray-text-color">Friday Maariv</span>
+                  <span className="gray-text-color">
+                    Friday{' '}
+                    <span className="bold-text-style italic-text-style">
+                      Maariv
+                    </span>
+                  </span>
                 </label>
               </div>
 
@@ -78,7 +104,132 @@ class CheckIn extends Component {
                     onChange={event => this.handleChange(event)}
                   />
 
-                  <span className="gray-text-color">Saturday Shacharit</span>
+                  <span className="gray-text-color">
+                    Saturday{' '}
+                    <span className="bold-text-style italic-text-style">
+                      Shacharit
+                    </span>
+                  </span>
+                </label>
+              </div>
+
+              <br />
+
+              <hr />
+
+              <br />
+
+              <div className="bold-text-style blue-text-color">
+                Chol Services
+              </div>
+
+              <br />
+
+              <div>
+                <label>
+                  <input
+                    type="checkbox"
+                    value="sunday"
+                    checked={sunday}
+                    onChange={event => this.handleChange(event)}
+                  />
+
+                  <span className="gray-text-color">
+                    Sunday{' '}
+                    <span className="bold-text-style italic-text-style">
+                      Mincha
+                    </span>
+                  </span>
+                </label>
+              </div>
+
+              <div>
+                <label>
+                  <input
+                    type="checkbox"
+                    value="monday"
+                    checked={monday}
+                    onChange={event => this.handleChange(event)}
+                  />
+
+                  <span className="gray-text-color">
+                    Monday{' '}
+                    <span className="bold-text-style italic-text-style">
+                      Mincha
+                    </span>
+                  </span>
+                </label>
+              </div>
+
+              <div>
+                <label>
+                  <input
+                    type="checkbox"
+                    value="tuesday"
+                    checked={tuesday}
+                    onChange={event => this.handleChange(event)}
+                  />
+
+                  <span className="gray-text-color">
+                    Tuesday{' '}
+                    <span className="bold-text-style italic-text-style">
+                      Mincha
+                    </span>
+                  </span>
+                </label>
+              </div>
+
+              <div>
+                <label>
+                  <input
+                    type="checkbox"
+                    value="wednesday"
+                    checked={wednesday}
+                    onChange={event => this.handleChange(event)}
+                  />
+
+                  <span className="gray-text-color">
+                    Wednesday{' '}
+                    <span className="bold-text-style italic-text-style">
+                      Mincha
+                    </span>
+                  </span>
+                </label>
+              </div>
+
+              <div>
+                <label>
+                  <input
+                    type="checkbox"
+                    value="thursday"
+                    checked={thursday}
+                    onChange={event => this.handleChange(event)}
+                  />
+
+                  <span className="gray-text-color">
+                    Thursday{' '}
+                    <span className="bold-text-style italic-text-style">
+                      Mincha
+                    </span>
+                  </span>
+                </label>
+              </div>
+
+              <div>
+                <label>
+                  <input
+                    type="checkbox"
+                    value="fridayMincha"
+                    checked={fridayMincha}
+                    onChange={event => this.handleChange(event)}
+                  />
+
+                  <span className="gray-text-color">
+                    Friday{' '}
+                    <span className="bold-text-style italic-text-style">
+                      Mincha
+                    </span>
+                  </span>
                 </label>
               </div>
             </form>
@@ -96,6 +247,12 @@ const mapStateToProps = state => {
   return {
     friday: state.user.friday,
     saturday: state.user.saturday,
+    sunday: state.user.sunday,
+    monday: state.user.monday,
+    tuesday: state.user.tuesday,
+    wednesday: state.user.wednesday,
+    thursday: state.user.thursday,
+    fridayMincha: state.user.fridayMincha,
   };
 };
 
@@ -118,4 +275,10 @@ CheckIn.propTypes = {
   updateCheckInStatusThunk: PropTypes.func,
   friday: PropTypes.bool,
   saturday: PropTypes.bool,
+  sunday: PropTypes.bool,
+  monday: PropTypes.bool,
+  tuesday: PropTypes.bool,
+  wednesday: PropTypes.bool,
+  thursday: PropTypes.bool,
+  fridayMincha: PropTypes.bool,
 };
