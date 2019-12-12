@@ -1,3 +1,5 @@
+/* eslint-disable complexity */
+
 import { getUsersAttendanceThunkCreator } from './attendanceReducer';
 
 // Initial State
@@ -10,6 +12,12 @@ const initialState = {
   congregation: '',
   friday: false,
   saturday: false,
+  sunday: false,
+  monday: false,
+  tuesday: false,
+  wednesday: false,
+  thursday: false,
+  fridayMincha: false,
   isAdmin: false,
 };
 
@@ -17,6 +25,13 @@ const initialState = {
 const GOT_USER_DATA = 'GOT_USER_DATA';
 const UPDATED_FRIDAY_CHECK_IN_STATUS = 'UPDATED_FRIDAY_CHECK_IN_STATUS';
 const UPDATED_SATURDAY_CHECK_IN_STATUS = 'UPDATED_SATURDAY_CHECK_IN_STATUS';
+const UPDATED_SUNDAY_CHECK_IN_STATUS = 'UPDATED_SUNDAY_CHECK_IN_STATUS';
+const UPDATED_MONDAY_CHECK_IN_STATUS = 'UPDATED_MONDAY_CHECK_IN_STATUS';
+const UPDATED_TUESDAY_CHECK_IN_STATUS = 'UPDATED_TUESDAY_CHECK_IN_STATUS';
+const UPDATED_WEDNESDAY_CHECK_IN_STATUS = 'UPDATED_WEDNESDAY_CHECK_IN_STATUS';
+const UPDATED_THURSDAY_CHECK_IN_STATUS = 'UPDATED_THURSDAY_CHECK_IN_STATUS';
+const UPDATED_FRIDAY_MINCHA_CHECK_IN_STATUS =
+  'UPDATED_FRIDAY_MINCHA_CHECK_IN_STATUS';
 
 // Action Creators
 const gotUserDataActionCreator = user => ({
@@ -31,6 +46,36 @@ const updatedFridayCheckInActionCreator = status => ({
 
 const updatedSaturdayCheckInActionCreator = status => ({
   type: UPDATED_SATURDAY_CHECK_IN_STATUS,
+  status,
+});
+
+const updatedSundayCheckInActionCreator = status => ({
+  type: UPDATED_SUNDAY_CHECK_IN_STATUS,
+  status,
+});
+
+const updatedMondayCheckInActionCreator = status => ({
+  type: UPDATED_MONDAY_CHECK_IN_STATUS,
+  status,
+});
+
+const updatedTuesdayCheckInActionCreator = status => ({
+  type: UPDATED_TUESDAY_CHECK_IN_STATUS,
+  status,
+});
+
+const updatedWednesdayCheckInActionCreator = status => ({
+  type: UPDATED_WEDNESDAY_CHECK_IN_STATUS,
+  status,
+});
+
+const updatedThursdayCheckInActionCreator = status => ({
+  type: UPDATED_THURSDAY_CHECK_IN_STATUS,
+  status,
+});
+
+const updatedFridayMinchaCheckInActionCreator = status => ({
+  type: UPDATED_FRIDAY_MINCHA_CHECK_IN_STATUS,
   status,
 });
 
@@ -90,8 +135,20 @@ export const updateCheckInStatusThunkCreator = (userId, day, status) => {
 
       if (day === 'friday') {
         dispatch(updatedFridayCheckInActionCreator(status));
-      } else {
+      } else if (day === 'saturday') {
         dispatch(updatedSaturdayCheckInActionCreator(status));
+      } else if (day === 'sunday') {
+        dispatch(updatedSundayCheckInActionCreator(status));
+      } else if (day === 'monday') {
+        dispatch(updatedMondayCheckInActionCreator(status));
+      } else if (day === 'tuesday') {
+        dispatch(updatedTuesdayCheckInActionCreator(status));
+      } else if (day === 'wednesday') {
+        dispatch(updatedWednesdayCheckInActionCreator(status));
+      } else if (day === 'thursday') {
+        dispatch(updatedThursdayCheckInActionCreator(status));
+      } else if (day === 'fridayMincha') {
+        dispatch(updatedFridayMinchaCheckInActionCreator(status));
       }
 
       dispatch(getUsersAttendanceThunkCreator());
@@ -114,19 +171,67 @@ const userReducer = (state = initialState, action) => {
 
     case UPDATED_FRIDAY_CHECK_IN_STATUS:
       // console.log(
-      //   'UPDATED_FRIDAY_CHECK_IN_STATUS: action.statusVal',
-      //   action.statusVal
+      //   'UPDATED_FRIDAY_CHECK_IN_STATUS: action.status',
+      //   action.status
       // );
 
       return { ...state, friday: action.status };
 
     case UPDATED_SATURDAY_CHECK_IN_STATUS:
       // console.log(
-      //   'UPDATED_SATURDAY_CHECK_IN_STATUS action.statusVal: ',
-      //   action.statusVal
+      //   'UPDATED_SATURDAY_CHECK_IN_STATUS action.status: ',
+      //   action.status
       // );
 
       return { ...state, saturday: action.status };
+
+    case UPDATED_SUNDAY_CHECK_IN_STATUS:
+      // console.log(
+      //   'UPDATED_SUNDAY_CHECK_IN_STATUS action.status: ',
+      //   action.status
+      // );
+
+      return { ...state, sunday: action.status };
+
+    case UPDATED_MONDAY_CHECK_IN_STATUS:
+      // console.log(
+      //   'UPDATED_MONDAY_CHECK_IN_STATUS action.status: ',
+      //   action.status
+      // );
+
+      return { ...state, monday: action.status };
+
+    case UPDATED_TUESDAY_CHECK_IN_STATUS:
+      // console.log(
+      //   'UPDATED_TUESDAY_CHECK_IN_STATUS action.status: ',
+      //   action.status
+      // );
+
+      return { ...state, tuesday: action.status };
+
+    case UPDATED_WEDNESDAY_CHECK_IN_STATUS:
+      // console.log(
+      //   'UPDATED_WEDNESDAY_CHECK_IN_STATUS action.status: ',
+      //   action.status
+      // );
+
+      return { ...state, wednesday: action.status };
+
+    case UPDATED_THURSDAY_CHECK_IN_STATUS:
+      // console.log(
+      //   'UPDATED_THURSDAY_CHECK_IN_STATUS action.status: ',
+      //   action.status
+      // );
+
+      return { ...state, thursday: action.status };
+
+    case UPDATED_FRIDAY_MINCHA_CHECK_IN_STATUS:
+      // console.log(
+      //   'UPDATED_FRIDAY_MINCHA_CHECK_IN_STATUS action.status: ',
+      //   action.status
+      // );
+
+      return { ...state, fridayMincha: action.status };
 
     default:
       return state;

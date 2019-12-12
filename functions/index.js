@@ -7,7 +7,7 @@ const createNotification = notification => {
     .firestore()
     .collection('notifications')
     .add(notification)
-    .then(doc => console.log('Notification Added: ', doc));
+    .then(doc => console.log('Notification added: ', doc));
 };
 
 exports.userJoined = functions.auth.user().onCreate(user => {

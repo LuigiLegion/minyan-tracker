@@ -21,33 +21,38 @@ export const resetUsersAttendanceThunkCreator = users => {
 
       const firestore = getFirestore();
 
-      const usersUpdatesPromises = users.reduce((acc, curUser) => {
-        const { id, email, friday, saturday } = curUser;
+      const usersUpdatesUnresolvedPromises = users.reduce((acc, curUser) => {
+        const { id, email } = curUser;
 
-        if (
-          (friday || saturday) &&
-          (email !== defaultAttendees[0].email &&
-            email !== defaultAttendees[1].email)
-        ) {
-          acc.push(
-            firestore
-              .collection('users')
-              .doc(id)
-              .update({
-                friday: false,
-                saturday: false,
-              })
-          );
-        }
+        const isDefaultAttendee =
+          email === defaultAttendees[0].email ||
+          email === defaultAttendees[1].email;
+
+        acc.push(
+          firestore
+            .collection('users')
+            .doc(id)
+            .update({
+              friday: isDefaultAttendee,
+              saturday: isDefaultAttendee,
+              sunday: false,
+              monday: false,
+              tuesday: false,
+              wednesday: false,
+              thursday: false,
+              fridayMincha: false,
+            })
+        );
+
         return acc;
       }, []);
 
       // console.log(
-      //   'usersUpdatesPromises in resetUsersAttendanceThunkCreator: ',
-      //   usersUpdatesPromises
+      //   'usersUpdatesUnresolvedPromises in resetUsersAttendanceThunkCreator: ',
+      //   usersUpdatesUnresolvedPromises
       // );
 
-      Promise.all(usersUpdatesPromises);
+      Promise.all(usersUpdatesUnresolvedPromises);
 
       dispatch(resetUsersAttendanceActionCreator());
     } catch (error) {

@@ -64,6 +64,12 @@ export const signUpThunkCreator = newUser => {
         congregation: newUser.congregation,
         friday: false,
         saturday: false,
+        sunday: false,
+        monday: false,
+        tuesday: false,
+        wednesday: false,
+        thursday: false,
+        fridayMincha: false,
       };
 
       // console.log('newUserObj in signUpThunkCreator: ', newUserObj);

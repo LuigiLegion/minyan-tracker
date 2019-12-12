@@ -3,20 +3,20 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 // Component
-const SaturdayShacharit = ({ saturday }) => {
-  // console.log('saturday in SaturdayShacharit: ', saturday);
+const FridayMincha = ({ fridayMincha }) => {
+  // console.log('fridayMincha in FridayMincha: ', fridayMincha);
 
-  const { going, notGoing } = saturday;
+  const { going, notGoing } = fridayMincha;
 
-  // console.log('going in SaturdayShacharit: ', going);
-  // console.log('notGoing in SaturdayShacharit: ', notGoing);
+  // console.log('going in FridayMincha: ', going);
+  // console.log('notGoing in FridayMincha: ', notGoing);
 
   return (
     <div className="section">
       <div className="card z-depth-0">
         <div className="card-content grey-text text-darken-3">
           <span className="card-title">
-            <span className="bold-text-style">Saturday Shacharit</span>
+            <span className="bold-text-style">Friday Mincha</span>
           </span>
 
           <span className="bold-text-style blue-text-color">{`Going (${going.length})`}</span>
@@ -70,9 +70,9 @@ const SaturdayShacharit = ({ saturday }) => {
   );
 };
 
-export default SaturdayShacharit;
+export default FridayMincha;
 
 // Prop Types
-SaturdayShacharit.propTypes = {
-  saturday: PropTypes.object,
+FridayMincha.propTypes = {
+  fridayMincha: PropTypes.object,
 };
