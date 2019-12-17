@@ -6,8 +6,8 @@ import { slide as Menu } from 'react-burger-menu';
 import PropTypes from 'prop-types';
 
 import { signOutThunkCreator } from '../../store/reducers/authReducer';
-import { burgerStyles } from '../../styles';
 import contactUsEmail from '../../config/emailConfig';
+import { burgerStyles } from '../../styles';
 
 // Component
 class SignedInLinksBurger extends Component {

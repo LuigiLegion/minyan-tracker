@@ -3,8 +3,8 @@ import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 import { slide as Menu } from 'react-burger-menu';
 
-import { burgerStyles } from '../../styles';
 import contactUsEmail from '../../config/emailConfig';
+import { burgerStyles } from '../../styles';
 
 // Component
 class SignedOutLinksBurger extends Component {
