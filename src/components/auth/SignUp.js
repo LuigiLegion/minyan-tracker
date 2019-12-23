@@ -186,11 +186,18 @@ export class SignUp extends Component {
                 <option value="Astoria Center of Israel">
                   Astoria Center of Israel
                 </option>
+                <option value="Faculty of Agriculture">
+                  Faculty of Agriculture
+                </option>
               </select>
             </div>
 
             <div className="gray-text-color">
-              Is your congregation not on the list? Contact us{' '}
+              Is your congregation not on the list?
+            </div>
+            <div className="gray-text-color">
+              {' '}
+              Contact us{' '}
               <a
                 href={`mailto:${contactUsEmail}`}
                 target="_blank"
