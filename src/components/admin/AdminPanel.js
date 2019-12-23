@@ -61,7 +61,7 @@ class AdminPanel extends Component {
                       <span className="bold-text-style">Admin Panel</span>
                     </span>
 
-                    <form className="admin-form" onClick={this.handleSubmit}>
+                    <form className="admin-form" onSubmit={this.handleSubmit}>
                       <h5 className="grey-text text-darken-3">Attendance:</h5>
 
                       <button
