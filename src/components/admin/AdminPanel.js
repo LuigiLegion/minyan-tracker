@@ -95,16 +95,12 @@ class AdminPanel extends Component {
 }
 
 // Container
-const mapStateToProps = state => {
-  // console.log('state in Dashboard mapStateToProps: ', state);
-
-  return {
-    auth: state.firebase.auth,
-    profile: state.firebase.profile,
-    users: state.firestore.ordered.users,
-    disabled: state.admin.disabled,
-  };
-};
+const mapStateToProps = state => ({
+  auth: state.firebase.auth,
+  profile: state.firebase.profile,
+  users: state.firestore.ordered.users,
+  disabled: state.admin.disabled,
+});
 
 const mapDispatchToProps = dispatch => ({
   resetUsersAttendanceThunk(users) {
