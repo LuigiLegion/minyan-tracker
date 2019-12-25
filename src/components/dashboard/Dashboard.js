@@ -34,16 +34,12 @@ const Dashboard = ({ auth, notifications, getUserDataThunk }) => {
 };
 
 // Container
-const mapStateToProps = state => {
-  // console.log('state in Dashboard mapStateToProps: ', state);
-
-  return {
-    auth: state.firebase.auth,
-    profile: state.firebase.profile,
-    updates: state.firestore.ordered.updates,
-    notifications: state.firestore.ordered.notifications,
-  };
-};
+const mapStateToProps = state => ({
+  auth: state.firebase.auth,
+  profile: state.firebase.profile,
+  updates: state.firestore.ordered.updates,
+  notifications: state.firestore.ordered.notifications,
+});
 
 const mapDispatchToProps = dispatch => ({
   getUserDataThunk(userId) {

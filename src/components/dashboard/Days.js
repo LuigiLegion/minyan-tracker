@@ -58,13 +58,9 @@ const Days = ({ attendance }) => {
 };
 
 // Container
-const mapStateToProps = state => {
-  // console.log('state in Days mapStateToProps: ', state);
-
-  return {
-    attendance: state.attendance,
-  };
-};
+const mapStateToProps = state => ({
+  attendance: state.attendance,
+});
 
 export default connect(mapStateToProps)(Days);
 

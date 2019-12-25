@@ -74,14 +74,10 @@ class Navbar extends Component {
 }
 
 // Container
-const mapStateToProps = state => {
-  // console.log('state in Navbar mapStateToProps: ', state);
-
-  return {
-    auth: state.firebase.auth,
-    profile: state.firebase.profile,
-  };
-};
+const mapStateToProps = state => ({
+  auth: state.firebase.auth,
+  profile: state.firebase.profile,
+});
 
 export default connect(mapStateToProps)(Navbar);
 

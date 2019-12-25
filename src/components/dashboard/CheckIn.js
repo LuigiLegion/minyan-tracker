@@ -241,20 +241,16 @@ class CheckIn extends Component {
 }
 
 // Container
-const mapStateToProps = state => {
-  // console.log('state in CheckIn mapStateToProps: ', state);
-
-  return {
-    friday: state.user.friday,
-    saturday: state.user.saturday,
-    sunday: state.user.sunday,
-    monday: state.user.monday,
-    tuesday: state.user.tuesday,
-    wednesday: state.user.wednesday,
-    thursday: state.user.thursday,
-    fridayMincha: state.user.fridayMincha,
-  };
-};
+const mapStateToProps = state => ({
+  friday: state.user.friday,
+  saturday: state.user.saturday,
+  sunday: state.user.sunday,
+  monday: state.user.monday,
+  tuesday: state.user.tuesday,
+  wednesday: state.user.wednesday,
+  thursday: state.user.thursday,
+  fridayMincha: state.user.fridayMincha,
+});
 
 const mapDispatchToProps = dispatch => ({
   updateCheckInStatusThunk(userId, day, status) {
