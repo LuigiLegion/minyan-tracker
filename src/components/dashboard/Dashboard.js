@@ -6,7 +6,7 @@ import { firestoreConnect } from 'react-redux-firebase';
 import { compose } from 'redux';
 import PropTypes from 'prop-types';
 
-import Days from './Days';
+import ServicesList from './ServicesList';
 import Utilities from './Utilities';
 import { getUserDataThunkCreator } from '../../store/reducers/userReducer';
 
@@ -24,7 +24,7 @@ const Dashboard = ({ auth, notifications, getUserDataThunk }) => {
     return (
       <div className="dashboard container">
         <div className="row">
-          <Days />
+          <ServicesList />
 
           <Utilities auth={auth} notifications={notifications} />
         </div>
@@ -66,7 +66,7 @@ export default compose(
 )(Dashboard);
 
 // Prop Types
-Days.propTypes = {
+Dashboard.propTypes = {
   auth: PropTypes.object,
   profile: PropTypes.object,
   updates: PropTypes.object,
