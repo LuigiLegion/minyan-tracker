@@ -1,6 +1,6 @@
 /* eslint-disable complexity */
 
-import { getUsersAttendanceThunkCreator } from './attendanceReducer';
+import { getUsersAttendanceThunkCreator } from './shabbatAttendanceReducer';
 
 // Initial State
 const initialState = {
@@ -34,52 +34,52 @@ const UPDATED_FRIDAY_MINCHA_CHECK_IN_STATUS =
   'UPDATED_FRIDAY_MINCHA_CHECK_IN_STATUS';
 
 // Action Creators
-const gotUserDataActionCreator = user => ({
+export const gotUserDataActionCreator = user => ({
   type: GOT_USER_DATA,
   user,
 });
 
-const updatedFridayCheckInActionCreator = status => ({
+export const updatedFridayCheckInActionCreator = status => ({
   type: UPDATED_FRIDAY_CHECK_IN_STATUS,
   status,
 });
 
-const updatedSaturdayCheckInActionCreator = status => ({
+export const updatedSaturdayCheckInActionCreator = status => ({
   type: UPDATED_SATURDAY_CHECK_IN_STATUS,
   status,
 });
 
-const updatedSundayCheckInActionCreator = status => ({
+export const updatedSundayCheckInActionCreator = status => ({
   type: UPDATED_SUNDAY_CHECK_IN_STATUS,
   status,
 });
 
-const updatedMondayCheckInActionCreator = status => ({
+export const updatedMondayCheckInActionCreator = status => ({
   type: UPDATED_MONDAY_CHECK_IN_STATUS,
   status,
 });
 
-const updatedTuesdayCheckInActionCreator = status => ({
+export const updatedTuesdayCheckInActionCreator = status => ({
   type: UPDATED_TUESDAY_CHECK_IN_STATUS,
   status,
 });
 
-const updatedWednesdayCheckInActionCreator = status => ({
+export const updatedWednesdayCheckInActionCreator = status => ({
   type: UPDATED_WEDNESDAY_CHECK_IN_STATUS,
   status,
 });
 
-const updatedThursdayCheckInActionCreator = status => ({
+export const updatedThursdayCheckInActionCreator = status => ({
   type: UPDATED_THURSDAY_CHECK_IN_STATUS,
   status,
 });
 
-const updatedFridayMinchaCheckInActionCreator = status => ({
+export const updatedFridayMinchaCheckInActionCreator = status => ({
   type: UPDATED_FRIDAY_MINCHA_CHECK_IN_STATUS,
   status,
 });
 
-// Thunks
+// Thunk Creators
 export const getUserDataThunkCreator = userId => {
   return async (dispatch, getState, { getFirestore }) => {
     try {

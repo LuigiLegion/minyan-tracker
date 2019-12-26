@@ -13,31 +13,31 @@ const SIGN_OUT_SUCCESS = 'SIGN_OUT_SUCCESS';
 const SIGN_OUT_ERROR = 'SIGN_OUT_ERROR';
 
 // Action Creators
-const signUpSuccessActionCreator = newUser => ({
+export const signUpSuccessActionCreator = newUser => ({
   type: SIGN_UP_SUCCESS,
   newUser,
 });
 
-const signUpErrorActionCreator = error => ({
+export const signUpErrorActionCreator = error => ({
   type: SIGN_UP_ERROR,
   error,
 });
 
-const signInSuccessActionCreator = userCredentials => ({
+export const signInSuccessActionCreator = userCredentials => ({
   type: SIGN_IN_SUCCESS,
   userCredentials,
 });
 
-const signInErrorActionCreator = error => ({
+export const signInErrorActionCreator = error => ({
   type: SIGN_IN_ERROR,
   error,
 });
 
-const signOutSuccessActionCreator = () => ({
+export const signOutSuccessActionCreator = () => ({
   type: SIGN_OUT_SUCCESS,
 });
 
-const signOutErrorActionCreator = () => ({
+export const signOutErrorActionCreator = () => ({
   type: SIGN_OUT_ERROR,
 });
 

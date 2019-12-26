@@ -9,11 +9,11 @@ const initialState = {
 const RESET_USERS_ATTENDANCE = 'RESET_USERS_ATTENDANCE';
 
 // Action Creators
-const resetUsersAttendanceActionCreator = () => ({
+export const resetUsersAttendanceActionCreator = () => ({
   type: RESET_USERS_ATTENDANCE,
 });
 
-// Thunks
+// Thunk Creators
 export const resetUsersAttendanceThunkCreator = users => {
   return (dispatch, getState, { getFirestore }) => {
     try {
