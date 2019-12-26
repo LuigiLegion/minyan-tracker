@@ -6,8 +6,8 @@ import PropTypes from 'prop-types';
 import SingleService from './SingleService';
 
 // Component
-const Days = ({ attendance }) => {
-  // console.log('attendance in Days: ', attendance);
+const ServicesList = ({ attendance }) => {
+  // console.log('attendance in ServicesList: ', attendance);
 
   const attendanceArr = [
     attendance.friday,
@@ -20,7 +20,7 @@ const Days = ({ attendance }) => {
     attendance.fridayMincha,
   ];
 
-  // console.log('attendanceArr in Days: ', attendanceArr);
+  // console.log('attendanceArr in ServicesList: ', attendanceArr);
 
   return (
     <div className="col s12 m6">
@@ -39,9 +39,9 @@ const mapStateToProps = state => ({
   attendance: state.attendance,
 });
 
-export default connect(mapStateToProps)(Days);
+export default connect(mapStateToProps)(ServicesList);
 
 // Prop Types
-Days.propTypes = {
+ServicesList.propTypes = {
   attendance: PropTypes.object,
 };
