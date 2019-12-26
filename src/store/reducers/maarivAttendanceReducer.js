@@ -4,105 +4,79 @@
 
 // Initial State
 const initialState = {
-  friday: {
-    day: 'Friday',
+  sunday: {
+    day: 'Sunday',
+    type: 'Maariv',
+    going: [],
+    notGoing: [],
+  },
+  monday: {
+    day: 'Monday',
+    type: 'Maariv',
+    going: [],
+    notGoing: [],
+  },
+  tuesday: {
+    day: 'Tuesday',
+    type: 'Maariv',
+    going: [],
+    notGoing: [],
+  },
+  wednesday: {
+    day: 'Wednesday',
+    type: 'Maariv',
+    going: [],
+    notGoing: [],
+  },
+  thursday: {
+    day: 'Thursday',
     type: 'Maariv',
     going: [],
     notGoing: [],
   },
   saturday: {
     day: 'Saturday',
-    type: 'Shacharit',
-    going: [],
-    notGoing: [],
-  },
-  sunday: {
-    day: 'Sunday',
-    type: 'Mincha',
-    going: [],
-    notGoing: [],
-  },
-  monday: {
-    day: 'Monday',
-    type: 'Mincha',
-    going: [],
-    notGoing: [],
-  },
-  tuesday: {
-    day: 'Tuesday',
-    type: 'Mincha',
-    going: [],
-    notGoing: [],
-  },
-  wednesday: {
-    day: 'Wednesday',
-    type: 'Mincha',
-    going: [],
-    notGoing: [],
-  },
-  thursday: {
-    day: 'Thursday',
-    type: 'Mincha',
-    going: [],
-    notGoing: [],
-  },
-  fridayMincha: {
-    day: 'Friday',
-    type: 'Mincha',
+    type: 'Maariv',
     going: [],
     notGoing: [],
   },
 };
 
 // Action Types
-const GOT_USERS_ATTENDANCE = 'GOT_USERS_ATTENDANCE';
+const GOT_USERS_MAARIV_ATTENDANCE = 'GOT_USERS_MAARIV_ATTENDANCE';
 
 // Action Creators
-const gotUsersAttendanceActionCreator = (
-  fridayAttendance,
-  saturdayAttendance,
+export const gotUsersMaarivAttendanceActionCreator = (
   sundayAttendance,
   mondayAttendance,
   tuesdayAttendance,
   wednesdayAttendance,
   thursdayAttendance,
-  fridayMinchaAttendance
+  saturdayAttendance
 ) => ({
-  type: GOT_USERS_ATTENDANCE,
-  fridayAttendance,
-  saturdayAttendance,
+  type: GOT_USERS_MAARIV_ATTENDANCE,
   sundayAttendance,
   mondayAttendance,
   tuesdayAttendance,
   wednesdayAttendance,
   thursdayAttendance,
-  fridayMinchaAttendance,
+  saturdayAttendance,
 });
 
-// Thunks
-export const getUsersAttendanceThunkCreator = () => {
+// Thunk Creators
+export const getUsersMaarivAttendanceThunkCreator = () => {
   return async (dispatch, getState, { getFirestore }) => {
     try {
       const firestore = getFirestore();
 
       const { user } = getState();
 
-      // console.log('user in getUsersAttendanceThunkCreator: ', user);
+      // console.log('user in getUsersMaarivAttendanceThunkCreator: ', user);
 
       const { docs } = await firestore
         .collection('users')
         .where('congregation', '==', user.congregation)
         .get();
-
-      const fridayAttendance = {
-        going: [],
-        notGoing: [],
-      };
-
-      const saturdayAttendance = {
-        going: [],
-        notGoing: [],
-      };
 
       const sundayAttendance = {
         going: [],
@@ -129,7 +103,7 @@ export const getUsersAttendanceThunkCreator = () => {
         notGoing: [],
       };
 
-      const fridayMinchaAttendance = {
+      const saturdayAttendance = {
         going: [],
         notGoing: [],
       };
@@ -139,19 +113,7 @@ export const getUsersAttendanceThunkCreator = () => {
       for (let doc of docs) {
         curUser = doc.data();
 
-        // console.log('curUser in getUsersAttendanceThunkCreator: ', curUser);
-
-        if (curUser.friday) {
-          fridayAttendance.going.push(curUser);
-        } else {
-          fridayAttendance.notGoing.push(curUser);
-        }
-
-        if (curUser.saturday) {
-          saturdayAttendance.going.push(curUser);
-        } else {
-          saturdayAttendance.notGoing.push(curUser);
-        }
+        // console.log('curUser in getUsersMaarivAttendanceThunkCreator: ', curUser);
 
         if (curUser.sunday) {
           sundayAttendance.going.push(curUser);
@@ -183,23 +145,21 @@ export const getUsersAttendanceThunkCreator = () => {
           thursdayAttendance.notGoing.push(curUser);
         }
 
-        if (curUser.fridayMincha) {
-          fridayMinchaAttendance.going.push(curUser);
+        if (curUser.saturday) {
+          saturdayAttendance.going.push(curUser);
         } else {
-          fridayMinchaAttendance.notGoing.push(curUser);
+          saturdayAttendance.notGoing.push(curUser);
         }
       }
 
       dispatch(
-        gotUsersAttendanceActionCreator(
-          fridayAttendance,
-          saturdayAttendance,
+        gotUsersMaarivAttendanceActionCreator(
           sundayAttendance,
           mondayAttendance,
           tuesdayAttendance,
           wednesdayAttendance,
           thursdayAttendance,
-          fridayMinchaAttendance
+          saturdayAttendance
         )
       );
     } catch (error) {
@@ -209,15 +169,11 @@ export const getUsersAttendanceThunkCreator = () => {
 };
 
 // Reducer
-const attendanceReducer = (state = initialState, action) => {
+const maarivAttendanceReducer = (state = initialState, action) => {
   switch (action.type) {
-    case GOT_USERS_ATTENDANCE:
+    case GOT_USERS_MAARIV_ATTENDANCE:
       // console.log(
-      //   'GOT_USERS_ATTENDANCE',
-      //   'action.fridayAttendance: ',
-      //   action.fridayAttendance,
-      //   'action.saturdayAttendance: ',
-      //   action.saturdayAttendance,
+      //   'GOT_USERS_MAARIV_ATTENDANCE',
       //   'action.sundayAttendance: ',
       //   action.sundayAttendance,
       //   'action.mondayAttendance: ',
@@ -228,22 +184,12 @@ const attendanceReducer = (state = initialState, action) => {
       //   action.wednesdayAttendance,
       //   'action.thursdayAttendance: ',
       //   action.thursdayAttendance,
-      //   'action.fridayMinchaAttendance: ',
-      //   action.fridayMinchaAttendance
+      //   'action.saturdayAttendance: ',
+      //   action.saturdayAttendance
       // );
 
       return {
         ...state,
-        friday: {
-          ...state.friday,
-          going: action.fridayAttendance.going,
-          notGoing: action.fridayAttendance.notGoing,
-        },
-        saturday: {
-          ...state.saturday,
-          going: action.saturdayAttendance.going,
-          notGoing: action.saturdayAttendance.notGoing,
-        },
         sunday: {
           ...state.sunday,
           going: action.sundayAttendance.going,
@@ -269,10 +215,10 @@ const attendanceReducer = (state = initialState, action) => {
           going: action.thursdayAttendance.going,
           notGoing: action.thursdayAttendance.notGoing,
         },
-        fridayMincha: {
-          ...state.fridayMincha,
-          going: action.fridayMinchaAttendance.going,
-          notGoing: action.fridayMinchaAttendance.notGoing,
+        saturday: {
+          ...state.saturday,
+          going: action.saturdayAttendance.going,
+          notGoing: action.saturdayAttendance.notGoing,
         },
       };
 
@@ -281,4 +227,4 @@ const attendanceReducer = (state = initialState, action) => {
   }
 };
 
-export default attendanceReducer;
+export default maarivAttendanceReducer;
