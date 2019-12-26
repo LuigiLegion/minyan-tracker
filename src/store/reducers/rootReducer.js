@@ -4,7 +4,10 @@ import { firestoreReducer } from 'redux-firestore';
 
 import authReducer from './authReducer';
 import userReducer from './userReducer';
-import attendanceReducer from './attendanceReducer';
+import shacharitAttendanceReducer from './shacharitAttendanceReducer';
+import minchaAttendanceReducer from './minchaAttendanceReducer';
+import maarivAttendanceReducer from './maarivAttendanceReducer';
+import shabbatAttendanceReducer from './shabbatAttendanceReducer';
 import adminReducer from './adminReducer';
 
 const rootReducer = combineReducers({
@@ -12,7 +15,10 @@ const rootReducer = combineReducers({
   firebase: firebaseReducer,
   auth: authReducer,
   user: userReducer,
-  attendance: attendanceReducer,
+  shacharitAttendance: shacharitAttendanceReducer,
+  minchaAttendance: minchaAttendanceReducer,
+  maarivAttendance: maarivAttendanceReducer,
+  shabbatAttendance: shabbatAttendanceReducer,
   admin: adminReducer,
 });
 
