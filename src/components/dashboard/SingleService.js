@@ -3,20 +3,22 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 // Component
-const SaturdayShacharit = ({ saturday }) => {
-  // console.log('saturday in SaturdayShacharit: ', saturday);
+const SingleService = ({ service }) => {
+  // console.log('service in SingleService: ', service);
 
-  const { going, notGoing } = saturday;
+  const { day, type, going, notGoing } = service;
 
-  // console.log('going in SaturdayShacharit: ', going);
-  // console.log('notGoing in SaturdayShacharit: ', notGoing);
+  // console.log('day in SingleService: ', day);
+  // console.log('type in SingleService: ', type);
+  // console.log('going in SingleService: ', going);
+  // console.log('notGoing in SingleService: ', notGoing);
 
   return (
     <div className="section">
       <div className="card z-depth-0">
         <div className="card-content grey-text text-darken-3">
           <span className="card-title">
-            <span className="bold-text-style">Saturday Shacharit</span>
+            <span className="bold-text-style">{`${day} ${type}`}</span>
           </span>
 
           <span className="bold-text-style blue-text-color">{`Going (${going.length})`}</span>
@@ -70,9 +72,9 @@ const SaturdayShacharit = ({ saturday }) => {
   );
 };
 
-export default SaturdayShacharit;
+export default SingleService;
 
 // Prop Types
-SaturdayShacharit.propTypes = {
-  saturday: PropTypes.object,
+SingleService.propTypes = {
+  service: PropTypes.object,
 };

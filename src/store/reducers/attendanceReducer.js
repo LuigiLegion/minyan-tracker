@@ -5,34 +5,50 @@
 // Initial State
 const initialState = {
   friday: {
+    day: 'Friday',
+    type: 'Maariv',
     going: [],
     notGoing: [],
   },
   saturday: {
+    day: 'Saturday',
+    type: 'Shacharit',
     going: [],
     notGoing: [],
   },
   sunday: {
+    day: 'Sunday',
+    type: 'Mincha',
     going: [],
     notGoing: [],
   },
   monday: {
+    day: 'Monday',
+    type: 'Mincha',
     going: [],
     notGoing: [],
   },
   tuesday: {
+    day: 'Tuesday',
+    type: 'Mincha',
     going: [],
     notGoing: [],
   },
   wednesday: {
+    day: 'Wednesday',
+    type: 'Mincha',
     going: [],
     notGoing: [],
   },
   thursday: {
+    day: 'Thursday',
+    type: 'Mincha',
     going: [],
     notGoing: [],
   },
   fridayMincha: {
+    day: 'Friday',
+    type: 'Mincha',
     going: [],
     notGoing: [],
   },
@@ -219,34 +235,42 @@ const attendanceReducer = (state = initialState, action) => {
       return {
         ...state,
         friday: {
+          ...state.friday,
           going: action.fridayAttendance.going,
           notGoing: action.fridayAttendance.notGoing,
         },
         saturday: {
+          ...state.saturday,
           going: action.saturdayAttendance.going,
           notGoing: action.saturdayAttendance.notGoing,
         },
         sunday: {
+          ...state.sunday,
           going: action.sundayAttendance.going,
           notGoing: action.sundayAttendance.notGoing,
         },
         monday: {
+          ...state.monday,
           going: action.mondayAttendance.going,
           notGoing: action.mondayAttendance.notGoing,
         },
         tuesday: {
+          ...state.tuesday,
           going: action.tuesdayAttendance.going,
           notGoing: action.tuesdayAttendance.notGoing,
         },
         wednesday: {
+          ...state.wednesday,
           going: action.wednesdayAttendance.going,
           notGoing: action.wednesdayAttendance.notGoing,
         },
         thursday: {
+          ...state.thursday,
           going: action.thursdayAttendance.going,
           notGoing: action.thursdayAttendance.notGoing,
         },
         fridayMincha: {
+          ...state.fridayMincha,
           going: action.fridayMinchaAttendance.going,
           notGoing: action.fridayMinchaAttendance.notGoing,
         },
