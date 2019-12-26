@@ -69,7 +69,7 @@ export default compose(
 Dashboard.propTypes = {
   auth: PropTypes.object,
   profile: PropTypes.object,
-  updates: PropTypes.object,
+  updates: PropTypes.array,
   notifications: PropTypes.array,
   getUserDataThunk: PropTypes.func,
 };
