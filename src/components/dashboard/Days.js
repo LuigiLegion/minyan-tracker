@@ -3,29 +3,30 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import FridayMaariv from './FridayMaariv';
-import SaturdayShacharit from './SaturdayShacharit';
-import SundayMincha from './SundayMincha';
-import MondayMincha from './MondayMincha';
-import TuesdayMincha from './TuesdayMincha';
-import WednesdayMincha from './WednesdayMincha';
-import ThursdayMincha from './ThursdayMincha';
-import FridayMincha from './FridayMincha';
+// import FridayMaariv from './FridayMaariv';
+// import SaturdayShacharit from './SaturdayShacharit';
+// import SundayMincha from './SundayMincha';
+// import MondayMincha from './MondayMincha';
+// import TuesdayMincha from './TuesdayMincha';
+// import WednesdayMincha from './WednesdayMincha';
+// import ThursdayMincha from './ThursdayMincha';
+// import FridayMincha from './FridayMincha';
+import SingleService from './SingleService';
 
 // Component
 const Days = ({ attendance }) => {
   // console.log('attendance in Days: ', attendance);
 
-  const {
-    friday,
-    saturday,
-    sunday,
-    monday,
-    tuesday,
-    wednesday,
-    thursday,
-    fridayMincha,
-  } = attendance;
+  // const {
+  //   friday,
+  //   saturday,
+  //   sunday,
+  //   monday,
+  //   tuesday,
+  //   wednesday,
+  //   thursday,
+  //   fridayMincha,
+  // } = attendance;
 
   // console.log('friday in Days: ', friday);
   // console.log('saturday in Days: ', saturday);
@@ -36,9 +37,22 @@ const Days = ({ attendance }) => {
   // console.log('thursday in Days: ', thursday);
   // console.log('fridayMincha in Days: ', fridayMincha);
 
+  const attendanceArr = [
+    attendance.friday,
+    attendance.saturday,
+    attendance.sunday,
+    attendance.monday,
+    attendance.tuesday,
+    attendance.wednesday,
+    attendance.thursday,
+    attendance.fridayMincha,
+  ];
+
+  // console.log('attendanceArr in Days: ', attendanceArr);
+
   return (
     <div className="col s12 m6">
-      <FridayMaariv friday={friday} />
+      {/* <FridayMaariv friday={friday} />
 
       <SaturdayShacharit saturday={saturday} />
 
@@ -52,7 +66,14 @@ const Days = ({ attendance }) => {
 
       <ThursdayMincha thursday={thursday} />
 
-      <FridayMincha fridayMincha={fridayMincha} />
+      <FridayMincha fridayMincha={fridayMincha} /> */}
+
+      {attendanceArr.map(curService => (
+        <SingleService
+          key={`${curService.day} ${curService.type}`}
+          service={curService}
+        />
+      ))}
     </div>
   );
 };
