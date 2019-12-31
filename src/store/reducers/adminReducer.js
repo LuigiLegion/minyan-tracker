@@ -32,16 +32,40 @@ export const resetUsersAttendanceThunkCreator = users => {
           firestore
             .collection('users')
             .doc(id)
-            .update({
-              friday: isDefaultAttendee,
-              saturday: isDefaultAttendee,
-              sunday: false,
-              monday: false,
-              tuesday: false,
-              wednesday: false,
-              thursday: false,
-              fridayMincha: false,
-            })
+            .set(
+              {
+                shacharit: {
+                  sunday: false,
+                  monday: false,
+                  tuesday: false,
+                  wednesday: false,
+                  thursday: false,
+                  friday: false,
+                },
+                mincha: {
+                  sunday: false,
+                  monday: false,
+                  tuesday: false,
+                  wednesday: false,
+                  thursday: false,
+                  friday: false,
+                  saturday: false,
+                },
+                maariv: {
+                  sunday: false,
+                  monday: false,
+                  tuesday: false,
+                  wednesday: false,
+                  thursday: false,
+                  saturday: false,
+                },
+                shabbat: {
+                  friday: isDefaultAttendee,
+                  saturday: isDefaultAttendee,
+                },
+              },
+              { merge: true }
+            )
         );
 
         return acc;

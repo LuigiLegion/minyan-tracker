@@ -62,14 +62,35 @@ export const signUpThunkCreator = newUser => {
         fullName: `${newUser.firstName} ${newUser.lastName}`,
         gender: newUser.gender,
         congregation: newUser.congregation,
-        friday: false,
-        saturday: false,
-        sunday: false,
-        monday: false,
-        tuesday: false,
-        wednesday: false,
-        thursday: false,
-        fridayMincha: false,
+        shacharit: {
+          sunday: false,
+          monday: false,
+          tuesday: false,
+          wednesday: false,
+          thursday: false,
+          friday: false,
+        },
+        mincha: {
+          sunday: false,
+          monday: false,
+          tuesday: false,
+          wednesday: false,
+          thursday: false,
+          friday: false,
+          saturday: false,
+        },
+        maariv: {
+          sunday: false,
+          monday: false,
+          tuesday: false,
+          wednesday: false,
+          thursday: false,
+          saturday: false,
+        },
+        shabbat: {
+          friday: false,
+          saturday: false,
+        },
       };
 
       // console.log('newUserObj in signUpThunkCreator: ', newUserObj);
@@ -117,6 +138,10 @@ export const signOutThunkCreator = () => {
       await firebase.auth().signOut();
 
       dispatch(signOutSuccessActionCreator());
+
+      localStorage.clear();
+
+      // console.log('localStorage in signOutThunkCreator: ', localStorage);
     } catch (error) {
       console.error(error);
       dispatch(signOutErrorActionCreator());
