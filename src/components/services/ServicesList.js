@@ -1,6 +1,5 @@
 // Imports
 import React from 'react';
-import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import SingleService from './SingleService';
@@ -9,16 +8,7 @@ import SingleService from './SingleService';
 const ServicesList = ({ attendance }) => {
   // console.log('attendance in ServicesList: ', attendance);
 
-  const attendanceArr = [
-    attendance.friday,
-    attendance.saturday,
-    attendance.sunday,
-    attendance.monday,
-    attendance.tuesday,
-    attendance.wednesday,
-    attendance.thursday,
-    attendance.fridayMincha,
-  ];
+  const attendanceArr = Object.values(attendance);
 
   // console.log('attendanceArr in ServicesList: ', attendanceArr);
 
@@ -34,12 +24,7 @@ const ServicesList = ({ attendance }) => {
   );
 };
 
-// Container
-const mapStateToProps = state => ({
-  attendance: state.attendance,
-});
-
-export default connect(mapStateToProps)(ServicesList);
+export default ServicesList;
 
 // Prop Types
 ServicesList.propTypes = {
