@@ -1,43 +1,49 @@
 // Imports
-import React from 'react';
+import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { firestoreConnect } from 'react-redux-firebase';
 import { compose } from 'redux';
 import PropTypes from 'prop-types';
 
-import ServicesList from './ServicesList';
-import Utilities from './Utilities';
+import Welcome from './Welcome';
+import Notifications from './Notifications';
 import { getUserDataThunkCreator } from '../../store/reducers/userReducer';
 
 // Component
-const Dashboard = ({ auth, notifications, getUserDataThunk }) => {
-  // console.log('auth in Dashboard: ', auth);
-  // console.log('notifications in Dashboard: ', notifications);
-  // console.log('getUserDataThunk in Dashboard: ', getUserDataThunk);
+class Dashboard extends Component {
+  componentDidMount() {
+    const { auth, getUserDataThunk } = this.props;
 
-  if (!auth.uid) {
-    return <Redirect to="/signin" />;
-  } else {
+    // console.log('getUserDataThunk in Dashboard: ', getUserDataThunk);
+
     getUserDataThunk(auth.uid);
-
-    return (
-      <div className="dashboard container">
-        <div className="row">
-          <ServicesList />
-
-          <Utilities auth={auth} notifications={notifications} />
-        </div>
-      </div>
-    );
   }
-};
+
+  render() {
+    const { auth, notifications } = this.props;
+    // console.log('auth in Dashboard: ', auth);
+    // console.log('notifications in Dashboard: ', notifications);
+
+    if (!auth.uid) {
+      return <Redirect to="/signin" />;
+    } else {
+      return (
+        <div className="dashboard container">
+          <div className="row">
+            <Welcome />
+
+            <Notifications auth={auth} notifications={notifications} />
+          </div>
+        </div>
+      );
+    }
+  }
+}
 
 // Container
 const mapStateToProps = state => ({
   auth: state.firebase.auth,
-  profile: state.firebase.profile,
-  updates: state.firestore.ordered.updates,
   notifications: state.firestore.ordered.notifications,
 });
 
@@ -54,12 +60,8 @@ export default compose(
   ),
   firestoreConnect([
     {
-      collection: 'updates',
-      orderBy: ['timestamp', 'desc'],
-    },
-    {
       collection: 'notifications',
-      limit: 3,
+      limit: 10,
       orderBy: ['timestamp', 'desc'],
     },
   ])
@@ -68,8 +70,6 @@ export default compose(
 // Prop Types
 Dashboard.propTypes = {
   auth: PropTypes.object,
-  profile: PropTypes.object,
-  updates: PropTypes.array,
   notifications: PropTypes.array,
   getUserDataThunk: PropTypes.func,
 };
