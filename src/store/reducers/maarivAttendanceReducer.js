@@ -69,13 +69,18 @@ export const getUsersMaarivAttendanceThunkCreator = () => {
     try {
       const firestore = getFirestore();
 
-      const { user } = getState();
+      // const { firebase } = getState();
+      // const { profile } = firebase;
+      // const { congregation } = profile;
 
-      // console.log('user in getUsersMaarivAttendanceThunkCreator: ', user);
+      // console.log(
+      //   'congregation in getUsersMaarivAttendanceThunkCreator: ',
+      //   congregation
+      // );
 
       const { docs } = await firestore
         .collection('users')
-        .where('congregation', '==', user.congregation)
+        .where('congregation', '==', localStorage.congregation)
         .get();
 
       const sundayAttendance = {
@@ -115,37 +120,37 @@ export const getUsersMaarivAttendanceThunkCreator = () => {
 
         // console.log('curUser in getUsersMaarivAttendanceThunkCreator: ', curUser);
 
-        if (curUser.sunday) {
+        if (curUser.maariv.sunday) {
           sundayAttendance.going.push(curUser);
         } else {
           sundayAttendance.notGoing.push(curUser);
         }
 
-        if (curUser.monday) {
+        if (curUser.maariv.monday) {
           mondayAttendance.going.push(curUser);
         } else {
           mondayAttendance.notGoing.push(curUser);
         }
 
-        if (curUser.tuesday) {
+        if (curUser.maariv.tuesday) {
           tuesdayAttendance.going.push(curUser);
         } else {
           tuesdayAttendance.notGoing.push(curUser);
         }
 
-        if (curUser.wednesday) {
+        if (curUser.maariv.wednesday) {
           wednesdayAttendance.going.push(curUser);
         } else {
           wednesdayAttendance.notGoing.push(curUser);
         }
 
-        if (curUser.thursday) {
+        if (curUser.maariv.thursday) {
           thursdayAttendance.going.push(curUser);
         } else {
           thursdayAttendance.notGoing.push(curUser);
         }
 
-        if (curUser.saturday) {
+        if (curUser.maariv.saturday) {
           saturdayAttendance.going.push(curUser);
         } else {
           saturdayAttendance.notGoing.push(curUser);

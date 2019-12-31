@@ -37,13 +37,18 @@ export const getUsersShabbatAttendanceThunkCreator = () => {
     try {
       const firestore = getFirestore();
 
-      const { user } = getState();
+      // const { firebase } = getState();
+      // const { profile } = firebase;
+      // const { congregation } = profile;
 
-      // console.log('user in getUsersShabbatAttendanceThunkCreator: ', user);
+      // console.log(
+      //   'congregation in getUsersShabbatAttendanceThunkCreator: ',
+      //   congregation
+      // );
 
       const { docs } = await firestore
         .collection('users')
-        .where('congregation', '==', user.congregation)
+        .where('congregation', '==', localStorage.congregation)
         .get();
 
       const fridayAttendance = {
@@ -61,15 +66,18 @@ export const getUsersShabbatAttendanceThunkCreator = () => {
       for (let doc of docs) {
         curUser = doc.data();
 
-        // console.log('curUser in getUsersShabbatAttendanceThunkCreator: ', curUser);
+        // console.log(
+        //   'curUser in getUsersShabbatAttendanceThunkCreator: ',
+        //   curUser
+        // );
 
-        if (curUser.friday) {
+        if (curUser.shabbat.friday) {
           fridayAttendance.going.push(curUser);
         } else {
           fridayAttendance.notGoing.push(curUser);
         }
 
-        if (curUser.saturday) {
+        if (curUser.shabbat.saturday) {
           saturdayAttendance.going.push(curUser);
         } else {
           saturdayAttendance.notGoing.push(curUser);
@@ -97,7 +105,7 @@ const attendanceReducer = (state = initialState, action) => {
       //   'action.fridayAttendance: ',
       //   action.fridayAttendance,
       //   'action.saturdayAttendance: ',
-      //   action.saturdayAttendance,
+      //   action.saturdayAttendance
       // );
 
       return {
