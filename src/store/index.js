@@ -6,7 +6,7 @@ import { getFirestore, reduxFirestore } from 'redux-firestore';
 import { createLogger } from 'redux-logger';
 
 import firebase from '../config/fbConfig';
-import rootReducer from './reducers/rootReducer';
+import rootReducer from './rootReducer';
 
 const middleware = composeWithDevTools(
   applyMiddleware(
