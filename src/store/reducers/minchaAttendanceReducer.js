@@ -4,18 +4,6 @@
 
 // Initial State
 const initialState = {
-  friday: {
-    day: 'Friday',
-    type: 'Maariv',
-    going: [],
-    notGoing: [],
-  },
-  saturday: {
-    day: 'Saturday',
-    type: 'Shacharit',
-    going: [],
-    notGoing: [],
-  },
   sunday: {
     day: 'Sunday',
     type: 'Mincha',
@@ -46,8 +34,14 @@ const initialState = {
     going: [],
     notGoing: [],
   },
-  fridayMincha: {
+  friday: {
     day: 'Friday',
+    type: 'Mincha',
+    going: [],
+    notGoing: [],
+  },
+  saturday: {
+    day: 'Saturday',
     type: 'Mincha',
     going: [],
     notGoing: [],
@@ -55,54 +49,47 @@ const initialState = {
 };
 
 // Action Types
-const GOT_USERS_ATTENDANCE = 'GOT_USERS_ATTENDANCE';
+const GOT_USERS_MINCHA_ATTENDANCE = 'GOT_USERS_MINCHA_ATTENDANCE';
 
 // Action Creators
-const gotUsersAttendanceActionCreator = (
-  fridayAttendance,
-  saturdayAttendance,
+export const gotUsersMinchaAttendanceActionCreator = (
   sundayAttendance,
   mondayAttendance,
   tuesdayAttendance,
   wednesdayAttendance,
   thursdayAttendance,
-  fridayMinchaAttendance
+  fridayAttendance,
+  saturdayAttendance
 ) => ({
-  type: GOT_USERS_ATTENDANCE,
-  fridayAttendance,
-  saturdayAttendance,
+  type: GOT_USERS_MINCHA_ATTENDANCE,
   sundayAttendance,
   mondayAttendance,
   tuesdayAttendance,
   wednesdayAttendance,
   thursdayAttendance,
-  fridayMinchaAttendance,
+  fridayAttendance,
+  saturdayAttendance,
 });
 
-// Thunks
-export const getUsersAttendanceThunkCreator = () => {
+// Thunk Creators
+export const getUsersMinchaAttendanceThunkCreator = () => {
   return async (dispatch, getState, { getFirestore }) => {
     try {
       const firestore = getFirestore();
 
-      const { user } = getState();
+      // const { firebase } = getState();
+      // const { profile } = firebase;
+      // const { congregation } = profile;
 
-      // console.log('user in getUsersAttendanceThunkCreator: ', user);
+      // console.log(
+      //   'congregation in getUsersMinchaAttendanceThunkCreator: ',
+      //   congregation
+      // );
 
       const { docs } = await firestore
         .collection('users')
-        .where('congregation', '==', user.congregation)
+        .where('congregation', '==', localStorage.congregation)
         .get();
-
-      const fridayAttendance = {
-        going: [],
-        notGoing: [],
-      };
-
-      const saturdayAttendance = {
-        going: [],
-        notGoing: [],
-      };
 
       const sundayAttendance = {
         going: [],
@@ -129,7 +116,12 @@ export const getUsersAttendanceThunkCreator = () => {
         notGoing: [],
       };
 
-      const fridayMinchaAttendance = {
+      const fridayAttendance = {
+        going: [],
+        notGoing: [],
+      };
+
+      const saturdayAttendance = {
         going: [],
         notGoing: [],
       };
@@ -139,67 +131,60 @@ export const getUsersAttendanceThunkCreator = () => {
       for (let doc of docs) {
         curUser = doc.data();
 
-        // console.log('curUser in getUsersAttendanceThunkCreator: ', curUser);
+        // console.log('curUser in getUsersMinchaAttendanceThunkCreator: ', curUser);
 
-        if (curUser.friday) {
-          fridayAttendance.going.push(curUser);
-        } else {
-          fridayAttendance.notGoing.push(curUser);
-        }
-
-        if (curUser.saturday) {
-          saturdayAttendance.going.push(curUser);
-        } else {
-          saturdayAttendance.notGoing.push(curUser);
-        }
-
-        if (curUser.sunday) {
+        if (curUser.mincha.sunday) {
           sundayAttendance.going.push(curUser);
         } else {
           sundayAttendance.notGoing.push(curUser);
         }
 
-        if (curUser.monday) {
+        if (curUser.mincha.monday) {
           mondayAttendance.going.push(curUser);
         } else {
           mondayAttendance.notGoing.push(curUser);
         }
 
-        if (curUser.tuesday) {
+        if (curUser.mincha.tuesday) {
           tuesdayAttendance.going.push(curUser);
         } else {
           tuesdayAttendance.notGoing.push(curUser);
         }
 
-        if (curUser.wednesday) {
+        if (curUser.mincha.wednesday) {
           wednesdayAttendance.going.push(curUser);
         } else {
           wednesdayAttendance.notGoing.push(curUser);
         }
 
-        if (curUser.thursday) {
+        if (curUser.mincha.thursday) {
           thursdayAttendance.going.push(curUser);
         } else {
           thursdayAttendance.notGoing.push(curUser);
         }
 
-        if (curUser.fridayMincha) {
-          fridayMinchaAttendance.going.push(curUser);
+        if (curUser.mincha.friday) {
+          fridayAttendance.going.push(curUser);
         } else {
-          fridayMinchaAttendance.notGoing.push(curUser);
+          fridayAttendance.notGoing.push(curUser);
+        }
+
+        if (curUser.mincha.saturday) {
+          saturdayAttendance.going.push(curUser);
+        } else {
+          saturdayAttendance.notGoing.push(curUser);
         }
       }
 
       dispatch(
-        gotUsersAttendanceActionCreator(
-          fridayAttendance,
-          saturdayAttendance,
+        gotUsersMinchaAttendanceActionCreator(
           sundayAttendance,
           mondayAttendance,
           tuesdayAttendance,
           wednesdayAttendance,
           thursdayAttendance,
-          fridayMinchaAttendance
+          fridayAttendance,
+          saturdayAttendance
         )
       );
     } catch (error) {
@@ -209,15 +194,11 @@ export const getUsersAttendanceThunkCreator = () => {
 };
 
 // Reducer
-const attendanceReducer = (state = initialState, action) => {
+const minchaAttendanceReducer = (state = initialState, action) => {
   switch (action.type) {
-    case GOT_USERS_ATTENDANCE:
+    case GOT_USERS_MINCHA_ATTENDANCE:
       // console.log(
-      //   'GOT_USERS_ATTENDANCE',
-      //   'action.fridayAttendance: ',
-      //   action.fridayAttendance,
-      //   'action.saturdayAttendance: ',
-      //   action.saturdayAttendance,
+      //   'GOT_USERS_MINCHA_ATTENDANCE',
       //   'action.sundayAttendance: ',
       //   action.sundayAttendance,
       //   'action.mondayAttendance: ',
@@ -228,22 +209,14 @@ const attendanceReducer = (state = initialState, action) => {
       //   action.wednesdayAttendance,
       //   'action.thursdayAttendance: ',
       //   action.thursdayAttendance,
-      //   'action.fridayMinchaAttendance: ',
-      //   action.fridayMinchaAttendance
+      //   'action.fridayAttendance: ',
+      //   action.fridayAttendance,
+      //   'action.saturdayAttendance: ',
+      //   action.saturdayAttendance
       // );
 
       return {
         ...state,
-        friday: {
-          ...state.friday,
-          going: action.fridayAttendance.going,
-          notGoing: action.fridayAttendance.notGoing,
-        },
-        saturday: {
-          ...state.saturday,
-          going: action.saturdayAttendance.going,
-          notGoing: action.saturdayAttendance.notGoing,
-        },
         sunday: {
           ...state.sunday,
           going: action.sundayAttendance.going,
@@ -269,10 +242,15 @@ const attendanceReducer = (state = initialState, action) => {
           going: action.thursdayAttendance.going,
           notGoing: action.thursdayAttendance.notGoing,
         },
-        fridayMincha: {
-          ...state.fridayMincha,
-          going: action.fridayMinchaAttendance.going,
-          notGoing: action.fridayMinchaAttendance.notGoing,
+        friday: {
+          ...state.friday,
+          going: action.fridayAttendance.going,
+          notGoing: action.fridayAttendance.notGoing,
+        },
+        saturday: {
+          ...state.saturday,
+          going: action.saturdayAttendance.going,
+          notGoing: action.saturdayAttendance.notGoing,
         },
       };
 
@@ -281,4 +259,4 @@ const attendanceReducer = (state = initialState, action) => {
   }
 };
 
-export default attendanceReducer;
+export default minchaAttendanceReducer;

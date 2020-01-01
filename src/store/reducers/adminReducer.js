@@ -9,11 +9,11 @@ const initialState = {
 const RESET_USERS_ATTENDANCE = 'RESET_USERS_ATTENDANCE';
 
 // Action Creators
-const resetUsersAttendanceActionCreator = () => ({
+export const resetUsersAttendanceActionCreator = () => ({
   type: RESET_USERS_ATTENDANCE,
 });
 
-// Thunks
+// Thunk Creators
 export const resetUsersAttendanceThunkCreator = users => {
   return (dispatch, getState, { getFirestore }) => {
     try {
@@ -32,16 +32,40 @@ export const resetUsersAttendanceThunkCreator = users => {
           firestore
             .collection('users')
             .doc(id)
-            .update({
-              friday: isDefaultAttendee,
-              saturday: isDefaultAttendee,
-              sunday: false,
-              monday: false,
-              tuesday: false,
-              wednesday: false,
-              thursday: false,
-              fridayMincha: false,
-            })
+            .set(
+              {
+                shacharit: {
+                  sunday: false,
+                  monday: false,
+                  tuesday: false,
+                  wednesday: false,
+                  thursday: false,
+                  friday: false,
+                },
+                mincha: {
+                  sunday: false,
+                  monday: false,
+                  tuesday: false,
+                  wednesday: false,
+                  thursday: false,
+                  friday: false,
+                  saturday: false,
+                },
+                maariv: {
+                  sunday: false,
+                  monday: false,
+                  tuesday: false,
+                  wednesday: false,
+                  thursday: false,
+                  saturday: false,
+                },
+                shabbat: {
+                  friday: isDefaultAttendee,
+                  saturday: isDefaultAttendee,
+                },
+              },
+              { merge: true }
+            )
         );
 
         return acc;

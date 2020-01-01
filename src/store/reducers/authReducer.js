@@ -13,31 +13,31 @@ const SIGN_OUT_SUCCESS = 'SIGN_OUT_SUCCESS';
 const SIGN_OUT_ERROR = 'SIGN_OUT_ERROR';
 
 // Action Creators
-const signUpSuccessActionCreator = newUser => ({
+export const signUpSuccessActionCreator = newUser => ({
   type: SIGN_UP_SUCCESS,
   newUser,
 });
 
-const signUpErrorActionCreator = error => ({
+export const signUpErrorActionCreator = error => ({
   type: SIGN_UP_ERROR,
   error,
 });
 
-const signInSuccessActionCreator = userCredentials => ({
+export const signInSuccessActionCreator = userCredentials => ({
   type: SIGN_IN_SUCCESS,
   userCredentials,
 });
 
-const signInErrorActionCreator = error => ({
+export const signInErrorActionCreator = error => ({
   type: SIGN_IN_ERROR,
   error,
 });
 
-const signOutSuccessActionCreator = () => ({
+export const signOutSuccessActionCreator = () => ({
   type: SIGN_OUT_SUCCESS,
 });
 
-const signOutErrorActionCreator = () => ({
+export const signOutErrorActionCreator = () => ({
   type: SIGN_OUT_ERROR,
 });
 
@@ -62,14 +62,35 @@ export const signUpThunkCreator = newUser => {
         fullName: `${newUser.firstName} ${newUser.lastName}`,
         gender: newUser.gender,
         congregation: newUser.congregation,
-        friday: false,
-        saturday: false,
-        sunday: false,
-        monday: false,
-        tuesday: false,
-        wednesday: false,
-        thursday: false,
-        fridayMincha: false,
+        shacharit: {
+          sunday: false,
+          monday: false,
+          tuesday: false,
+          wednesday: false,
+          thursday: false,
+          friday: false,
+        },
+        mincha: {
+          sunday: false,
+          monday: false,
+          tuesday: false,
+          wednesday: false,
+          thursday: false,
+          friday: false,
+          saturday: false,
+        },
+        maariv: {
+          sunday: false,
+          monday: false,
+          tuesday: false,
+          wednesday: false,
+          thursday: false,
+          saturday: false,
+        },
+        shabbat: {
+          friday: false,
+          saturday: false,
+        },
       };
 
       // console.log('newUserObj in signUpThunkCreator: ', newUserObj);
@@ -117,6 +138,10 @@ export const signOutThunkCreator = () => {
       await firebase.auth().signOut();
 
       dispatch(signOutSuccessActionCreator());
+
+      localStorage.clear();
+
+      // console.log('localStorage in signOutThunkCreator: ', localStorage);
     } catch (error) {
       console.error(error);
       dispatch(signOutErrorActionCreator());

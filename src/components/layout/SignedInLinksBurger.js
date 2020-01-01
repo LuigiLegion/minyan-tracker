@@ -69,6 +69,38 @@ class SignedInLinksBurger extends Component {
             ) : null}
 
             <div>
+              <NavLink to="/shabbat" onClick={() => this.closeMenu()}>
+                <span className="bold-text-style navbar-text-color">
+                  Shabbat
+                </span>
+              </NavLink>
+            </div>
+
+            <div>
+              <NavLink to="/mincha" onClick={() => this.closeMenu()}>
+                <span className="bold-text-style navbar-text-color">
+                  Mincha
+                </span>
+              </NavLink>
+            </div>
+
+            <div>
+              <NavLink to="/maariv" onClick={() => this.closeMenu()}>
+                <span className="bold-text-style navbar-text-color">
+                  Maariv
+                </span>
+              </NavLink>
+            </div>
+
+            <div>
+              <NavLink to="/shacharit" onClick={() => this.closeMenu()}>
+                <span className="bold-text-style navbar-text-color">
+                  Shacharit
+                </span>
+              </NavLink>
+            </div>
+
+            <div>
               <a
                 href={`mailto:${contactUsEmail}`}
                 target="_blank"

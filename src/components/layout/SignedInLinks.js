@@ -35,6 +35,30 @@ const SignedInLinks = ({ profile, signOutThunk }) => {
       ) : null}
 
       <li>
+        <NavLink to="/shabbat">
+          <span className="bold-text-style navbar-text-color">Shabbat</span>
+        </NavLink>
+      </li>
+
+      <li>
+        <NavLink to="/mincha">
+          <span className="bold-text-style navbar-text-color">Mincha</span>
+        </NavLink>
+      </li>
+
+      <li>
+        <NavLink to="/maariv">
+          <span className="bold-text-style navbar-text-color">Maariv</span>
+        </NavLink>
+      </li>
+
+      <li>
+        <NavLink to="/shacharit">
+          <span className="bold-text-style navbar-text-color">Shacharit</span>
+        </NavLink>
+      </li>
+
+      <li>
         <a
           href={`mailto:${contactUsEmail}`}
           target="_blank"

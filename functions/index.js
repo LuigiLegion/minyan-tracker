@@ -20,8 +20,9 @@ exports.userJoined = functions.auth.user().onCreate(user => {
       const newUser = doc.data();
 
       const newNotification = {
-        content: ' joined the community',
+        content: ' joined congregation ',
         user: newUser.fullName,
+        congregation: newUser.congregation,
         timestamp: admin.firestore.FieldValue.serverTimestamp(),
       };
       return createNotification(newNotification);
