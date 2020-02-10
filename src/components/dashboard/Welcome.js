@@ -1,25 +1,13 @@
 // Imports
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { connect } from 'react-redux';
-import { firestoreConnect } from 'react-redux-firebase';
-import { compose } from 'redux';
-import PropTypes from 'prop-types';
+import moment from 'moment';
+
+import { parashot } from '../../data/parashot.json';
+const hebrewWeekOfYear = moment().week() + 10;
 
 // Component
-const Welcome = ({ parashotCollection = [] }) => {
-  const [counter, setCounter] = useState(0);
-  const [parashot, setParashot] = useState(['Loading...']);
-
-  useEffect(() => {
-    if (parashotCollection.length) {
-      const parashotDocument = parashotCollection[0];
-      setCounter(parashotDocument.counter);
-      setParashot(parashotDocument.parashot);
-    }
-    // eslint-disable-next-line
-  }, [parashotCollection]);
-
+const Welcome = () => {
   return (
     <div className="col s12 m6">
       <div className="section">
@@ -31,7 +19,9 @@ const Welcome = ({ parashotCollection = [] }) => {
 
             <span className="bold-text-style">This Week's Parasha: </span>
 
-            <span className="italic-text-style">{parashot[counter]}</span>
+            <span className="italic-text-style">
+              {parashot[hebrewWeekOfYear - 1]}
+            </span>
 
             <ul>
               <li>
@@ -65,21 +55,4 @@ const Welcome = ({ parashotCollection = [] }) => {
   );
 };
 
-// Container
-const mapStateToProps = state => ({
-  parashotCollection: state.firestore.ordered.parashot,
-});
-
-export default compose(
-  connect(mapStateToProps),
-  firestoreConnect([
-    {
-      collection: 'parashot',
-    },
-  ])
-)(Welcome);
-
-// Prop Types
-Welcome.propTypes = {
-  parashotCollection: PropTypes.array,
-};
+export default Welcome;
