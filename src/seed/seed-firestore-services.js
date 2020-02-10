@@ -2,37 +2,7 @@ const firebase = require('../config/fbConfig');
 require('firebase/firestore');
 const firestore = firebase.firestore();
 
-const servicesDataset = {
-  shacharit: {
-    sunday: false,
-    monday: false,
-    tuesday: false,
-    wednesday: false,
-    thursday: false,
-    friday: false,
-  },
-  mincha: {
-    sunday: false,
-    monday: false,
-    tuesday: false,
-    wednesday: false,
-    thursday: false,
-    friday: false,
-    saturday: false,
-  },
-  maariv: {
-    sunday: false,
-    monday: false,
-    tuesday: false,
-    wednesday: false,
-    thursday: false,
-    saturday: false,
-  },
-  shabbat: {
-    friday: false,
-    saturday: false,
-  },
-};
+const { services } = require('../data/services');
 
 const seedCollection = async (collectionName, dataset) => {
   try {
@@ -48,8 +18,8 @@ const seedCollection = async (collectionName, dataset) => {
           usersIdsArr.push(user.id);
         });
       })
-      .catch(err => {
-        console.log('Error getting documents', err);
+      .catch(error => {
+        console.log('Error getting documents', error);
       });
 
     console.log({ usersIdsArr });
@@ -76,4 +46,4 @@ const seedCollection = async (collectionName, dataset) => {
   }
 };
 
-seedCollection('users', servicesDataset);
+seedCollection('users', services);

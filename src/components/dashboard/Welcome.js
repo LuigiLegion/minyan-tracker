@@ -1,28 +1,27 @@
 // Imports
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import PropTypes from 'prop-types';
+import moment from 'moment';
+
+import { parashot } from '../../data/parashot.json';
+const hebrewWeekOfYear = moment().week() + 10;
 
 // Component
-const Welcome = props => {
-  // console.log('props in Welcome: ', props);
-
+const Welcome = () => {
   return (
     <div className="col s12 m6">
       <div className="section">
         <div className="card z-depth-0">
           <div className="card-content grey-text text-darken-3">
             <span className="card-title">
-              <span className="bold-text-style">Placeholder</span>
+              <span className="bold-text-style">Services</span>
             </span>
 
-            <span className="bold-text-style blue-text-color">Placeholder</span>
+            <span className="bold-text-style">This Week's Parasha: </span>
 
-            <ul className="placeholder">
-              <li>
-                <span className="bold-text-style">Placeholder</span>
-              </li>
-            </ul>
+            <span className="italic-text-style">
+              {parashot[hebrewWeekOfYear - 1]}
+            </span>
 
             <ul>
               <li>
@@ -57,8 +56,3 @@ const Welcome = props => {
 };
 
 export default Welcome;
-
-// Prop Types
-Welcome.propTypes = {
-  props: PropTypes.object,
-};

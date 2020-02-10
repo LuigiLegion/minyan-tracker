@@ -1,0 +1,33 @@
+{
+  "services": {
+    "shacharit": {
+      "sunday": false,
+      "monday": false,
+      "tuesday": false,
+      "wednesday": false,
+      "thursday": false,
+      "friday": false
+    },
+    "mincha": {
+      "sunday": false,
+      "monday": false,
+      "tuesday": false,
+      "wednesday": false,
+      "thursday": false,
+      "friday": false,
+      "saturday": false
+    },
+    "maariv": {
+      "sunday": false,
+      "monday": false,
+      "tuesday": false,
+      "wednesday": false,
+      "thursday": false,
+      "saturday": false
+    },
+    "shabbat": {
+      "friday": false,
+      "saturday": false
+    }
+  }
+}
