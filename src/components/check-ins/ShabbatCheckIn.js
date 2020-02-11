@@ -1,5 +1,5 @@
 // Imports
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import PropTypes from 'prop-types';
@@ -7,24 +7,12 @@ import PropTypes from 'prop-types';
 import { updateShabbatCheckInStatusThunkCreator } from '../../store/reducers/shabbatCheckInReducer';
 
 // Component
-class ShabbatCheckIn extends Component {
-  constructor() {
-    super();
-
-    this.handleChange = this.handleChange.bind(this);
-  }
-
-  handleChange(event) {
-    // console.log('event.target.checked in ShabbatCheckIn handleChange: ', event.target.checked);
-    // console.log('event.target.value in ShabbatCheckIn handleChange: ', event.target.value);
-
+class ShabbatCheckIn extends PureComponent {
+  handleChange = event => {
     const curCheckedVal = event.target.checked;
     const curDay = event.target.value;
 
     const { auth, updateShabbatCheckInStatusThunk } = this.props;
-
-    // console.log('auth in ShabbatCheckIn: ', auth);
-    // console.log('updateShabbatCheckInStatusThunk in ShabbatCheckIn: ', updateShabbatCheckInStatusThunk);
 
     if (curCheckedVal) {
       updateShabbatCheckInStatusThunk(auth.uid, curDay, true);
@@ -33,19 +21,14 @@ class ShabbatCheckIn extends Component {
         'Are you sure you want to change your check-in status?'
       );
 
-      // console.log('changeConfirmation in ShabbatCheckIn handleSubmit: ', changeConfirmation);
-
       if (changeConfirmation) {
         updateShabbatCheckInStatusThunk(auth.uid, curDay, false);
       }
     }
-  }
+  };
 
   render() {
     const { friday, saturday } = this.props.checkIn;
-
-    // console.log('friday in ShabbatCheckIn: ', friday);
-    // console.log('saturday in ShabbatCheckIn: ', saturday);
 
     return (
       <div className="col s12 m5 offset-m1">
