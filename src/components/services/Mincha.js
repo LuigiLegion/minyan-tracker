@@ -1,5 +1,5 @@
 // Imports
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { firestoreConnect } from 'react-redux-firebase';
@@ -12,15 +12,12 @@ import { getMinchaCheckInStatusesThunkCreator } from '../../store/reducers/minch
 import { getUsersMinchaAttendanceThunkCreator } from '../../store/reducers/minchaAttendanceReducer';
 
 // Component
-class Mincha extends Component {
+class Mincha extends PureComponent {
   componentDidMount() {
     const {
       getMinchaCheckInStatusesThunk,
       getUsersMinchaAttendanceThunk,
     } = this.props;
-
-    // console.log('getMinchaCheckInStatusesThunk in Mincha: ', getMinchaCheckInStatusesThunk);
-    // console.log('getUsersMinchaAttendanceThunk in Mincha: ', getUsersMinchaAttendanceThunk);
 
     getMinchaCheckInStatusesThunk();
     getUsersMinchaAttendanceThunk();
@@ -28,11 +25,6 @@ class Mincha extends Component {
 
   render() {
     const { auth, profile, checkIn, attendance } = this.props;
-
-    // console.log('auth in Mincha: ', auth);
-    // console.log('profile in Mincha: ', profile);
-    // console.log('profile in checkIn: ', checkIn);
-    // console.log('attendance in Mincha: ', attendance);
 
     if (!auth.uid) {
       return <Redirect to="/signin" />;
