@@ -1,5 +1,5 @@
 // Imports
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import PropTypes from 'prop-types';
@@ -7,24 +7,12 @@ import PropTypes from 'prop-types';
 import { updateMinchaCheckInStatusThunkCreator } from '../../store/reducers/minchaCheckInReducer';
 
 // Component
-class MinchaCheckIn extends Component {
-  constructor() {
-    super();
-
-    this.handleChange = this.handleChange.bind(this);
-  }
-
-  handleChange(event) {
-    // console.log('event.target.checked in MinchaCheckIn handleChange: ', event.target.checked);
-    // console.log('event.target.value in MinchaCheckIn handleChange: ', event.target.value);
-
+class MinchaCheckIn extends PureComponent {
+  handleChange = event => {
     const curCheckedVal = event.target.checked;
     const curDay = event.target.value;
 
     const { auth, updateMinchaCheckInStatusThunk } = this.props;
-
-    // console.log('auth in MinchaCheckIn: ', auth);
-    // console.log('updateMinchaCheckInStatusThunk in MinchaCheckIn: ', updateMinchaCheckInStatusThunk);
 
     if (curCheckedVal) {
       updateMinchaCheckInStatusThunk(auth.uid, curDay, true);
@@ -33,13 +21,11 @@ class MinchaCheckIn extends Component {
         'Are you sure you want to change your check-in status?'
       );
 
-      // console.log('changeConfirmation in MinchaCheckIn handleSubmit: ', changeConfirmation);
-
       if (changeConfirmation) {
         updateMinchaCheckInStatusThunk(auth.uid, curDay, false);
       }
     }
-  }
+  };
 
   render() {
     const {
@@ -51,14 +37,6 @@ class MinchaCheckIn extends Component {
       friday,
       saturday,
     } = this.props.checkIn;
-
-    // console.log('sunday in MinchaCheckIn: ', sunday);
-    // console.log('monday in MinchaCheckIn: ', monday);
-    // console.log('tuesday in MinchaCheckIn: ', tuesday);
-    // console.log('wednesday in MinchaCheckIn: ', wednesday);
-    // console.log('thursday in MinchaCheckIn: ', thursday);
-    // console.log('friday in MinchaCheckIn: ', friday);
-    // console.log('saturday in MinchaCheckIn: ', saturday);
 
     return (
       <div className="col s12 m5 offset-m1">
