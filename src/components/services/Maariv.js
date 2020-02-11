@@ -1,5 +1,5 @@
 // Imports
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { firestoreConnect } from 'react-redux-firebase';
@@ -12,15 +12,12 @@ import { getMaarivCheckInStatusesThunkCreator } from '../../store/reducers/maari
 import { getUsersMaarivAttendanceThunkCreator } from '../../store/reducers/maarivAttendanceReducer';
 
 // Component
-class Maariv extends Component {
+class Maariv extends PureComponent {
   componentDidMount() {
     const {
       getMaarivCheckInStatusesThunk,
       getUsersMaarivAttendanceThunk,
     } = this.props;
-
-    // console.log('getMaarivCheckInStatusesThunk in Maariv: ', getMaarivCheckInStatusesThunk);
-    // console.log('getUsersMaarivAttendanceThunk in Maariv: ', getUsersMaarivAttendanceThunk);
 
     getMaarivCheckInStatusesThunk();
     getUsersMaarivAttendanceThunk();
@@ -28,11 +25,6 @@ class Maariv extends Component {
 
   render() {
     const { auth, profile, checkIn, attendance } = this.props;
-
-    // console.log('auth in Maariv: ', auth);
-    // console.log('profile in Maariv: ', profile);
-    // console.log('checkIn in Maariv: ', checkIn);
-    // console.log('attendance in Maariv: ', attendance);
 
     if (!auth.uid) {
       return <Redirect to="/signin" />;
