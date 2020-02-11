@@ -1,5 +1,5 @@
 // Imports
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { firestoreConnect } from 'react-redux-firebase';
@@ -11,19 +11,15 @@ import Notifications from './Notifications';
 import { getUserDataThunkCreator } from '../../store/reducers/userReducer';
 
 // Component
-class Dashboard extends Component {
+class Dashboard extends PureComponent {
   componentDidMount() {
     const { auth, getUserDataThunk } = this.props;
-
-    // console.log('getUserDataThunk in Dashboard: ', getUserDataThunk);
 
     getUserDataThunk(auth.uid);
   }
 
   render() {
     const { auth, notifications } = this.props;
-    // console.log('auth in Dashboard: ', auth);
-    // console.log('notifications in Dashboard: ', notifications);
 
     if (!auth.uid) {
       return <Redirect to="/signin" />;
