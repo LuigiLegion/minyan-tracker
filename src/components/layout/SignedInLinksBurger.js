@@ -1,5 +1,5 @@
 // Imports
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { slide as Menu } from 'react-burger-menu';
@@ -10,31 +10,21 @@ import contactUsEmail from '../../config/emailConfig';
 import { burgerStyles } from '../../styles';
 
 // Component
-class SignedInLinksBurger extends Component {
-  constructor() {
-    super();
+class SignedInLinksBurger extends PureComponent {
+  state = {
+    menuOpen: false,
+  };
 
-    this.state = {
-      menuOpen: false,
-    };
-
-    this.handleStateChange = this.handleStateChange.bind(this);
-    this.closeMenu = this.closeMenu.bind(this);
-  }
-
-  handleStateChange(state) {
+  handleStateChange = state => {
     this.setState({ menuOpen: state.isOpen });
-  }
+  };
 
-  closeMenu() {
+  closeMenu = () => {
     this.setState({ menuOpen: false });
-  }
+  };
 
   render() {
     const { profile, signOutThunk } = this.props;
-
-    // console.log('profile in SignedInLinksBurger: ', profile);
-    // console.log('signOutThunk in SignedInLinksBurger: ', signOutThunk);
 
     return (
       <div>
