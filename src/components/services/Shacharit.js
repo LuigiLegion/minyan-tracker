@@ -1,5 +1,5 @@
 // Imports
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { firestoreConnect } from 'react-redux-firebase';
@@ -12,15 +12,12 @@ import { getShacharitCheckInStatusesThunkCreator } from '../../store/reducers/sh
 import { getUsersShacharitAttendanceThunkCreator } from '../../store/reducers/shacharitAttendanceReducer';
 
 // Component
-class Shacharit extends Component {
+class Shacharit extends PureComponent {
   componentDidMount() {
     const {
       getShacharitCheckInStatusesThunk,
       getUsersShacharitAttendanceThunk,
     } = this.props;
-
-    // console.log('getShacharitCheckInStatusesThunk in Shacharit: ', getShacharitCheckInStatusesThunk);
-    // console.log('getUsersShacharitAttendanceThunk in Shacharit: ', getUsersShacharitAttendanceThunk);
 
     getShacharitCheckInStatusesThunk();
     getUsersShacharitAttendanceThunk();
@@ -28,11 +25,6 @@ class Shacharit extends Component {
 
   render() {
     const { auth, profile, checkIn, attendance } = this.props;
-
-    // console.log('auth in Shacharit: ', auth);
-    // console.log('profile in Shacharit: ', profile);
-    // console.log('checkIn in Shacharit: ', checkIn);
-    // console.log('attendance in Shacharit: ', attendance);
 
     if (!auth.uid) {
       return <Redirect to="/signin" />;
