@@ -1,5 +1,5 @@
 // Imports
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import PropTypes from 'prop-types';
@@ -7,39 +7,23 @@ import PropTypes from 'prop-types';
 import { updateMaarivCheckInStatusThunkCreator } from '../../store/reducers/maarivCheckInReducer';
 
 // Component
-class MaarivCheckIn extends Component {
-  constructor() {
-    super();
-
-    this.handleChange = this.handleChange.bind(this);
-  }
-
-  handleChange(event) {
-    // console.log('event.target.checked in MaarivCheckIn handleChange: ', event.target.checked);
-    // console.log('event.target.value in MaarivCheckIn handleChange: ', event.target.value);
-
+class MaarivCheckIn extends PureComponent {
+  handleChange = event => {
     const curCheckedVal = event.target.checked;
     const curDay = event.target.value;
 
-    const { auth, updateMaarivCheckInStatusThunk } = this.props;
-
-    // console.log('auth in MaarivCheckIn: ', auth);
-    // console.log('updateMaarivCheckInStatusThunk in MaarivCheckIn: ', updateMaarivCheckInStatusThunk);
-
     if (curCheckedVal) {
-      updateMaarivCheckInStatusThunk(auth.uid, curDay, true);
+      this.props.updateMaarivCheckInStatusThunk(curDay, true);
     } else {
       const changeConfirmation = window.confirm(
         'Are you sure you want to change your check-in status?'
       );
 
-      // console.log('changeConfirmation in MaarivCheckIn handleSubmit: ', changeConfirmation);
-
       if (changeConfirmation) {
-        updateMaarivCheckInStatusThunk(auth.uid, curDay, false);
+        this.props.updateMaarivCheckInStatusThunk(curDay, false);
       }
     }
-  }
+  };
 
   render() {
     const {
@@ -50,13 +34,6 @@ class MaarivCheckIn extends Component {
       thursday,
       saturday,
     } = this.props.checkIn;
-
-    // console.log('sunday in MaarivCheckIn: ', sunday);
-    // console.log('monday in MaarivCheckIn: ', monday);
-    // console.log('tuesday in MaarivCheckIn: ', tuesday);
-    // console.log('wednesday in MaarivCheckIn: ', wednesday);
-    // console.log('thursday in MaarivCheckIn: ', thursday);
-    // console.log('saturday in MaarivCheckIn: ', saturday);
 
     return (
       <div className="col s12 m5 offset-m1">
@@ -192,8 +169,8 @@ class MaarivCheckIn extends Component {
 
 // Container
 const mapDispatchToProps = dispatch => ({
-  updateMaarivCheckInStatusThunk(userId, day, status) {
-    dispatch(updateMaarivCheckInStatusThunkCreator(userId, day, status));
+  updateMaarivCheckInStatusThunk(day, status) {
+    dispatch(updateMaarivCheckInStatusThunkCreator(day, status));
   },
 });
 
@@ -206,7 +183,6 @@ export default compose(
 
 // Prop Types
 MaarivCheckIn.propTypes = {
-  auth: PropTypes.object,
   checkIn: PropTypes.object,
   updateMaarivCheckInStatusThunk: PropTypes.func,
 };

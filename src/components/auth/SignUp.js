@@ -1,5 +1,7 @@
+/* eslint-disable react/button-has-type */
+
 // Imports
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -9,43 +11,28 @@ import signupAccessToken from '../../config/signupConfig';
 import contactUsEmail from '../../config/emailConfig';
 
 // Component
-export class SignUp extends Component {
-  constructor() {
-    super();
+class SignUp extends PureComponent {
+  state = {
+    email: '',
+    password: '',
+    firstName: '',
+    lastName: '',
+    gender: 'Male',
+    congregation: 'Sons of Israel',
+    accessToken: '',
+    accessTokenError: false,
+  };
 
-    this.state = {
-      email: '',
-      password: '',
-      firstName: '',
-      lastName: '',
-      gender: 'Male',
-      congregation: 'Sons of Israel',
-      accessToken: '',
-      accessTokenError: false,
-    };
-
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
-
-  handleChange(event) {
-    // console.log('event.target.id in SignUp handleChange: ', event.target.id);
-    // console.log('event.target.value in SignUp handleChange: ', event.target.value);
-
+  handleChange = event => {
     this.setState({
       [event.target.id]: event.target.value,
     });
-  }
+  };
 
-  handleSubmit(event) {
-    // console.log('event.target.id in SignUp handleSubmit: ', event.target.id);
-    // console.log('event.target.value in SignUp handleSubmit: ', event.target.value);
-
+  handleSubmit = event => {
     event.preventDefault();
 
     const { signUpThunk } = this.props;
-
-    // console.log('signUpThunk in SignUp handleSubmit: ', signUpThunk);
 
     if (this.state.accessToken === signupAccessToken) {
       this.setState({
@@ -57,13 +44,10 @@ export class SignUp extends Component {
         accessTokenError: true,
       });
     }
-  }
+  };
 
   render() {
     const { auth, signUpAuthError } = this.props;
-
-    // console.log('auth in SignUp: ', auth);
-    // console.log('signUpAuthError in SignUp: ', signUpAuthError);
 
     if (auth.uid) {
       return <Redirect to="/" />;
@@ -224,7 +208,9 @@ export class SignUp extends Component {
               />
             </div>
 
-            <button className="btn blue lighten-1 z-depth-0">Sign Up</button>
+            <button className="btn waves-effect waves-light blue lighten-1 z-depth-0">
+              Sign Up
+            </button>
 
             <div className="red-text-color bold-text-style center">
               {signUpAuthError ? (

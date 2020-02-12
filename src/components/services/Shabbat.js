@@ -1,5 +1,5 @@
 // Imports
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { firestoreConnect } from 'react-redux-firebase';
@@ -12,39 +12,35 @@ import { getShabbatCheckInStatusesThunkCreator } from '../../store/reducers/shab
 import { getUsersShabbatAttendanceThunkCreator } from '../../store/reducers/shabbatAttendanceReducer';
 
 // Component
-class Shabbat extends Component {
+class Shabbat extends PureComponent {
   componentDidMount() {
-    const {
-      getShabbatCheckInStatusesThunk,
-      getUsersShabbatAttendanceThunk,
-    } = this.props;
+    this.props.getShabbatCheckInStatusesThunk();
+    this.props.getUsersShabbatAttendanceThunk();
+  }
 
-    // console.log('getShabbatCheckInStatusesThunk in Shabbat: ', getShabbatCheckInStatusesThunk);
-    // console.log('getUsersShabbatAttendanceThunk in Shabbat: ', getUsersShabbatAttendanceThunk);
-
-    getShabbatCheckInStatusesThunk();
-    getUsersShabbatAttendanceThunk();
+  componentDidUpdate(prevProps) {
+    if (
+      this.props.updates &&
+      prevProps.updates &&
+      this.props.updates.length !== prevProps.updates.length
+    ) {
+      this.props.getShabbatCheckInStatusesThunk();
+      this.props.getUsersShabbatAttendanceThunk();
+    }
   }
 
   render() {
     const { auth, profile, checkIn, attendance } = this.props;
 
-    // console.log('auth in Shabbat: ', auth);
-    // console.log('profile in Shabbat: ', profile);
-    // console.log('checkIn in Shabbat: ', checkIn);
-    // console.log('attendance in Shabbat: ', attendance);
-
     if (!auth.uid) {
       return <Redirect to="/signin" />;
     } else {
-      // getUserDataThunk(auth.uid);
-
       return (
         <div className="dashboard container">
           <div className="row">
             <ServicesList attendance={attendance} profile={profile} />
 
-            <ShabbatCheckIn checkIn={checkIn} auth={auth} />
+            <ShabbatCheckIn checkIn={checkIn} />
           </div>
         </div>
       );

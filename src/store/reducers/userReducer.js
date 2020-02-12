@@ -1,10 +1,3 @@
-/* eslint-disable complexity */
-
-// import { getUsersShacharitAttendanceThunkCreator } from './shacharitAttendanceReducer';
-// import { getUsersMinchaAttendanceThunkCreator } from './minchaAttendanceReducer';
-// import { getUsersMaarivAttendanceThunkCreator } from './maarivAttendanceReducer';
-// import { getUsersShabbatAttendanceThunkCreator } from './shabbatAttendanceReducer';
-
 // Initial State
 const initialState = {
   uid: '',
@@ -23,47 +16,31 @@ export const gotUserDataActionCreator = user => ({
 
 // Thunk Creators
 export const getUserDataThunkCreator = () => {
-  return async (dispatch, getState, { getFirestore, getFirebase }) => {
+  return async (dispatch, getState, { getFirebase, getFirestore }) => {
     try {
       const firebase = getFirebase();
-
-      const { currentUser } = firebase.auth();
-
-      // console.log('currentUser.uid in getUserDataThunkCreator: ', currentUser.uid);
-
       const firestore = getFirestore();
+
+      const {
+        currentUser: { uid },
+      } = firebase.auth();
 
       const userDataRaw = await firestore
         .collection('users')
-        .doc(currentUser.uid)
+        .doc(uid)
         .get();
 
-      const userDataObj = userDataRaw.data();
-
-      // console.log('userDataObj in getUserDataThunkCreator: ', userDataObj);
+      const { fullName, congregation } = userDataRaw.data();
 
       const userData = {
-        uid: currentUser.uid,
-        fullName: userDataObj.fullName,
-        congregation: userDataObj.congregation,
+        uid,
+        fullName,
+        congregation,
       };
-
-      // console.log('userData in getUserDataThunkCreator: ', userData);
 
       dispatch(gotUserDataActionCreator(userData));
 
-      // dispatch(getUsersShacharitAttendanceThunkCreator());
-      // dispatch(getUsersMinchaAttendanceThunkCreator());
-      // dispatch(getUsersMaarivAttendanceThunkCreator());
-      // dispatch(getUsersShabbatAttendanceThunkCreator());
-
-      const { uid, fullName, congregation } = userData;
-
-      localStorage.setItem('uid', uid);
-      localStorage.setItem('fullName', fullName);
-      localStorage.setItem('congregation', congregation);
-
-      // console.log('localStorage in getUserDataThunkCreator: ', localStorage);
+      localStorage.setItem('minyanTracker', JSON.stringify(userData));
     } catch (error) {
       console.error(error);
     }
@@ -74,8 +51,6 @@ export const getUserDataThunkCreator = () => {
 const userReducer = (state = initialState, action) => {
   switch (action.type) {
     case GOT_USER_DATA:
-      // console.log('GOT_USER_DATA action.user: ', action.user);
-
       return {
         ...state,
         uid: action.user.uid,

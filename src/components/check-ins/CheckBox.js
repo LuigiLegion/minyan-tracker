@@ -4,12 +4,6 @@ import PropTypes from 'prop-types';
 
 // Component
 const CheckBox = ({ value, checked, handleChange, day, type }) => {
-  // console.log('value in CheckBox: ', value);
-  // console.log('checked in CheckBox: ', checked);
-  // console.log('handleChange in CheckBox: ', handleChange);
-  // console.log('day in CheckBox: ', day);
-  // console.log('type in CheckBox: ', type);
-
   return (
     <div>
       <label>

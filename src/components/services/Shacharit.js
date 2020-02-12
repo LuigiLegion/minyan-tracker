@@ -1,5 +1,5 @@
 // Imports
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { firestoreConnect } from 'react-redux-firebase';
@@ -12,39 +12,35 @@ import { getShacharitCheckInStatusesThunkCreator } from '../../store/reducers/sh
 import { getUsersShacharitAttendanceThunkCreator } from '../../store/reducers/shacharitAttendanceReducer';
 
 // Component
-class Shacharit extends Component {
+class Shacharit extends PureComponent {
   componentDidMount() {
-    const {
-      getShacharitCheckInStatusesThunk,
-      getUsersShacharitAttendanceThunk,
-    } = this.props;
+    this.props.getShacharitCheckInStatusesThunk();
+    this.props.getUsersShacharitAttendanceThunk();
+  }
 
-    // console.log('getShacharitCheckInStatusesThunk in Shacharit: ', getShacharitCheckInStatusesThunk);
-    // console.log('getUsersShacharitAttendanceThunk in Shacharit: ', getUsersShacharitAttendanceThunk);
-
-    getShacharitCheckInStatusesThunk();
-    getUsersShacharitAttendanceThunk();
+  componentDidUpdate(prevProps) {
+    if (
+      this.props.updates &&
+      prevProps.updates &&
+      this.props.updates.length !== prevProps.updates.length
+    ) {
+      this.props.getShacharitCheckInStatusesThunk();
+      this.props.getUsersShacharitAttendanceThunk();
+    }
   }
 
   render() {
     const { auth, profile, checkIn, attendance } = this.props;
 
-    // console.log('auth in Shacharit: ', auth);
-    // console.log('profile in Shacharit: ', profile);
-    // console.log('checkIn in Shacharit: ', checkIn);
-    // console.log('attendance in Shacharit: ', attendance);
-
     if (!auth.uid) {
       return <Redirect to="/signin" />;
     } else {
-      // getUserDataThunk(auth.uid);
-
       return (
         <div className="dashboard container">
           <div className="row">
             <ServicesList profile={profile} attendance={attendance} />
 
-            <ShacharitCheckIn checkIn={checkIn} auth={auth} />
+            <ShacharitCheckIn checkIn={checkIn} />
           </div>
         </div>
       );

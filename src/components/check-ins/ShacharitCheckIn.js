@@ -1,5 +1,5 @@
 // Imports
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import PropTypes from 'prop-types';
@@ -7,39 +7,23 @@ import PropTypes from 'prop-types';
 import { updateShacharitCheckInStatusThunkCreator } from '../../store/reducers/shacharitCheckInReducer';
 
 // Component
-class ShacharitCheckIn extends Component {
-  constructor() {
-    super();
-
-    this.handleChange = this.handleChange.bind(this);
-  }
-
-  handleChange(event) {
-    // console.log('event.target.checked in ShacharitCheckIn handleChange: ', event.target.checked);
-    // console.log('event.target.value in ShacharitCheckIn handleChange: ', event.target.value);
-
+class ShacharitCheckIn extends PureComponent {
+  handleChange = event => {
     const curCheckedVal = event.target.checked;
     const curDay = event.target.value;
 
-    const { auth, updateShacharitCheckInStatusThunk } = this.props;
-
-    // console.log('auth in ShacharitCheckIn: ', auth);
-    // console.log('updateShacharitCheckInStatusThunk in ShacharitCheckIn: ', updateShacharitCheckInStatusThunk);
-
     if (curCheckedVal) {
-      updateShacharitCheckInStatusThunk(auth.uid, curDay, true);
+      this.props.updateShacharitCheckInStatusThunk(curDay, true);
     } else {
       const changeConfirmation = window.confirm(
         'Are you sure you want to change your check-in status?'
       );
 
-      // console.log('changeConfirmation in ShacharitCheckIn handleSubmit: ', changeConfirmation);
-
       if (changeConfirmation) {
-        updateShacharitCheckInStatusThunk(auth.uid, curDay, false);
+        this.props.updateShacharitCheckInStatusThunk(curDay, false);
       }
     }
-  }
+  };
 
   render() {
     const {
@@ -50,13 +34,6 @@ class ShacharitCheckIn extends Component {
       thursday,
       friday,
     } = this.props.checkIn;
-
-    // console.log('sunday in ShacharitCheckIn: ', sunday);
-    // console.log('monday in ShacharitCheckIn: ', monday);
-    // console.log('tuesday in ShacharitCheckIn: ', tuesday);
-    // console.log('wednesday in ShacharitCheckIn: ', wednesday);
-    // console.log('thursday in ShacharitCheckIn: ', thursday);
-    // console.log('friday in ShacharitCheckIn: ', friday);
 
     return (
       <div className="col s12 m5 offset-m1">
@@ -192,8 +169,8 @@ class ShacharitCheckIn extends Component {
 
 // Container
 const mapDispatchToProps = dispatch => ({
-  updateShacharitCheckInStatusThunk(userId, day, status) {
-    dispatch(updateShacharitCheckInStatusThunkCreator(userId, day, status));
+  updateShacharitCheckInStatusThunk(day, status) {
+    dispatch(updateShacharitCheckInStatusThunkCreator(day, status));
   },
 });
 
@@ -206,7 +183,6 @@ export default compose(
 
 // Prop Types
 ShacharitCheckIn.propTypes = {
-  auth: PropTypes.object,
   checkIn: PropTypes.object,
   updateShacharitCheckInStatusThunk: PropTypes.func,
 };

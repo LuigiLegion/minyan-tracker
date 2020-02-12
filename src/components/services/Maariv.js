@@ -1,5 +1,5 @@
 // Imports
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { firestoreConnect } from 'react-redux-firebase';
@@ -12,39 +12,35 @@ import { getMaarivCheckInStatusesThunkCreator } from '../../store/reducers/maari
 import { getUsersMaarivAttendanceThunkCreator } from '../../store/reducers/maarivAttendanceReducer';
 
 // Component
-class Maariv extends Component {
+class Maariv extends PureComponent {
   componentDidMount() {
-    const {
-      getMaarivCheckInStatusesThunk,
-      getUsersMaarivAttendanceThunk,
-    } = this.props;
+    this.props.getMaarivCheckInStatusesThunk();
+    this.props.getUsersMaarivAttendanceThunk();
+  }
 
-    // console.log('getMaarivCheckInStatusesThunk in Maariv: ', getMaarivCheckInStatusesThunk);
-    // console.log('getUsersMaarivAttendanceThunk in Maariv: ', getUsersMaarivAttendanceThunk);
-
-    getMaarivCheckInStatusesThunk();
-    getUsersMaarivAttendanceThunk();
+  componentDidUpdate(prevProps) {
+    if (
+      this.props.updates &&
+      prevProps.updates &&
+      this.props.updates.length !== prevProps.updates.length
+    ) {
+      this.props.getMaarivCheckInStatusesThunk();
+      this.props.getUsersMaarivAttendanceThunk();
+    }
   }
 
   render() {
     const { auth, profile, checkIn, attendance } = this.props;
 
-    // console.log('auth in Maariv: ', auth);
-    // console.log('profile in Maariv: ', profile);
-    // console.log('checkIn in Maariv: ', checkIn);
-    // console.log('attendance in Maariv: ', attendance);
-
     if (!auth.uid) {
       return <Redirect to="/signin" />;
     } else {
-      // getUserDataThunk(auth.uid);
-
       return (
         <div className="dashboard container">
           <div className="row">
             <ServicesList profile={profile} attendance={attendance} />
 
-            <MaarivCheckIn checkIn={checkIn} auth={auth} />
+            <MaarivCheckIn checkIn={checkIn} />
           </div>
         </div>
       );

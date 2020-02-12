@@ -4,14 +4,7 @@ import PropTypes from 'prop-types';
 
 // Component
 const SingleService = ({ service }) => {
-  // console.log('service in SingleService: ', service);
-
   const { day, type, going, notGoing } = service;
-
-  // console.log('day in SingleService: ', day);
-  // console.log('type in SingleService: ', type);
-  // console.log('going in SingleService: ', going);
-  // console.log('notGoing in SingleService: ', notGoing);
 
   return (
     <div className="section">

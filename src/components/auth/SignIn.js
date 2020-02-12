@@ -1,5 +1,7 @@
+/* eslint-disable react/button-has-type */
+
 // Imports
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -7,43 +9,28 @@ import PropTypes from 'prop-types';
 import { signInThunkCreator } from '../../store/reducers/authReducer';
 
 // Component
-export class SignIn extends Component {
-  constructor() {
-    super();
+class SignIn extends PureComponent {
+  state = {
+    email: '',
+    password: '',
+  };
 
-    this.state = {
-      email: '',
-      password: '',
-    };
-
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
-
-  handleChange(event) {
-    // console.log('event.target.id in SignIn handleChange: ', event.target.id);
-    // console.log('event.target.value in SignIn handleChange: ', event.target.value);
-
+  handleChange = event => {
     this.setState({
       [event.target.id]: event.target.value,
     });
-  }
+  };
 
-  handleSubmit(event) {
+  handleSubmit = event => {
     event.preventDefault();
 
     const { signInThunk } = this.props;
 
-    // console.log('signInThunk in SignIn handleSubmit: ', signInThunk);
-
     signInThunk(this.state);
-  }
+  };
 
   render() {
     const { auth, signInAuthError } = this.props;
-
-    // console.log('auth in SignIn: ', auth);
-    // console.log('signInAuthError in SignIn: ', signInAuthError);
 
     if (auth.uid) {
       return <Redirect to="/" />;
@@ -82,7 +69,7 @@ export class SignIn extends Component {
             </div>
 
             <div className="input-field">
-              <button className="btn blue lighten-1 z-depth-0">Sign In</button>
+              <button className="btn waves-effect waves-light blue lighten-1 z-depth-0">Sign In</button>
             </div>
 
             <div className="red-text-color bold-text-style center">

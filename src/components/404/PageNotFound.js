@@ -1,12 +1,9 @@
 // Imports
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import PropTypes from 'prop-types';
 
 // Component
-const PageNotFound = props => {
-  // console.log('props in PageNotFound: ', props);
-
+const PageNotFound = () => {
   return (
     <div className="dashboard container">
       <div className="row">
@@ -18,21 +15,13 @@ const PageNotFound = props => {
                   <span className="bold-text-style">404 - Page Not Found</span>
                 </span>
 
-                <h5 className="grey-text text-darken-3">
+                <div className="grey-text text-darken-3 page-not-found-message">
                   This route does not exist.
-                </h5>
+                </div>
 
-                <br />
-
-                <ul>
-                  <li>
-                    <NavLink to="/">
-                      <span className="bold-text-style">
-                        ← Back To Main Page
-                      </span>
-                    </NavLink>
-                  </li>
-                </ul>
+                <NavLink to="/">
+                  <span className="bold-text-style">← Back To Main Page</span>
+                </NavLink>
               </div>
             </div>
           </div>
@@ -43,8 +32,3 @@ const PageNotFound = props => {
 };
 
 export default PageNotFound;
-
-// Prop Types
-PageNotFound.propTypes = {
-  props: PropTypes.object,
-};

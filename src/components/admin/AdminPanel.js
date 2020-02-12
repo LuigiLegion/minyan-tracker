@@ -1,5 +1,7 @@
+/* eslint-disable react/button-has-type */
+
 // Imports
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { Redirect, NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { firestoreConnect } from 'react-redux-firebase';
@@ -9,41 +11,23 @@ import PropTypes from 'prop-types';
 import { resetUsersAttendanceThunkCreator } from '../../store/reducers/adminReducer';
 
 // Component
-class AdminPanel extends Component {
-  constructor() {
-    super();
-
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
-
-  handleSubmit(event) {
+class AdminPanel extends PureComponent {
+  handleSubmit = event => {
     event.preventDefault();
 
     const { users, resetUsersAttendanceThunk } = this.props;
-
-    // console.log('users in AdminPanel handleSubmit: ', users);
-    // console.log('resetUsersAttendanceThunk in AdminPanel: ', resetUsersAttendanceThunk);
 
     const resetConfirmation = window.confirm(
       'Are you sure you want to reset all users check-in status?'
     );
 
-    // console.log(
-    //   'resetConfirmation in AdminPanel handleSubmit: ',
-    //   resetConfirmation
-    // );
-
     if (resetConfirmation) {
       resetUsersAttendanceThunk(users);
     }
-  }
+  };
 
   render() {
     const { auth, profile, disabled } = this.props;
-
-    // console.log('auth in AdminPanel: ', auth);
-    // console.log('profile in AdminPanel: ', profile);
-    // console.log('disabled in AdminPanel: ', disabled);
 
     if (!auth.uid) {
       return <Redirect to="/signin" />;
@@ -65,7 +49,7 @@ class AdminPanel extends Component {
                       <h5 className="grey-text text-darken-3">Attendance:</h5>
 
                       <button
-                        className="btn blue lighten-1 z-depth-0 admin-reset-button"
+                        className="btn waves-effect waves-light blue lighten-1 z-depth-0 admin-reset-button"
                         disabled={disabled}
                       >
                         Reset

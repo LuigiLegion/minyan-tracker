@@ -1,7 +1,3 @@
-/* eslint-disable complexity */
-/* eslint-disable max-params */
-/* eslint-disable max-statements */
-
 // Initial State
 const initialState = {
   friday: {
@@ -37,18 +33,13 @@ export const getUsersShabbatAttendanceThunkCreator = () => {
     try {
       const firestore = getFirestore();
 
-      // const { firebase } = getState();
-      // const { profile } = firebase;
-      // const { congregation } = profile;
-
-      // console.log(
-      //   'congregation in getUsersShabbatAttendanceThunkCreator: ',
-      //   congregation
-      // );
+      const { congregation } = JSON.parse(
+        localStorage.getItem('minyanTracker')
+      );
 
       const { docs } = await firestore
         .collection('users')
-        .where('congregation', '==', localStorage.congregation)
+        .where('congregation', '==', congregation)
         .get();
 
       const fridayAttendance = {
@@ -65,11 +56,6 @@ export const getUsersShabbatAttendanceThunkCreator = () => {
 
       for (let doc of docs) {
         curUser = doc.data();
-
-        // console.log(
-        //   'curUser in getUsersShabbatAttendanceThunkCreator: ',
-        //   curUser
-        // );
 
         if (curUser.shabbat.friday) {
           fridayAttendance.going.push(curUser);
@@ -100,14 +86,6 @@ export const getUsersShabbatAttendanceThunkCreator = () => {
 const attendanceReducer = (state = initialState, action) => {
   switch (action.type) {
     case GOT_USERS_SHABBAT_ATTENDANCE:
-      // console.log(
-      //   'GOT_USERS_SHABBAT_ATTENDANCE',
-      //   'action.fridayAttendance: ',
-      //   action.fridayAttendance,
-      //   'action.saturdayAttendance: ',
-      //   action.saturdayAttendance
-      // );
-
       return {
         ...state,
         friday: {

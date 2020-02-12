@@ -1,5 +1,3 @@
-/* eslint-disable complexity */
-
 import { getUserDataThunkCreator } from './userReducer';
 import { getUsersMaarivAttendanceThunkCreator } from './maarivAttendanceReducer';
 
@@ -35,17 +33,14 @@ export const getMaarivCheckInStatusesThunkCreator = () => {
     try {
       const firestore = getFirestore();
 
+      const { uid } = JSON.parse(localStorage.getItem('minyanTracker'));
+
       const userDataRaw = await firestore
         .collection('users')
-        .doc(localStorage.uid)
+        .doc(uid)
         .get();
 
       const { maariv } = userDataRaw.data();
-
-      // console.log(
-      //   'maariv in getMaarivCheckInStatusesThunkCreator: ',
-      //   maariv
-      // );
 
       dispatch(gotMaarivCheckInStatusesActionCreator(maariv));
     } catch (error) {
@@ -54,18 +49,18 @@ export const getMaarivCheckInStatusesThunkCreator = () => {
   };
 };
 
-export const updateMaarivCheckInStatusThunkCreator = (userId, day, status) => {
+export const updateMaarivCheckInStatusThunkCreator = (day, status) => {
   return async (dispatch, getState, { getFirestore }) => {
     try {
-      // console.log('userId in updateMaarivCheckInStatusThunkCreator: ', userId);
-      // console.log('day in updateMaarivCheckInStatusThunkCreator: ', day);
-      // console.log('status in updateMaarivCheckInStatusThunkCreator: ', status);
-
       const firestore = getFirestore();
+
+      const { uid, fullName, congregation } = JSON.parse(
+        localStorage.getItem('minyanTracker')
+      );
 
       await firestore
         .collection('users')
-        .doc(userId)
+        .doc(uid)
         .set(
           {
             maariv: {
@@ -76,7 +71,9 @@ export const updateMaarivCheckInStatusThunkCreator = (userId, day, status) => {
         );
 
       const newUpdateData = {
-        user: localStorage.fullName,
+        uid,
+        fullName,
+        congregation,
         timestamp: firestore.FieldValue.serverTimestamp(),
       };
 
@@ -99,12 +96,6 @@ export const updateMaarivCheckInStatusThunkCreator = (userId, day, status) => {
 const maarivCheckInReducer = (state = initialState, action) => {
   switch (action.type) {
     case GOT_MAARIV_CHECK_IN_STATUSES:
-      // console.log(
-      //   'GOT_MAARIV_CHECK_IN_STATUSES action: ',
-      //   'action.statuses: ',
-      //   action.statuses
-      // );
-
       return {
         ...state,
         sunday: action.statuses.sunday,
@@ -116,14 +107,6 @@ const maarivCheckInReducer = (state = initialState, action) => {
       };
 
     case UPDATED_MAARIV_CHECK_IN_STATUS:
-      // console.log(
-      //   'UPDATED_MAARIV_CHECK_IN_STATUS action: ',
-      //   'action.day: ',
-      //   action.day,
-      //   'action.status',
-      //   action.status
-      // );
-
       return { ...state, [action.day]: action.status };
 
     default:

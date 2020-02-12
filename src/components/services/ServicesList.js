@@ -6,11 +6,7 @@ import SingleService from './SingleService';
 
 // Component
 const ServicesList = ({ attendance }) => {
-  // console.log('attendance in ServicesList: ', attendance);
-
   const attendanceArr = Object.values(attendance);
-
-  // console.log('attendanceArr in ServicesList: ', attendanceArr);
 
   return (
     <div className="col s12 m6">

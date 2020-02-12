@@ -1,5 +1,3 @@
-/* eslint-disable complexity */
-
 import { getUserDataThunkCreator } from './userReducer';
 import { getUsersMinchaAttendanceThunkCreator } from './minchaAttendanceReducer';
 
@@ -36,17 +34,14 @@ export const getMinchaCheckInStatusesThunkCreator = () => {
     try {
       const firestore = getFirestore();
 
+      const { uid } = JSON.parse(localStorage.getItem('minyanTracker'));
+
       const userDataRaw = await firestore
         .collection('users')
-        .doc(localStorage.uid)
+        .doc(uid)
         .get();
 
       const { mincha } = userDataRaw.data();
-
-      // console.log(
-      //   'mincha in getMinchaCheckInStatusesThunkCreator: ',
-      //   mincha
-      // );
 
       dispatch(gotMinchaCheckInStatusesActionCreator(mincha));
     } catch (error) {
@@ -55,18 +50,18 @@ export const getMinchaCheckInStatusesThunkCreator = () => {
   };
 };
 
-export const updateMinchaCheckInStatusThunkCreator = (userId, day, status) => {
+export const updateMinchaCheckInStatusThunkCreator = (day, status) => {
   return async (dispatch, getState, { getFirestore }) => {
     try {
-      // console.log('userId in updateMinchaCheckInStatusThunkCreator: ', userId);
-      // console.log('day in updateMinchaCheckInStatusThunkCreator: ', day);
-      // console.log('status in updateMinchaCheckInStatusThunkCreator: ', status);
-
       const firestore = getFirestore();
+
+      const { uid, fullName, congregation } = JSON.parse(
+        localStorage.getItem('minyanTracker')
+      );
 
       await firestore
         .collection('users')
-        .doc(userId)
+        .doc(uid)
         .set(
           {
             mincha: {
@@ -77,7 +72,9 @@ export const updateMinchaCheckInStatusThunkCreator = (userId, day, status) => {
         );
 
       const newUpdateData = {
-        user: localStorage.fullName,
+        uid,
+        fullName,
+        congregation,
         timestamp: firestore.FieldValue.serverTimestamp(),
       };
 
@@ -100,12 +97,6 @@ export const updateMinchaCheckInStatusThunkCreator = (userId, day, status) => {
 const minchaCheckInReducer = (state = initialState, action) => {
   switch (action.type) {
     case GOT_MINCHA_CHECK_IN_STATUSES:
-      // console.log(
-      //   'GOT_MINCHA_CHECK_IN_STATUSES action: ',
-      //   'action.statuses: ',
-      //   action.statuses
-      // );
-
       return {
         ...state,
         sunday: action.statuses.sunday,
@@ -118,14 +109,6 @@ const minchaCheckInReducer = (state = initialState, action) => {
       };
 
     case UPDATED_MINCHA_CHECK_IN_STATUS:
-      // console.log(
-      //   'UPDATED_MINCHA_CHECK_IN_STATUS action: ',
-      //   'action.day: ',
-      //   action.day,
-      //   'action.status',
-      //   action.status
-      // );
-
       return { ...state, [action.day]: action.status };
 
     default:

@@ -9,9 +9,6 @@ import contactUsEmail from '../../config/emailConfig';
 
 // Component
 const SignedInLinks = ({ profile, signOutThunk }) => {
-  // console.log('profile in SignedInLinks: ', profile);
-  // console.log('signOutThunk in SignedInLinks: ', signOutThunk);
-
   return (
     <ul className="right">
       <li>

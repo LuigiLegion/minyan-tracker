@@ -1,5 +1,5 @@
 // Imports
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { firestoreConnect } from 'react-redux-firebase';
@@ -12,39 +12,35 @@ import { getMinchaCheckInStatusesThunkCreator } from '../../store/reducers/minch
 import { getUsersMinchaAttendanceThunkCreator } from '../../store/reducers/minchaAttendanceReducer';
 
 // Component
-class Mincha extends Component {
+class Mincha extends PureComponent {
   componentDidMount() {
-    const {
-      getMinchaCheckInStatusesThunk,
-      getUsersMinchaAttendanceThunk,
-    } = this.props;
+    this.props.getMinchaCheckInStatusesThunk();
+    this.props.getUsersMinchaAttendanceThunk();
+  }
 
-    // console.log('getMinchaCheckInStatusesThunk in Mincha: ', getMinchaCheckInStatusesThunk);
-    // console.log('getUsersMinchaAttendanceThunk in Mincha: ', getUsersMinchaAttendanceThunk);
-
-    getMinchaCheckInStatusesThunk();
-    getUsersMinchaAttendanceThunk();
+  componentDidUpdate(prevProps) {
+    if (
+      this.props.updates &&
+      prevProps.updates &&
+      this.props.updates.length !== prevProps.updates.length
+    ) {
+      this.props.getMinchaCheckInStatusesThunk();
+      this.props.getUsersMinchaAttendanceThunk();
+    }
   }
 
   render() {
     const { auth, profile, checkIn, attendance } = this.props;
 
-    // console.log('auth in Mincha: ', auth);
-    // console.log('profile in Mincha: ', profile);
-    // console.log('profile in checkIn: ', checkIn);
-    // console.log('attendance in Mincha: ', attendance);
-
     if (!auth.uid) {
       return <Redirect to="/signin" />;
     } else {
-      // getUserDataThunk(auth.uid);
-
       return (
         <div className="dashboard container">
           <div className="row">
             <ServicesList profile={profile} attendance={attendance} />
 
-            <MinchaCheckIn checkIn={checkIn} auth={auth} />
+            <MinchaCheckIn checkIn={checkIn} />
           </div>
         </div>
       );
