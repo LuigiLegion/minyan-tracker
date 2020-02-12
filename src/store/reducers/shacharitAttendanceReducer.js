@@ -1,5 +1,4 @@
 /* eslint-disable complexity */
-/* eslint-disable max-params */
 /* eslint-disable max-statements */
 
 // Initial State
@@ -69,15 +68,6 @@ export const getUsersShacharitAttendanceThunkCreator = () => {
     try {
       const firestore = getFirestore();
 
-      // const { firebase } = getState();
-      // const { profile } = firebase;
-      // const { congregation } = profile;
-
-      // console.log(
-      //   'congregation in getUsersShacharitAttendanceThunkCreator: ',
-      //   congregation
-      // );
-
       const { congregation } = JSON.parse(
         localStorage.getItem('minyanTracker')
       );
@@ -121,8 +111,6 @@ export const getUsersShacharitAttendanceThunkCreator = () => {
 
       for (let doc of docs) {
         curUser = doc.data();
-
-        // console.log('curUser in getUsersShacharitAttendanceThunkCreator: ', curUser);
 
         if (curUser.shacharit.sunday) {
           sundayAttendance.going.push(curUser);
@@ -181,22 +169,6 @@ export const getUsersShacharitAttendanceThunkCreator = () => {
 const shacharitAttendanceReducer = (state = initialState, action) => {
   switch (action.type) {
     case GOT_USERS_SHACHARIT_ATTENDANCE:
-      // console.log(
-      //   'GOT_USERS_SHACHARIT_ATTENDANCE',
-      //   'action.sundayAttendance: ',
-      //   action.sundayAttendance,
-      //   'action.mondayAttendance: ',
-      //   action.mondayAttendance,
-      //   'action.tuesdayAttendance: ',
-      //   action.tuesdayAttendance,
-      //   'action.wednesdayAttendance: ',
-      //   action.wednesdayAttendance,
-      //   'action.thursdayAttendance: ',
-      //   action.thursdayAttendance,
-      //   'action.fridayAttendance: ',
-      //   action.fridayAttendance,
-      // );
-
       return {
         ...state,
         sunday: {

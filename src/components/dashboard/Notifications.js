@@ -5,8 +5,6 @@ import PropTypes from 'prop-types';
 
 // Component
 const Notifications = ({ notifications }) => {
-  // console.log('notifications in Notifications: ', notifications);
-
   return (
     <div className="col s12 m5 offset-m1">
       <div className="section">

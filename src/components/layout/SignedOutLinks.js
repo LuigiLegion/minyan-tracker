@@ -1,14 +1,11 @@
 // Imports
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import PropTypes from 'prop-types';
 
 import contactUsEmail from '../../config/emailConfig';
 
 // Component
-const SignedOutLinks = props => {
-  // console.log('props in SignedOutLinks: ', props);
-
+const SignedOutLinks = () => {
   return (
     <ul className="right">
       <li>
@@ -37,8 +34,3 @@ const SignedOutLinks = props => {
 };
 
 export default SignedOutLinks;
-
-// Prop Types
-SignedOutLinks.propTypes = {
-  props: PropTypes.object,
-};

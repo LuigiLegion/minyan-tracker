@@ -1,5 +1,3 @@
-/* eslint-disable complexity */
-
 import { getUserDataThunkCreator } from './userReducer';
 import { getUsersShacharitAttendanceThunkCreator } from './shacharitAttendanceReducer';
 
@@ -44,11 +42,6 @@ export const getShacharitCheckInStatusesThunkCreator = () => {
 
       const { shacharit } = userDataRaw.data();
 
-      // console.log(
-      //   'shacharit in getShacharitCheckInStatusesThunkCreator: ',
-      //   shacharit
-      // );
-
       dispatch(gotShacharitCheckInStatusesActionCreator(shacharit));
     } catch (error) {
       console.error(error);
@@ -59,9 +52,6 @@ export const getShacharitCheckInStatusesThunkCreator = () => {
 export const updateShacharitCheckInStatusThunkCreator = (day, status) => {
   return async (dispatch, getState, { getFirestore }) => {
     try {
-      // console.log('day in updateShacharitCheckInStatusThunkCreator: ', day);
-      // console.log('status in updateShacharitCheckInStatusThunkCreator: ', status);
-
       const firestore = getFirestore();
 
       const { uid, fullName, congregation } = JSON.parse(
@@ -106,12 +96,6 @@ export const updateShacharitCheckInStatusThunkCreator = (day, status) => {
 const shacharitCheckInReducer = (state = initialState, action) => {
   switch (action.type) {
     case GOT_SHACHARIT_CHECK_IN_STATUSES:
-      // console.log(
-      //   'GOT_SHACHARIT_CHECK_IN_STATUSES action: ',
-      //   'action.statuses: ',
-      //   action.statuses
-      // );
-
       return {
         ...state,
         sunday: action.statuses.sunday,
@@ -123,14 +107,6 @@ const shacharitCheckInReducer = (state = initialState, action) => {
       };
 
     case UPDATED_SHACHARIT_CHECK_IN_STATUS:
-      // console.log(
-      //   'UPDATED_SHACHARIT_CHECK_IN_STATUS action: ',
-      //   'action.day: ',
-      //   action.day,
-      //   'action.status',
-      //   action.status
-      // );
-
       return { ...state, [action.day]: action.status };
 
     default:

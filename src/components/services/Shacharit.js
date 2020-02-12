@@ -35,8 +35,6 @@ class Shacharit extends PureComponent {
     if (!auth.uid) {
       return <Redirect to="/signin" />;
     } else {
-      // getUserDataThunk(auth.uid);
-
       return (
         <div className="dashboard container">
           <div className="row">

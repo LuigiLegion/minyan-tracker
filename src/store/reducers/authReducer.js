@@ -45,10 +45,7 @@ export const signOutErrorActionCreator = () => ({
 export const signUpThunkCreator = newUser => {
   return async (dispatch, getState, { getFirebase, getFirestore }) => {
     try {
-      // console.log('newUser in signUpThunkCreator: ', newUser);
-
       const firebase = getFirebase();
-
       const firestore = getFirestore();
 
       const { user } = await firebase
@@ -93,8 +90,6 @@ export const signUpThunkCreator = newUser => {
         },
       };
 
-      // console.log('newUserObj in signUpThunkCreator: ', newUserObj);
-
       await firestore
         .collection('users')
         .doc(user.uid)
@@ -111,8 +106,6 @@ export const signUpThunkCreator = newUser => {
 export const signInThunkCreator = userCredentials => {
   return async (dispatch, getState, { getFirebase }) => {
     try {
-      // console.log('userCredentials in signInThunkCreator: ', userCredentials);
-
       const firebase = getFirebase();
 
       await firebase
@@ -140,8 +133,6 @@ export const signOutThunkCreator = () => {
       dispatch(signOutSuccessActionCreator());
 
       localStorage.clear();
-
-      // console.log('localStorage in signOutThunkCreator: ', localStorage);
     } catch (error) {
       console.error(error);
       dispatch(signOutErrorActionCreator());

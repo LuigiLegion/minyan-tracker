@@ -17,8 +17,6 @@ export const resetUsersAttendanceActionCreator = () => ({
 export const resetUsersAttendanceThunkCreator = users => {
   return (dispatch, getState, { getFirestore }) => {
     try {
-      // console.log('users in resetUsersAttendanceThunkCreator: ', users);
-
       const firestore = getFirestore();
 
       const usersUpdatesUnresolvedPromises = users.reduce((acc, curUser) => {
@@ -70,11 +68,6 @@ export const resetUsersAttendanceThunkCreator = users => {
 
         return acc;
       }, []);
-
-      // console.log(
-      //   'usersUpdatesUnresolvedPromises in resetUsersAttendanceThunkCreator: ',
-      //   usersUpdatesUnresolvedPromises
-      // );
 
       Promise.all(usersUpdatesUnresolvedPromises);
 

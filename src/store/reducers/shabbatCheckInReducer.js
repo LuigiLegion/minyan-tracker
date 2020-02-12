@@ -1,5 +1,3 @@
-/* eslint-disable complexity */
-
 import { getUserDataThunkCreator } from './userReducer';
 import { getUsersShabbatAttendanceThunkCreator } from './shabbatAttendanceReducer';
 
@@ -40,11 +38,6 @@ export const getShabbatCheckInStatusesThunkCreator = () => {
 
       const { shabbat } = userDataRaw.data();
 
-      // console.log(
-      //   'shabbat in getShabbatCheckInStatusesThunkCreator: ',
-      //   shabbat
-      // );
-
       dispatch(gotShabbatCheckInStatusesActionCreator(shabbat));
     } catch (error) {
       console.error(error);
@@ -55,9 +48,6 @@ export const getShabbatCheckInStatusesThunkCreator = () => {
 export const updateShabbatCheckInStatusThunkCreator = (day, status) => {
   return async (dispatch, getState, { getFirestore }) => {
     try {
-      // console.log('day in updateShabbatCheckInStatusThunkCreator: ', day);
-      // console.log('status in updateShabbatCheckInStatusThunkCreator: ', status);
-
       const firestore = getFirestore();
 
       const { uid, fullName, congregation } = JSON.parse(
@@ -102,12 +92,6 @@ export const updateShabbatCheckInStatusThunkCreator = (day, status) => {
 const shabbatCheckInReducer = (state = initialState, action) => {
   switch (action.type) {
     case GOT_SHABBAT_CHECK_IN_STATUSES:
-      // console.log(
-      //   'GOT_SHABBAT_CHECK_IN_STATUSES action: ',
-      //   'action.statuses: ',
-      //   action.statuses
-      // );
-
       return {
         ...state,
         friday: action.statuses.friday,
@@ -115,14 +99,6 @@ const shabbatCheckInReducer = (state = initialState, action) => {
       };
 
     case UPDATED_SHABBAT_CHECK_IN_STATUS:
-      // console.log(
-      //   'UPDATED_SHABBAT_CHECK_IN_STATUS action: ',
-      //   'action.day: ',
-      //   action.day,
-      //   'action.status',
-      //   action.status
-      // );
-
       return { ...state, [action.day]: action.status };
 
     default:

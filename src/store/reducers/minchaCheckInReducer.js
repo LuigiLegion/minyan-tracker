@@ -1,5 +1,3 @@
-/* eslint-disable complexity */
-
 import { getUserDataThunkCreator } from './userReducer';
 import { getUsersMinchaAttendanceThunkCreator } from './minchaAttendanceReducer';
 
@@ -45,11 +43,6 @@ export const getMinchaCheckInStatusesThunkCreator = () => {
 
       const { mincha } = userDataRaw.data();
 
-      // console.log(
-      //   'mincha in getMinchaCheckInStatusesThunkCreator: ',
-      //   mincha
-      // );
-
       dispatch(gotMinchaCheckInStatusesActionCreator(mincha));
     } catch (error) {
       console.error(error);
@@ -60,9 +53,6 @@ export const getMinchaCheckInStatusesThunkCreator = () => {
 export const updateMinchaCheckInStatusThunkCreator = (day, status) => {
   return async (dispatch, getState, { getFirestore }) => {
     try {
-      // console.log('day in updateMinchaCheckInStatusThunkCreator: ', day);
-      // console.log('status in updateMinchaCheckInStatusThunkCreator: ', status);
-
       const firestore = getFirestore();
 
       const { uid, fullName, congregation } = JSON.parse(
@@ -107,12 +97,6 @@ export const updateMinchaCheckInStatusThunkCreator = (day, status) => {
 const minchaCheckInReducer = (state = initialState, action) => {
   switch (action.type) {
     case GOT_MINCHA_CHECK_IN_STATUSES:
-      // console.log(
-      //   'GOT_MINCHA_CHECK_IN_STATUSES action: ',
-      //   'action.statuses: ',
-      //   action.statuses
-      // );
-
       return {
         ...state,
         sunday: action.statuses.sunday,
@@ -125,14 +109,6 @@ const minchaCheckInReducer = (state = initialState, action) => {
       };
 
     case UPDATED_MINCHA_CHECK_IN_STATUS:
-      // console.log(
-      //   'UPDATED_MINCHA_CHECK_IN_STATUS action: ',
-      //   'action.day: ',
-      //   action.day,
-      //   'action.status',
-      //   action.status
-      // );
-
       return { ...state, [action.day]: action.status };
 
     default:

@@ -77,15 +77,6 @@ export const getUsersMinchaAttendanceThunkCreator = () => {
     try {
       const firestore = getFirestore();
 
-      // const { firebase } = getState();
-      // const { profile } = firebase;
-      // const { congregation } = profile;
-
-      // console.log(
-      //   'congregation in getUsersMinchaAttendanceThunkCreator: ',
-      //   congregation
-      // );
-
       const { congregation } = JSON.parse(
         localStorage.getItem('minyanTracker')
       );
@@ -134,8 +125,6 @@ export const getUsersMinchaAttendanceThunkCreator = () => {
 
       for (let doc of docs) {
         curUser = doc.data();
-
-        // console.log('curUser in getUsersMinchaAttendanceThunkCreator: ', curUser);
 
         if (curUser.mincha.sunday) {
           sundayAttendance.going.push(curUser);
@@ -201,24 +190,6 @@ export const getUsersMinchaAttendanceThunkCreator = () => {
 const minchaAttendanceReducer = (state = initialState, action) => {
   switch (action.type) {
     case GOT_USERS_MINCHA_ATTENDANCE:
-      // console.log(
-      //   'GOT_USERS_MINCHA_ATTENDANCE',
-      //   'action.sundayAttendance: ',
-      //   action.sundayAttendance,
-      //   'action.mondayAttendance: ',
-      //   action.mondayAttendance,
-      //   'action.tuesdayAttendance: ',
-      //   action.tuesdayAttendance,
-      //   'action.wednesdayAttendance: ',
-      //   action.wednesdayAttendance,
-      //   'action.thursdayAttendance: ',
-      //   action.thursdayAttendance,
-      //   'action.fridayAttendance: ',
-      //   action.fridayAttendance,
-      //   'action.saturdayAttendance: ',
-      //   action.saturdayAttendance
-      // );
-
       return {
         ...state,
         sunday: {
