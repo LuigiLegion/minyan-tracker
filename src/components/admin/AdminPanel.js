@@ -49,7 +49,7 @@ class AdminPanel extends PureComponent {
                       <h5 className="grey-text text-darken-3">Attendance:</h5>
 
                       <button
-                        className="btn blue lighten-1 z-depth-0 admin-reset-button"
+                        className="btn waves-effect waves-light blue lighten-1 z-depth-0 admin-reset-button"
                         disabled={disabled}
                       >
                         Reset

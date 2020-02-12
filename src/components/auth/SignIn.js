@@ -69,7 +69,7 @@ class SignIn extends PureComponent {
             </div>
 
             <div className="input-field">
-              <button className="btn blue lighten-1 z-depth-0">Sign In</button>
+              <button className="btn waves-effect waves-light blue lighten-1 z-depth-0">Sign In</button>
             </div>
 
             <div className="red-text-color bold-text-style center">

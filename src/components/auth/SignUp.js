@@ -208,7 +208,9 @@ class SignUp extends PureComponent {
               />
             </div>
 
-            <button className="btn blue lighten-1 z-depth-0">Sign Up</button>
+            <button className="btn waves-effect waves-light blue lighten-1 z-depth-0">
+              Sign Up
+            </button>
 
             <div className="red-text-color bold-text-style center">
               {signUpAuthError ? (
