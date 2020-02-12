@@ -14,13 +14,19 @@ import { getUsersShabbatAttendanceThunkCreator } from '../../store/reducers/shab
 // Component
 class Shabbat extends PureComponent {
   componentDidMount() {
-    const {
-      getShabbatCheckInStatusesThunk,
-      getUsersShabbatAttendanceThunk,
-    } = this.props;
+    this.props.getShabbatCheckInStatusesThunk();
+    this.props.getUsersShabbatAttendanceThunk();
+  }
 
-    getShabbatCheckInStatusesThunk();
-    getUsersShabbatAttendanceThunk();
+  componentDidUpdate(prevProps) {
+    if (
+      this.props.updates &&
+      prevProps.updates &&
+      this.props.updates.length !== prevProps.updates.length
+    ) {
+      this.props.getShabbatCheckInStatusesThunk();
+      this.props.getUsersShabbatAttendanceThunk();
+    }
   }
 
   render() {
@@ -29,8 +35,6 @@ class Shabbat extends PureComponent {
     if (!auth.uid) {
       return <Redirect to="/signin" />;
     } else {
-      // getUserDataThunk(auth.uid);
-
       return (
         <div className="dashboard container">
           <div className="row">

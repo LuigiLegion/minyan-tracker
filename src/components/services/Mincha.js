@@ -14,13 +14,19 @@ import { getUsersMinchaAttendanceThunkCreator } from '../../store/reducers/minch
 // Component
 class Mincha extends PureComponent {
   componentDidMount() {
-    const {
-      getMinchaCheckInStatusesThunk,
-      getUsersMinchaAttendanceThunk,
-    } = this.props;
+    this.props.getMinchaCheckInStatusesThunk();
+    this.props.getUsersMinchaAttendanceThunk();
+  }
 
-    getMinchaCheckInStatusesThunk();
-    getUsersMinchaAttendanceThunk();
+  componentDidUpdate(prevProps) {
+    if (
+      this.props.updates &&
+      prevProps.updates &&
+      this.props.updates.length !== prevProps.updates.length
+    ) {
+      this.props.getMinchaCheckInStatusesThunk();
+      this.props.getUsersMinchaAttendanceThunk();
+    }
   }
 
   render() {
@@ -29,8 +35,6 @@ class Mincha extends PureComponent {
     if (!auth.uid) {
       return <Redirect to="/signin" />;
     } else {
-      // getUserDataThunk(auth.uid);
-
       return (
         <div className="dashboard container">
           <div className="row">

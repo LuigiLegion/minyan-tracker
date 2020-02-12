@@ -14,13 +14,19 @@ import { getUsersMaarivAttendanceThunkCreator } from '../../store/reducers/maari
 // Component
 class Maariv extends PureComponent {
   componentDidMount() {
-    const {
-      getMaarivCheckInStatusesThunk,
-      getUsersMaarivAttendanceThunk,
-    } = this.props;
+    this.props.getMaarivCheckInStatusesThunk();
+    this.props.getUsersMaarivAttendanceThunk();
+  }
 
-    getMaarivCheckInStatusesThunk();
-    getUsersMaarivAttendanceThunk();
+  componentDidUpdate(prevProps) {
+    if (
+      this.props.updates &&
+      prevProps.updates &&
+      this.props.updates.length !== prevProps.updates.length
+    ) {
+      this.props.getMaarivCheckInStatusesThunk();
+      this.props.getUsersMaarivAttendanceThunk();
+    }
   }
 
   render() {
@@ -29,8 +35,6 @@ class Maariv extends PureComponent {
     if (!auth.uid) {
       return <Redirect to="/signin" />;
     } else {
-      // getUserDataThunk(auth.uid);
-
       return (
         <div className="dashboard container">
           <div className="row">

@@ -14,13 +14,19 @@ import { getUsersShacharitAttendanceThunkCreator } from '../../store/reducers/sh
 // Component
 class Shacharit extends PureComponent {
   componentDidMount() {
-    const {
-      getShacharitCheckInStatusesThunk,
-      getUsersShacharitAttendanceThunk,
-    } = this.props;
+    this.props.getShacharitCheckInStatusesThunk();
+    this.props.getUsersShacharitAttendanceThunk();
+  }
 
-    getShacharitCheckInStatusesThunk();
-    getUsersShacharitAttendanceThunk();
+  componentDidUpdate(prevProps) {
+    if (
+      this.props.updates &&
+      prevProps.updates &&
+      this.props.updates.length !== prevProps.updates.length
+    ) {
+      this.props.getShacharitCheckInStatusesThunk();
+      this.props.getUsersShacharitAttendanceThunk();
+    }
   }
 
   render() {
