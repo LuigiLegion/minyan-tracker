@@ -42,7 +42,7 @@ class Shacharit extends PureComponent {
           <div className="row">
             <ServicesList profile={profile} attendance={attendance} />
 
-            <ShacharitCheckIn checkIn={checkIn} auth={auth} />
+            <ShacharitCheckIn checkIn={checkIn} />
           </div>
         </div>
       );

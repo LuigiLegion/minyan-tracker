@@ -12,17 +12,15 @@ class ShabbatCheckIn extends PureComponent {
     const curCheckedVal = event.target.checked;
     const curDay = event.target.value;
 
-    const { auth, updateShabbatCheckInStatusThunk } = this.props;
-
     if (curCheckedVal) {
-      updateShabbatCheckInStatusThunk(auth.uid, curDay, true);
+      this.props.updateShabbatCheckInStatusThunk(curDay, true);
     } else {
       const changeConfirmation = window.confirm(
         'Are you sure you want to change your check-in status?'
       );
 
       if (changeConfirmation) {
-        updateShabbatCheckInStatusThunk(auth.uid, curDay, false);
+        this.props.updateShabbatCheckInStatusThunk(curDay, false);
       }
     }
   };
@@ -92,8 +90,8 @@ class ShabbatCheckIn extends PureComponent {
 
 // Container
 const mapDispatchToProps = dispatch => ({
-  updateShabbatCheckInStatusThunk(userId, day, status) {
-    dispatch(updateShabbatCheckInStatusThunkCreator(userId, day, status));
+  updateShabbatCheckInStatusThunk(day, status) {
+    dispatch(updateShabbatCheckInStatusThunkCreator(day, status));
   },
 });
 
@@ -106,7 +104,6 @@ export default compose(
 
 // Prop Types
 ShabbatCheckIn.propTypes = {
-  auth: PropTypes.object,
   checkIn: PropTypes.object,
   updateShabbatCheckInStatusThunk: PropTypes.func,
 };

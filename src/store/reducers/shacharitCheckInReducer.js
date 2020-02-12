@@ -35,9 +35,11 @@ export const getShacharitCheckInStatusesThunkCreator = () => {
     try {
       const firestore = getFirestore();
 
+      const { uid } = JSON.parse(localStorage.getItem('minyanTracker'));
+
       const userDataRaw = await firestore
         .collection('users')
-        .doc(localStorage.uid)
+        .doc(uid)
         .get();
 
       const { shacharit } = userDataRaw.data();
@@ -54,22 +56,21 @@ export const getShacharitCheckInStatusesThunkCreator = () => {
   };
 };
 
-export const updateShacharitCheckInStatusThunkCreator = (
-  userId,
-  day,
-  status
-) => {
+export const updateShacharitCheckInStatusThunkCreator = (day, status) => {
   return async (dispatch, getState, { getFirestore }) => {
     try {
-      // console.log('userId in updateShacharitCheckInStatusThunkCreator: ', userId);
       // console.log('day in updateShacharitCheckInStatusThunkCreator: ', day);
       // console.log('status in updateShacharitCheckInStatusThunkCreator: ', status);
 
       const firestore = getFirestore();
 
+      const { uid, fullName, congregation } = JSON.parse(
+        localStorage.getItem('minyanTracker')
+      );
+
       await firestore
         .collection('users')
-        .doc(userId)
+        .doc(uid)
         .set(
           {
             shacharit: {
@@ -80,7 +81,9 @@ export const updateShacharitCheckInStatusThunkCreator = (
         );
 
       const newUpdateData = {
-        user: localStorage.fullName,
+        uid,
+        fullName,
+        congregation,
         timestamp: firestore.FieldValue.serverTimestamp(),
       };
 

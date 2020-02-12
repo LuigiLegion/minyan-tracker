@@ -27,41 +27,46 @@ export const getUserDataThunkCreator = () => {
     try {
       const firebase = getFirebase();
 
-      const { currentUser } = firebase.auth();
+      const {
+        currentUser: { uid },
+      } = firebase.auth();
 
-      // console.log('currentUser.uid in getUserDataThunkCreator: ', currentUser.uid);
+      // console.log('uid in getUserDataThunkCreator: ', uid);
 
       const firestore = getFirestore();
 
       const userDataRaw = await firestore
         .collection('users')
-        .doc(currentUser.uid)
+        .doc(uid)
         .get();
 
-      const userDataObj = userDataRaw.data();
+      const { fullName, congregation } = userDataRaw.data();
 
-      // console.log('userDataObj in getUserDataThunkCreator: ', userDataObj);
+      // console.log('fullName in getUserDataThunkCreator: ', fullName);
+      // console.log('congregation in getUserDataThunkCreator: ', congregation);
 
       const userData = {
-        uid: currentUser.uid,
-        fullName: userDataObj.fullName,
-        congregation: userDataObj.congregation,
+        uid,
+        fullName,
+        congregation,
       };
 
       // console.log('userData in getUserDataThunkCreator: ', userData);
 
       dispatch(gotUserDataActionCreator(userData));
 
+      localStorage.setItem('minyanTracker', JSON.stringify(userData));
+
       // dispatch(getUsersShacharitAttendanceThunkCreator());
       // dispatch(getUsersMinchaAttendanceThunkCreator());
       // dispatch(getUsersMaarivAttendanceThunkCreator());
       // dispatch(getUsersShabbatAttendanceThunkCreator());
 
-      const { uid, fullName, congregation } = userData;
+      // const { uid, fullName, congregation } = userData;
 
-      localStorage.setItem('uid', uid);
-      localStorage.setItem('fullName', fullName);
-      localStorage.setItem('congregation', congregation);
+      // localStorage.setItem('uid', uid);
+      // localStorage.setItem('fullName', fullName);
+      // localStorage.setItem('congregation', congregation);
 
       // console.log('localStorage in getUserDataThunkCreator: ', localStorage);
     } catch (error) {

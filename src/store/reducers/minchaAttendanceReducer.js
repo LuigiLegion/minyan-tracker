@@ -86,9 +86,13 @@ export const getUsersMinchaAttendanceThunkCreator = () => {
       //   congregation
       // );
 
+      const { congregation } = JSON.parse(
+        localStorage.getItem('minyanTracker')
+      );
+
       const { docs } = await firestore
         .collection('users')
-        .where('congregation', '==', localStorage.congregation)
+        .where('congregation', '==', congregation)
         .get();
 
       const sundayAttendance = {

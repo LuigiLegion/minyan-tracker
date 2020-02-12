@@ -35,9 +35,11 @@ export const getMaarivCheckInStatusesThunkCreator = () => {
     try {
       const firestore = getFirestore();
 
+      const { uid } = JSON.parse(localStorage.getItem('minyanTracker'));
+
       const userDataRaw = await firestore
         .collection('users')
-        .doc(localStorage.uid)
+        .doc(uid)
         .get();
 
       const { maariv } = userDataRaw.data();
@@ -54,18 +56,21 @@ export const getMaarivCheckInStatusesThunkCreator = () => {
   };
 };
 
-export const updateMaarivCheckInStatusThunkCreator = (userId, day, status) => {
+export const updateMaarivCheckInStatusThunkCreator = (day, status) => {
   return async (dispatch, getState, { getFirestore }) => {
     try {
-      // console.log('userId in updateMaarivCheckInStatusThunkCreator: ', userId);
       // console.log('day in updateMaarivCheckInStatusThunkCreator: ', day);
       // console.log('status in updateMaarivCheckInStatusThunkCreator: ', status);
 
       const firestore = getFirestore();
 
+      const { uid, fullName, congregation } = JSON.parse(
+        localStorage.getItem('minyanTracker')
+      );
+
       await firestore
         .collection('users')
-        .doc(userId)
+        .doc(uid)
         .set(
           {
             maariv: {
@@ -76,7 +81,9 @@ export const updateMaarivCheckInStatusThunkCreator = (userId, day, status) => {
         );
 
       const newUpdateData = {
-        user: localStorage.fullName,
+        uid,
+        fullName,
+        congregation,
         timestamp: firestore.FieldValue.serverTimestamp(),
       };
 

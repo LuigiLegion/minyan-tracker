@@ -40,7 +40,7 @@ class Mincha extends PureComponent {
           <div className="row">
             <ServicesList profile={profile} attendance={attendance} />
 
-            <MinchaCheckIn checkIn={checkIn} auth={auth} />
+            <MinchaCheckIn checkIn={checkIn} />
           </div>
         </div>
       );

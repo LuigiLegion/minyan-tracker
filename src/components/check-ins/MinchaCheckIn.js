@@ -12,17 +12,15 @@ class MinchaCheckIn extends PureComponent {
     const curCheckedVal = event.target.checked;
     const curDay = event.target.value;
 
-    const { auth, updateMinchaCheckInStatusThunk } = this.props;
-
     if (curCheckedVal) {
-      updateMinchaCheckInStatusThunk(auth.uid, curDay, true);
+      this.props.updateMinchaCheckInStatusThunk(curDay, true);
     } else {
       const changeConfirmation = window.confirm(
         'Are you sure you want to change your check-in status?'
       );
 
       if (changeConfirmation) {
-        updateMinchaCheckInStatusThunk(auth.uid, curDay, false);
+        this.props.updateMinchaCheckInStatusThunk(curDay, false);
       }
     }
   };
@@ -190,8 +188,8 @@ class MinchaCheckIn extends PureComponent {
 
 // Container
 const mapDispatchToProps = dispatch => ({
-  updateMinchaCheckInStatusThunk(userId, day, status) {
-    dispatch(updateMinchaCheckInStatusThunkCreator(userId, day, status));
+  updateMinchaCheckInStatusThunk(day, status) {
+    dispatch(updateMinchaCheckInStatusThunkCreator(day, status));
   },
 });
 
@@ -204,7 +202,6 @@ export default compose(
 
 // Prop Types
 MinchaCheckIn.propTypes = {
-  auth: PropTypes.object,
   checkIn: PropTypes.object,
   updateMinchaCheckInStatusThunk: PropTypes.func,
 };

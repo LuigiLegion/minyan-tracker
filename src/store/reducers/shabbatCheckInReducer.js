@@ -31,9 +31,11 @@ export const getShabbatCheckInStatusesThunkCreator = () => {
     try {
       const firestore = getFirestore();
 
+      const { uid } = JSON.parse(localStorage.getItem('minyanTracker'));
+
       const userDataRaw = await firestore
         .collection('users')
-        .doc(localStorage.uid)
+        .doc(uid)
         .get();
 
       const { shabbat } = userDataRaw.data();
@@ -50,18 +52,21 @@ export const getShabbatCheckInStatusesThunkCreator = () => {
   };
 };
 
-export const updateShabbatCheckInStatusThunkCreator = (userId, day, status) => {
+export const updateShabbatCheckInStatusThunkCreator = (day, status) => {
   return async (dispatch, getState, { getFirestore }) => {
     try {
-      // console.log('userId in updateShabbatCheckInStatusThunkCreator: ', userId);
       // console.log('day in updateShabbatCheckInStatusThunkCreator: ', day);
       // console.log('status in updateShabbatCheckInStatusThunkCreator: ', status);
 
       const firestore = getFirestore();
 
+      const { uid, fullName, congregation } = JSON.parse(
+        localStorage.getItem('minyanTracker')
+      );
+
       await firestore
         .collection('users')
-        .doc(localStorage.uid)
+        .doc(uid)
         .set(
           {
             shabbat: {
@@ -72,7 +77,9 @@ export const updateShabbatCheckInStatusThunkCreator = (userId, day, status) => {
         );
 
       const newUpdateData = {
-        user: localStorage.fullName,
+        uid,
+        fullName,
+        congregation,
         timestamp: firestore.FieldValue.serverTimestamp(),
       };
 

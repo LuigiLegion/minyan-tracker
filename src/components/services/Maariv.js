@@ -40,7 +40,7 @@ class Maariv extends PureComponent {
           <div className="row">
             <ServicesList profile={profile} attendance={attendance} />
 
-            <MaarivCheckIn checkIn={checkIn} auth={auth} />
+            <MaarivCheckIn checkIn={checkIn} />
           </div>
         </div>
       );

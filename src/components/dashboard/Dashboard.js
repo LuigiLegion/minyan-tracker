@@ -29,7 +29,7 @@ class Dashboard extends PureComponent {
           <div className="row">
             <Welcome />
 
-            <Notifications auth={auth} notifications={notifications} />
+            <Notifications notifications={notifications} />
           </div>
         </div>
       );

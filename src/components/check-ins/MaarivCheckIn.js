@@ -12,17 +12,15 @@ class MaarivCheckIn extends PureComponent {
     const curCheckedVal = event.target.checked;
     const curDay = event.target.value;
 
-    const { auth, updateMaarivCheckInStatusThunk } = this.props;
-
     if (curCheckedVal) {
-      updateMaarivCheckInStatusThunk(auth.uid, curDay, true);
+      this.props.updateMaarivCheckInStatusThunk(curDay, true);
     } else {
       const changeConfirmation = window.confirm(
         'Are you sure you want to change your check-in status?'
       );
 
       if (changeConfirmation) {
-        updateMaarivCheckInStatusThunk(auth.uid, curDay, false);
+        this.props.updateMaarivCheckInStatusThunk(curDay, false);
       }
     }
   };
@@ -171,8 +169,8 @@ class MaarivCheckIn extends PureComponent {
 
 // Container
 const mapDispatchToProps = dispatch => ({
-  updateMaarivCheckInStatusThunk(userId, day, status) {
-    dispatch(updateMaarivCheckInStatusThunkCreator(userId, day, status));
+  updateMaarivCheckInStatusThunk(day, status) {
+    dispatch(updateMaarivCheckInStatusThunkCreator(day, status));
   },
 });
 
@@ -185,7 +183,6 @@ export default compose(
 
 // Prop Types
 MaarivCheckIn.propTypes = {
-  auth: PropTypes.object,
   checkIn: PropTypes.object,
   updateMaarivCheckInStatusThunk: PropTypes.func,
 };

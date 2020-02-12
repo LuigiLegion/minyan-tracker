@@ -40,7 +40,7 @@ class Shabbat extends PureComponent {
           <div className="row">
             <ServicesList attendance={attendance} profile={profile} />
 
-            <ShabbatCheckIn checkIn={checkIn} auth={auth} />
+            <ShabbatCheckIn checkIn={checkIn} />
           </div>
         </div>
       );

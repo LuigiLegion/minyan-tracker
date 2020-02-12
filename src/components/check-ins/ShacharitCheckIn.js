@@ -12,17 +12,15 @@ class ShacharitCheckIn extends PureComponent {
     const curCheckedVal = event.target.checked;
     const curDay = event.target.value;
 
-    const { auth, updateShacharitCheckInStatusThunk } = this.props;
-
     if (curCheckedVal) {
-      updateShacharitCheckInStatusThunk(auth.uid, curDay, true);
+      this.props.updateShacharitCheckInStatusThunk(curDay, true);
     } else {
       const changeConfirmation = window.confirm(
         'Are you sure you want to change your check-in status?'
       );
 
       if (changeConfirmation) {
-        updateShacharitCheckInStatusThunk(auth.uid, curDay, false);
+        this.props.updateShacharitCheckInStatusThunk(curDay, false);
       }
     }
   };
@@ -171,8 +169,8 @@ class ShacharitCheckIn extends PureComponent {
 
 // Container
 const mapDispatchToProps = dispatch => ({
-  updateShacharitCheckInStatusThunk(userId, day, status) {
-    dispatch(updateShacharitCheckInStatusThunkCreator(userId, day, status));
+  updateShacharitCheckInStatusThunk(day, status) {
+    dispatch(updateShacharitCheckInStatusThunkCreator(day, status));
   },
 });
 
@@ -185,7 +183,6 @@ export default compose(
 
 // Prop Types
 ShacharitCheckIn.propTypes = {
-  auth: PropTypes.object,
   checkIn: PropTypes.object,
   updateShacharitCheckInStatusThunk: PropTypes.func,
 };
