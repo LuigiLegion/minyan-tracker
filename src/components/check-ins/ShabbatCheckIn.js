@@ -1,5 +1,5 @@
 // Imports
-import React, { PureComponent } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import PropTypes from 'prop-types';
@@ -7,86 +7,84 @@ import PropTypes from 'prop-types';
 import { updateShabbatCheckInStatusThunkCreator } from '../../store/reducers/shabbatCheckInReducer';
 
 // Component
-class ShabbatCheckIn extends PureComponent {
-  handleChange = event => {
+const ShabbatCheckIn = ({ checkIn, updateShabbatCheckInStatusThunk }) => {
+  const { friday, saturday } = checkIn;
+
+  const handleChange = event => {
     const curCheckedVal = event.target.checked;
     const curDay = event.target.value;
 
     if (curCheckedVal) {
-      this.props.updateShabbatCheckInStatusThunk(curDay, true);
+      updateShabbatCheckInStatusThunk(curDay, true);
     } else {
       const changeConfirmation = window.confirm(
         'Are you sure you want to change your check-in status?'
       );
 
       if (changeConfirmation) {
-        this.props.updateShabbatCheckInStatusThunk(curDay, false);
+        updateShabbatCheckInStatusThunk(curDay, false);
       }
     }
   };
 
-  render() {
-    const { friday, saturday } = this.props.checkIn;
+  return (
+    <div className="col s12 m5 offset-m1">
+      <div className="section">
+        <div className="card z-depth-0">
+          <div className="card-content grey-text text-darken-3">
+            <span className="card-title">
+              <span className="bold-text-style">Check-In</span>
+            </span>
 
-    return (
-      <div className="col s12 m5 offset-m1">
-        <div className="section">
-          <div className="card z-depth-0">
-            <div className="card-content grey-text text-darken-3">
-              <span className="card-title">
-                <span className="bold-text-style">Check-In</span>
-              </span>
+            <form className="check-in-form">
+              <div className="bold-text-style blue-text-color">
+                Shabbat Services
+              </div>
 
-              <form className="check-in-form">
-                <div className="bold-text-style blue-text-color">
-                  Shabbat Services
-                </div>
+              <br />
 
-                <br />
+              <div>
+                <label>
+                  <input
+                    type="checkbox"
+                    value="friday"
+                    checked={friday}
+                    onChange={event => handleChange(event)}
+                  />
 
-                <div>
-                  <label>
-                    <input
-                      type="checkbox"
-                      value="friday"
-                      checked={friday}
-                      onChange={event => this.handleChange(event)}
-                    />
-
-                    <span className="gray-text-color">
-                      Friday{' '}
-                      <span className="bold-text-style italic-text-style">
-                        Maariv
-                      </span>
+                  <span className="gray-text-color">
+                    Friday{' '}
+                    <span className="bold-text-style italic-text-style">
+                      Maariv
                     </span>
-                  </label>
-                </div>
+                  </span>
+                </label>
+              </div>
 
-                <div>
-                  <label>
-                    <input
-                      type="checkbox"
-                      value="saturday"
-                      checked={saturday}
-                      onChange={event => this.handleChange(event)}
-                    />
+              <div>
+                <label>
+                  <input
+                    type="checkbox"
+                    value="saturday"
+                    checked={saturday}
+                    onChange={event => handleChange(event)}
+                  />
 
-                    <span className="gray-text-color">
-                      Saturday{' '}
-                      <span className="bold-text-style italic-text-style">
-                        Shacharit
-                      </span>
+                  <span className="gray-text-color">
+                    Saturday{' '}
+                    <span className="bold-text-style italic-text-style">
+                      Shacharit
                     </span>
-                  </label>
-                </div>
-              </form>
-            </div>
+                  </span>
+                </label>
+              </div>
+            </form>
           </div>
         </div>
       </div>
-    );
-  }
-}
+    </div>
+  );
+};
 
 // Container
 const mapDispatchToProps = dispatch => ({
