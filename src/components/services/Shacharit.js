@@ -1,5 +1,5 @@
 // Imports
-import React, { PureComponent } from 'react';
+import React, { useEffect } from 'react';
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { firestoreConnect } from 'react-redux-firebase';
@@ -8,45 +8,51 @@ import PropTypes from 'prop-types';
 
 import ShacharitCheckIn from '../check-ins/ShacharitCheckIn';
 import ServicesList from './ServicesList';
+import { usePrevious } from '../../helpers';
 import { getShacharitCheckInStatusesThunkCreator } from '../../store/reducers/shacharitCheckInReducer';
 import { getUsersShacharitAttendanceThunkCreator } from '../../store/reducers/shacharitAttendanceReducer';
 
 // Component
-class Shacharit extends PureComponent {
-  componentDidMount() {
-    this.props.getShacharitCheckInStatusesThunk();
-    this.props.getUsersShacharitAttendanceThunk();
-  }
+const Shacharit = ({
+  auth,
+  profile,
+  updates,
+  checkIn,
+  attendance,
+  getShacharitCheckInStatusesThunk,
+  getUsersShacharitAttendanceThunk,
+}) => {
+  const prevUpdates = usePrevious(updates);
 
-  componentDidUpdate(prevProps) {
+  useEffect(() => {
     if (
-      this.props.updates &&
-      prevProps.updates &&
-      this.props.updates.length !== prevProps.updates.length
+      !updates ||
+      (updates && prevUpdates && updates.length !== prevUpdates.length)
     ) {
-      this.props.getShacharitCheckInStatusesThunk();
-      this.props.getUsersShacharitAttendanceThunk();
+      getShacharitCheckInStatusesThunk();
+      getUsersShacharitAttendanceThunk();
     }
-  }
+  }, [
+    updates,
+    prevUpdates,
+    getShacharitCheckInStatusesThunk,
+    getUsersShacharitAttendanceThunk,
+  ]);
 
-  render() {
-    const { auth, profile, checkIn, attendance } = this.props;
+  if (!auth.uid) {
+    return <Redirect to="/signin" />;
+  } else {
+    return (
+      <div className="dashboard container">
+        <div className="row">
+          <ServicesList profile={profile} attendance={attendance} />
 
-    if (!auth.uid) {
-      return <Redirect to="/signin" />;
-    } else {
-      return (
-        <div className="dashboard container">
-          <div className="row">
-            <ServicesList profile={profile} attendance={attendance} />
-
-            <ShacharitCheckIn checkIn={checkIn} />
-          </div>
+          <ShacharitCheckIn checkIn={checkIn} />
         </div>
-      );
-    }
+      </div>
+    );
   }
-}
+};
 
 // Container
 const mapStateToProps = state => ({
