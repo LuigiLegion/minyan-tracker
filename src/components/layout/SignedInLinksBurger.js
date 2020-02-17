@@ -1,5 +1,5 @@
 // Imports
-import React, { PureComponent } from 'react';
+import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { slide as Menu } from 'react-burger-menu';
@@ -10,119 +10,105 @@ import contactUsEmail from '../../config/emailConfig';
 import { burgerStyles } from '../../styles';
 
 // Component
-class SignedInLinksBurger extends PureComponent {
-  state = {
-    menuOpen: false,
+const SignedInLinksBurger = ({ profile, signOutThunk }) => {
+  const { menuOpen, setMenuOpen } = useState(false);
+
+  const handleStateChange = state => {
+    setMenuOpen(state.isOpen);
   };
 
-  handleStateChange = state => {
-    this.setState({ menuOpen: state.isOpen });
+  const closeMenu = () => {
+    setMenuOpen(false);
   };
 
-  closeMenu = () => {
-    this.setState({ menuOpen: false });
-  };
-
-  render() {
-    const { profile, signOutThunk } = this.props;
-
-    return (
-      <div>
-        <Menu
-          isOpen={this.state.menuOpen}
-          onStateChange={state => this.handleStateChange(state)}
-          right
-          width="50%"
-          styles={burgerStyles}
-        >
-          <div className="remove-outline">
-            <div>
-              <NavLink to="/" onClick={() => this.closeMenu()}>
-                {profile.firstName ? (
-                  <span className="navbar-text-color">
-                    Hello, {profile.firstName}.
-                  </span>
-                ) : (
-                  <span className="navbar-text-color">Hello.</span>
-                )}
-              </NavLink>
-            </div>
-
-            {profile.isAdmin ? (
-              <div>
-                <NavLink to="/admin" onClick={() => this.closeMenu()}>
-                  <span className="bold-text-style navbar-text-color">
-                    Admin
-                  </span>
-                </NavLink>
-              </div>
-            ) : null}
-
-            <div>
-              <NavLink to="/shabbat" onClick={() => this.closeMenu()}>
-                <span className="bold-text-style navbar-text-color">
-                  Shabbat
+  return (
+    <div>
+      <Menu
+        isOpen={menuOpen}
+        onStateChange={state => handleStateChange(state)}
+        right
+        width="50%"
+        styles={burgerStyles}
+      >
+        <div className="remove-outline">
+          <div>
+            <NavLink to="/" onClick={() => closeMenu()}>
+              {profile.firstName ? (
+                <span className="navbar-text-color">
+                  Hello, {profile.firstName}.
                 </span>
-              </NavLink>
-            </div>
-
-            <div>
-              <NavLink to="/mincha" onClick={() => this.closeMenu()}>
-                <span className="bold-text-style navbar-text-color">
-                  Mincha
-                </span>
-              </NavLink>
-            </div>
-
-            <div>
-              <NavLink to="/maariv" onClick={() => this.closeMenu()}>
-                <span className="bold-text-style navbar-text-color">
-                  Maariv
-                </span>
-              </NavLink>
-            </div>
-
-            <div>
-              <NavLink to="/shacharit" onClick={() => this.closeMenu()}>
-                <span className="bold-text-style navbar-text-color">
-                  Shacharit
-                </span>
-              </NavLink>
-            </div>
-
-            <div>
-              <a
-                href={`mailto:${contactUsEmail}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={() => this.closeMenu()}
-              >
-                <span className="bold-text-style navbar-text-color">
-                  Contact Us
-                </span>
-              </a>
-            </div>
-
-            <div>
-              <NavLink
-                to="/"
-                onClick={() => {
-                  this.closeMenu();
-
-                  signOutThunk();
-                }}
-              >
-                <span className="bold-text-style navbar-text-color">
-                  Sign Out
-                </span>
-              </NavLink>
-            </div>
+              ) : (
+                <span className="navbar-text-color">Hello.</span>
+              )}
+            </NavLink>
           </div>
-        </Menu>
-      </div>
-    );
-  }
-}
+
+          {profile.isAdmin ? (
+            <div>
+              <NavLink to="/admin" onClick={() => closeMenu()}>
+                <span className="bold-text-style navbar-text-color">Admin</span>
+              </NavLink>
+            </div>
+          ) : null}
+
+          <div>
+            <NavLink to="/shabbat" onClick={() => closeMenu()}>
+              <span className="bold-text-style navbar-text-color">Shabbat</span>
+            </NavLink>
+          </div>
+
+          <div>
+            <NavLink to="/mincha" onClick={() => closeMenu()}>
+              <span className="bold-text-style navbar-text-color">Mincha</span>
+            </NavLink>
+          </div>
+
+          <div>
+            <NavLink to="/maariv" onClick={() => closeMenu()}>
+              <span className="bold-text-style navbar-text-color">Maariv</span>
+            </NavLink>
+          </div>
+
+          <div>
+            <NavLink to="/shacharit" onClick={() => closeMenu()}>
+              <span className="bold-text-style navbar-text-color">
+                Shacharit
+              </span>
+            </NavLink>
+          </div>
+
+          <div>
+            <a
+              href={`mailto:${contactUsEmail}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => closeMenu()}
+            >
+              <span className="bold-text-style navbar-text-color">
+                Contact Us
+              </span>
+            </a>
+          </div>
+
+          <div>
+            <NavLink
+              to="/"
+              onClick={() => {
+                closeMenu();
+
+                signOutThunk();
+              }}
+            >
+              <span className="bold-text-style navbar-text-color">
+                Sign Out
+              </span>
+            </NavLink>
+          </div>
+        </div>
+      </Menu>
+    </div>
+  );
+};
 
 // Container
 const mapDispatchToProps = dispatch => ({
