@@ -1,5 +1,5 @@
 // Imports
-import React, { PureComponent } from 'react';
+import React, { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -10,59 +10,55 @@ import SignedOutLinks from './SignedOutLinks';
 import SignedOutLinksBurger from './SignedOutLinksBurger';
 
 // Component
-class Navbar extends PureComponent {
-  state = {
-    width: 0,
+const Navbar = ({ auth, profile }) => {
+  const [width, setWidth] = useState(window.innerWidth);
+
+  const largeViewCheck = width > 1007;
+
+  const updateNavbarDimensions = () => {
+    setWidth(window.innerWidth);
   };
 
-  componentDidMount() {
-    this.updateWindowDimensions();
-    window.addEventListener('resize', this.updateWindowDimensions);
-  }
+  useEffect(() => {
+    updateNavbarDimensions();
+    window.addEventListener('resize', updateNavbarDimensions);
 
-  componentWillUnmount() {
-    window.removeEventListener('resize', this.updateWindowDimensions);
-  }
+    return () => {
+      window.removeEventListener('resize', updateNavbarDimensions);
+      updateNavbarDimensions();
+    };
+  }, [width]);
 
-  updateWindowDimensions = () => {
-    this.setState({ width: window.innerWidth });
-  };
+  let curLinks;
 
-  render() {
-    const { auth, profile } = this.props;
-
-    const largeViewCheck = this.state.width > 1007;
-    let curLinks;
-
-    if (auth.uid) {
-      if (largeViewCheck) {
-        curLinks = <SignedInLinks profile={profile} />;
-      } else {
-        curLinks = <SignedInLinksBurger profile={profile} />;
-      }
-    } else if (largeViewCheck) {
-      curLinks = <SignedOutLinks />;
+  if (auth.uid) {
+    if (largeViewCheck) {
+      curLinks = <SignedInLinks profile={profile} />;
     } else {
-      curLinks = <SignedOutLinksBurger />;
+      curLinks = <SignedInLinksBurger profile={profile} />;
     }
-
-    return (
-      <div className="navbar-fixed">
-        <nav className="nav-wrapper navbar-background-color">
-          <div>
-            <NavLink to="/" className="left brand-logo navbar-logo">
-              <span className="bold-text-style navbar-text-color">
-                {largeViewCheck ? 'Minyan Tracker' : 'MTracker'}
-              </span>
-            </NavLink>
-
-            {curLinks}
-          </div>
-        </nav>
-      </div>
-    );
+  } else if (largeViewCheck) {
+    curLinks = <SignedOutLinks />;
+  } else {
+    curLinks = <SignedOutLinksBurger />;
   }
-}
+
+  return (
+    <div className="navbar-fixed">
+      <nav className="nav-wrapper navbar-background-color">
+        <div>
+          <NavLink to="/" className="left brand-logo navbar-logo">
+            <span className="bold-text-style navbar-text-color">
+              {largeViewCheck ? 'Minyan Tracker' : 'MTracker'}
+            </span>
+          </NavLink>
+
+          {curLinks}
+        </div>
+      </nav>
+    </div>
+  );
+};
 
 // Container
 const mapStateToProps = state => ({

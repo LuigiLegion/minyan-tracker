@@ -1,7 +1,6 @@
 // Imports
 import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import PropTypes from 'prop-types';
 
 import Navbar from './components/layout/Navbar';
 import SignIn from './components/auth/SignIn';
@@ -15,7 +14,7 @@ import Shabbat from './components/services/Shabbat';
 import PageNotFound from './components/404/PageNotFound';
 
 // Component
-const App = props => {
+const App = () => {
   return (
     <BrowserRouter>
       <div className="App">
@@ -38,8 +37,3 @@ const App = props => {
 };
 
 export default App;
-
-// Prop Types
-App.propTypes = {
-  props: PropTypes.object,
-};

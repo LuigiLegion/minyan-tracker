@@ -1,5 +1,5 @@
 // Imports
-import React, { PureComponent } from 'react';
+import React, { useEffect } from 'react';
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { firestoreConnect } from 'react-redux-firebase';
@@ -8,45 +8,51 @@ import PropTypes from 'prop-types';
 
 import ShabbatCheckIn from '../check-ins/ShabbatCheckIn';
 import ServicesList from './ServicesList';
+import { usePrevious } from '../../helpers';
 import { getShabbatCheckInStatusesThunkCreator } from '../../store/reducers/shabbatCheckInReducer';
 import { getUsersShabbatAttendanceThunkCreator } from '../../store/reducers/shabbatAttendanceReducer';
 
 // Component
-class Shabbat extends PureComponent {
-  componentDidMount() {
-    this.props.getShabbatCheckInStatusesThunk();
-    this.props.getUsersShabbatAttendanceThunk();
-  }
+const Shabbat = ({
+  auth,
+  profile,
+  updates,
+  checkIn,
+  attendance,
+  getShabbatCheckInStatusesThunk,
+  getUsersShabbatAttendanceThunk,
+}) => {
+  const prevUpdates = usePrevious(updates);
 
-  componentDidUpdate(prevProps) {
+  useEffect(() => {
     if (
-      this.props.updates &&
-      prevProps.updates &&
-      this.props.updates.length !== prevProps.updates.length
+      !updates ||
+      (updates && prevUpdates && updates.length !== prevUpdates.length)
     ) {
-      this.props.getShabbatCheckInStatusesThunk();
-      this.props.getUsersShabbatAttendanceThunk();
+      getShabbatCheckInStatusesThunk();
+      getUsersShabbatAttendanceThunk();
     }
-  }
+  }, [
+    updates,
+    prevUpdates,
+    getShabbatCheckInStatusesThunk,
+    getUsersShabbatAttendanceThunk,
+  ]);
 
-  render() {
-    const { auth, profile, checkIn, attendance } = this.props;
+  if (!auth.uid) {
+    return <Redirect to="/signin" />;
+  } else {
+    return (
+      <div className="dashboard container">
+        <div className="row">
+          <ServicesList attendance={attendance} profile={profile} />
 
-    if (!auth.uid) {
-      return <Redirect to="/signin" />;
-    } else {
-      return (
-        <div className="dashboard container">
-          <div className="row">
-            <ServicesList attendance={attendance} profile={profile} />
-
-            <ShabbatCheckIn checkIn={checkIn} />
-          </div>
+          <ShabbatCheckIn checkIn={checkIn} />
         </div>
-      );
-    }
+      </div>
+    );
   }
-}
+};
 
 // Container
 const mapStateToProps = state => ({

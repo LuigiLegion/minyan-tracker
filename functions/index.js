@@ -25,6 +25,7 @@ exports.userJoined = functions.auth.user().onCreate(user => {
         congregation: newUser.congregation,
         timestamp: admin.firestore.FieldValue.serverTimestamp(),
       };
+
       return createNotification(newNotification);
     });
 });

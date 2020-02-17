@@ -8,7 +8,7 @@ const SingleService = ({ service }) => {
 
   return (
     <div className="section">
-      <div className="card z-depth-0">
+      <div className="card">
         <div className="card-content grey-text text-darken-3">
           <span className="card-title">
             <span className="bold-text-style">{`${day} ${type}`}</span>

@@ -1,5 +1,5 @@
 // Imports
-import React, { PureComponent } from 'react';
+import React, { useEffect } from 'react';
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { firestoreConnect } from 'react-redux-firebase';
@@ -8,45 +8,51 @@ import PropTypes from 'prop-types';
 
 import MinchaCheckIn from '../check-ins/MinchaCheckIn';
 import ServicesList from './ServicesList';
+import { usePrevious } from '../../helpers';
 import { getMinchaCheckInStatusesThunkCreator } from '../../store/reducers/minchaCheckInReducer';
 import { getUsersMinchaAttendanceThunkCreator } from '../../store/reducers/minchaAttendanceReducer';
 
 // Component
-class Mincha extends PureComponent {
-  componentDidMount() {
-    this.props.getMinchaCheckInStatusesThunk();
-    this.props.getUsersMinchaAttendanceThunk();
-  }
+const Mincha = ({
+  auth,
+  profile,
+  updates,
+  checkIn,
+  attendance,
+  getMinchaCheckInStatusesThunk,
+  getUsersMinchaAttendanceThunk,
+}) => {
+  const prevUpdates = usePrevious(updates);
 
-  componentDidUpdate(prevProps) {
+  useEffect(() => {
     if (
-      this.props.updates &&
-      prevProps.updates &&
-      this.props.updates.length !== prevProps.updates.length
+      !updates ||
+      (updates && prevUpdates && updates.length !== prevUpdates.length)
     ) {
-      this.props.getMinchaCheckInStatusesThunk();
-      this.props.getUsersMinchaAttendanceThunk();
+      getMinchaCheckInStatusesThunk();
+      getUsersMinchaAttendanceThunk();
     }
-  }
+  }, [
+    updates,
+    prevUpdates,
+    getMinchaCheckInStatusesThunk,
+    getUsersMinchaAttendanceThunk,
+  ]);
 
-  render() {
-    const { auth, profile, checkIn, attendance } = this.props;
+  if (!auth.uid) {
+    return <Redirect to="/signin" />;
+  } else {
+    return (
+      <div className="dashboard container">
+        <div className="row">
+          <ServicesList profile={profile} attendance={attendance} />
 
-    if (!auth.uid) {
-      return <Redirect to="/signin" />;
-    } else {
-      return (
-        <div className="dashboard container">
-          <div className="row">
-            <ServicesList profile={profile} attendance={attendance} />
-
-            <MinchaCheckIn checkIn={checkIn} />
-          </div>
+          <MinchaCheckIn checkIn={checkIn} />
         </div>
-      );
-    }
+      </div>
+    );
   }
-}
+};
 
 // Container
 const mapStateToProps = state => ({
