@@ -1,5 +1,5 @@
 // Imports
-import React, { PureComponent } from 'react';
+import React, { useEffect } from 'react';
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { firestoreConnect } from 'react-redux-firebase';
@@ -11,31 +11,24 @@ import Notifications from './Notifications';
 import { getUserDataThunkCreator } from '../../store/reducers/userReducer';
 
 // Component
-class Dashboard extends PureComponent {
-  componentDidMount() {
-    const { auth, getUserDataThunk } = this.props;
+const Dashboard = ({ auth, notifications, getUserDataThunk }) => {
+  // eslint-disable-next-line
+  useEffect(() => getUserDataThunk(auth.uid), []);
 
-    getUserDataThunk(auth.uid);
-  }
+  if (!auth.uid) {
+    return <Redirect to="/signin" />;
+  } else {
+    return (
+      <div className="dashboard container">
+        <div className="row">
+          <Welcome />
 
-  render() {
-    const { auth, notifications } = this.props;
-
-    if (!auth.uid) {
-      return <Redirect to="/signin" />;
-    } else {
-      return (
-        <div className="dashboard container">
-          <div className="row">
-            <Welcome />
-
-            <Notifications notifications={notifications} />
-          </div>
+          <Notifications notifications={notifications} />
         </div>
-      );
-    }
+      </div>
+    );
   }
-}
+};
 
 // Container
 const mapStateToProps = state => ({
