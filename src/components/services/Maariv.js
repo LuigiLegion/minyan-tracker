@@ -1,5 +1,5 @@
 // Imports
-import React, { PureComponent } from 'react';
+import React, { useEffect } from 'react';
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { firestoreConnect } from 'react-redux-firebase';
@@ -8,45 +8,51 @@ import PropTypes from 'prop-types';
 
 import MaarivCheckIn from '../check-ins/MaarivCheckIn';
 import ServicesList from './ServicesList';
+import { usePrevious } from '../../helpers';
 import { getMaarivCheckInStatusesThunkCreator } from '../../store/reducers/maarivCheckInReducer';
 import { getUsersMaarivAttendanceThunkCreator } from '../../store/reducers/maarivAttendanceReducer';
 
 // Component
-class Maariv extends PureComponent {
-  componentDidMount() {
-    this.props.getMaarivCheckInStatusesThunk();
-    this.props.getUsersMaarivAttendanceThunk();
-  }
+const Maariv = ({
+  auth,
+  profile,
+  updates,
+  checkIn,
+  attendance,
+  getMaarivCheckInStatusesThunk,
+  getUsersMaarivAttendanceThunk,
+}) => {
+  const prevUpdates = usePrevious(updates);
 
-  componentDidUpdate(prevProps) {
+  useEffect(() => {
     if (
-      this.props.updates &&
-      prevProps.updates &&
-      this.props.updates.length !== prevProps.updates.length
+      !updates ||
+      (updates && prevUpdates && updates.length !== prevUpdates.length)
     ) {
-      this.props.getMaarivCheckInStatusesThunk();
-      this.props.getUsersMaarivAttendanceThunk();
+      getMaarivCheckInStatusesThunk();
+      getUsersMaarivAttendanceThunk();
     }
-  }
+  }, [
+    updates,
+    prevUpdates,
+    getMaarivCheckInStatusesThunk,
+    getUsersMaarivAttendanceThunk,
+  ]);
 
-  render() {
-    const { auth, profile, checkIn, attendance } = this.props;
+  if (!auth.uid) {
+    return <Redirect to="/signin" />;
+  } else {
+    return (
+      <div className="dashboard container">
+        <div className="row">
+          <ServicesList profile={profile} attendance={attendance} />
 
-    if (!auth.uid) {
-      return <Redirect to="/signin" />;
-    } else {
-      return (
-        <div className="dashboard container">
-          <div className="row">
-            <ServicesList profile={profile} attendance={attendance} />
-
-            <MaarivCheckIn checkIn={checkIn} />
-          </div>
+          <MaarivCheckIn checkIn={checkIn} />
         </div>
-      );
-    }
+      </div>
+    );
   }
-}
+};
 
 // Container
 const mapStateToProps = state => ({
