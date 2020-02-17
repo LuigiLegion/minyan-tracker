@@ -8,7 +8,7 @@ import { burgerStyles } from '../../styles';
 
 // Component
 const SignedOutLinksBurger = () => {
-  const { menuOpen, setMenuOpen } = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   const handleStateChange = state => {
     setMenuOpen(state.isOpen);
