@@ -197,7 +197,7 @@ const SignUp = ({ auth, signUpAuthError, signUpThunk }) => {
             />
           </div>
 
-          <button className="btn waves-effect waves-light blue lighten-1 z-depth-0">
+          <button className="btn waves-effect waves-light blue lighten-1">
             Sign Up
           </button>
 

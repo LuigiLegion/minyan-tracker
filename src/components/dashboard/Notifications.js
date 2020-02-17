@@ -8,7 +8,7 @@ const Notifications = ({ notifications }) => {
   return (
     <div className="col s12 m5 offset-m1">
       <div className="section">
-        <div className="card z-depth-0">
+        <div className="card">
           <div className="card-content grey-text text-darken-3">
             <span className="card-title">
               <span className="bold-text-style">Notifications</span>

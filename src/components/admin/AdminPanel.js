@@ -40,7 +40,7 @@ const AdminPanel = ({
         <div className="row">
           <div className="col s12 m12">
             <div className="section">
-              <div className="card z-depth-0">
+              <div className="card">
                 <div className="card-content grey-text text-darken-3">
                   <span className="card-title">
                     <span className="bold-text-style">Admin Panel</span>
@@ -50,7 +50,7 @@ const AdminPanel = ({
                     <h5 className="grey-text text-darken-3">Attendance:</h5>
 
                     <button
-                      className="btn waves-effect waves-light blue lighten-1 z-depth-0 admin-reset-button"
+                      className="btn waves-effect waves-light blue lighten-1 admin-reset-button"
                       disabled={disabled}
                     >
                       Reset
