@@ -16,7 +16,10 @@ const SignIn = ({ auth, signInAuthError, signInThunk }) => {
   });
 
   const handleChange = event => {
-    setState({ ...state, [event.target.id]: event.target.value });
+    setState({
+      ...state,
+      [event.target.id]: event.target.value,
+    });
   };
 
   const handleSubmit = event => {

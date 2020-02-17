@@ -24,17 +24,26 @@ const SignUp = ({ auth, signUpAuthError, signUpThunk }) => {
   });
 
   const handleChange = event => {
-    setState({ ...state, [event.target.id]: event.target.value });
+    setState({
+      ...state,
+      [event.target.id]: event.target.value,
+    });
   };
 
   const handleSubmit = event => {
     event.preventDefault();
 
     if (state.accessToken === signupAccessToken) {
-      setState({ ...state, accessTokenError: false });
+      setState({
+        ...state,
+        accessTokenError: false,
+      });
       signUpThunk(state);
     } else {
-      setState({ ...state, accessTokenError: true });
+      setState({
+        ...state,
+        accessTokenError: true,
+      });
     }
   };
 
