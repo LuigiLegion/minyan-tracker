@@ -12,8 +12,11 @@ import { getUserDataThunkCreator } from '../../store/reducers/userReducer';
 
 // Component
 const Dashboard = ({ auth, notifications, getUserDataThunk }) => {
-  // eslint-disable-next-line
-  useEffect(() => getUserDataThunk(auth.uid), []);
+  useEffect(() => {
+    if (auth.uid) {
+      getUserDataThunk(auth.uid);
+    }
+  }, [auth, getUserDataThunk]);
 
   if (!auth.uid) {
     return <Redirect to="/signin" />;
