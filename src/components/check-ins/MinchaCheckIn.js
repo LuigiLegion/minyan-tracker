@@ -28,7 +28,6 @@ const MinchaCheckIn = ({ checkIn, updateMinchaCheckInStatusThunk }) => {
       const changeConfirmation = window.confirm(
         'Are you sure you want to change your check-in status?'
       );
-
       if (changeConfirmation) {
         updateMinchaCheckInStatusThunk(curDay, false);
       }

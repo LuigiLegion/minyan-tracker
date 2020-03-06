@@ -24,7 +24,6 @@ const AdminPanel = ({
     const resetConfirmation = window.confirm(
       'Are you sure you want to reset all users check-in status?'
     );
-
     if (resetConfirmation) {
       resetUsersAttendanceThunk(users);
     }

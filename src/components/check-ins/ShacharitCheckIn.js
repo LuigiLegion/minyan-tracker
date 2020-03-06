@@ -20,7 +20,6 @@ const ShacharitCheckIn = ({ checkIn, updateShacharitCheckInStatusThunk }) => {
       const changeConfirmation = window.confirm(
         'Are you sure you want to change your check-in status?'
       );
-
       if (changeConfirmation) {
         updateShacharitCheckInStatusThunk(curDay, false);
       }
