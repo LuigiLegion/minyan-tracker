@@ -20,7 +20,6 @@ const MaarivCheckIn = ({ checkIn, updateMaarivCheckInStatusThunk }) => {
       const changeConfirmation = window.confirm(
         'Are you sure you want to change your check-in status?'
       );
-
       if (changeConfirmation) {
         updateMaarivCheckInStatusThunk(curDay, false);
       }
