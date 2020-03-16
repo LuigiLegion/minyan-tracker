@@ -5,6 +5,7 @@ import { firestoreReducer } from 'redux-firestore';
 import authReducer from './reducers/authReducer';
 import userReducer from './reducers/userReducer';
 import adminReducer from './reducers/adminReducer';
+import pathReducer from './reducers/pathReducer';
 import shacharitAttendanceReducer from './reducers/shacharitAttendanceReducer';
 import minchaAttendanceReducer from './reducers/minchaAttendanceReducer';
 import maarivAttendanceReducer from './reducers/maarivAttendanceReducer';
@@ -20,6 +21,7 @@ const rootReducer = combineReducers({
   auth: authReducer,
   user: userReducer,
   admin: adminReducer,
+  path: pathReducer,
   shacharitAttendance: shacharitAttendanceReducer,
   minchaAttendance: minchaAttendanceReducer,
   maarivAttendance: maarivAttendanceReducer,

@@ -1,13 +1,14 @@
 /* eslint-disable react/button-has-type */
 
 // Imports
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Redirect, NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { firestoreConnect } from 'react-redux-firebase';
 import { compose } from 'redux';
 import PropTypes from 'prop-types';
 
+import { gotPathActionCreator } from '../../store/reducers/pathReducer';
 import { resetUsersAttendanceThunkCreator } from '../../store/reducers/adminReducer';
 
 // Component
@@ -16,8 +17,15 @@ const AdminPanel = ({
   profile,
   users,
   disabled,
+  gotPathAction,
   resetUsersAttendanceThunk,
 }) => {
+  const curPath = window.location.pathname;
+
+  useEffect(() => {
+    gotPathAction(curPath);
+  }, [curPath, gotPathAction]);
+
   const handleSubmit = event => {
     event.preventDefault();
 
@@ -86,6 +94,9 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
+  gotPathAction(path) {
+    dispatch(gotPathActionCreator(path));
+  },
   resetUsersAttendanceThunk(users) {
     dispatch(resetUsersAttendanceThunkCreator(users));
   },
@@ -109,5 +120,6 @@ AdminPanel.propTypes = {
   profile: PropTypes.object,
   users: PropTypes.array,
   disabled: PropTypes.bool,
+  gotPathAction: PropTypes.func,
   resetUsersAttendanceThunk: PropTypes.func,
 };
