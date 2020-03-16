@@ -1,26 +1,44 @@
-import { composeWithDevTools } from 'redux-devtools-extension';
 import { applyMiddleware, createStore } from 'redux';
 import thunkMiddleware from 'redux-thunk';
-import { getFirebase, reactReduxFirebase } from 'react-redux-firebase';
-import { getFirestore, reduxFirestore } from 'redux-firestore';
 import { createLogger } from 'redux-logger';
+import { composeWithDevTools } from 'redux-devtools-extension';
+import {
+  createFirestoreInstance,
+  reduxFirestore,
+  getFirestore,
+} from 'redux-firestore';
+import { getFirebase } from 'react-redux-firebase';
 
-import firebase from '../config/fbConfig';
+import firebase from 'firebase/app';
+import 'firebase/auth';
+import 'firebase/firestore';
+
+import fbConfig from '../config/fbConfig';
 import rootReducer from './rootReducer';
+
+const rrfConfig = {
+  userProfile: 'users',
+  useFirestoreForProfile: true,
+};
+
+firebase.initializeApp(fbConfig);
+export const db = firebase.firestore();
 
 const middleware = composeWithDevTools(
   applyMiddleware(
     thunkMiddleware.withExtraArgument({ getFirebase, getFirestore }),
     createLogger({ collapsed: true })
   ),
-  reduxFirestore(firebase),
-  reactReduxFirebase(firebase, {
-    useFirestoreForProfile: true,
-    userProfile: 'users',
-    attachAuthIsReady: true,
-  })
+  reduxFirestore(firebase, fbConfig)
 );
 
 const store = createStore(rootReducer, middleware);
+
+export const rrfProps = {
+  firebase,
+  config: rrfConfig,
+  dispatch: store.dispatch,
+  createFirestoreInstance,
+};
 
 export default store;
