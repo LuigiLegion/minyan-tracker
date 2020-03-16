@@ -9,6 +9,7 @@ import PropTypes from 'prop-types';
 import ShabbatCheckIn from '../check-ins/ShabbatCheckIn';
 import ServicesList from './ServicesList';
 import { usePrevious } from '../../helpers';
+import { gotPathActionCreator } from '../../store/reducers/pathReducer';
 import { getShabbatCheckInStatusesThunkCreator } from '../../store/reducers/shabbatCheckInReducer';
 import { getUsersShabbatAttendanceThunkCreator } from '../../store/reducers/shabbatAttendanceReducer';
 
@@ -17,24 +18,32 @@ const Shabbat = ({
   auth,
   profile,
   updates,
+  path,
   checkIn,
   attendance,
+  gotPathAction,
   getShabbatCheckInStatusesThunk,
   getUsersShabbatAttendanceThunk,
 }) => {
   const prevUpdates = usePrevious(updates);
+  const curPath = window.location.pathname;
 
   useEffect(() => {
     if (
       !updates ||
+      path !== curPath ||
       (updates && prevUpdates && updates.length !== prevUpdates.length)
     ) {
+      gotPathAction(curPath);
       getShabbatCheckInStatusesThunk();
       getUsersShabbatAttendanceThunk();
     }
   }, [
     updates,
     prevUpdates,
+    path,
+    curPath,
+    gotPathAction,
     getShabbatCheckInStatusesThunk,
     getUsersShabbatAttendanceThunk,
   ]);
@@ -59,11 +68,15 @@ const mapStateToProps = state => ({
   auth: state.firebase.auth,
   profile: state.firebase.profile,
   updates: state.firestore.ordered.updates,
+  path: state.path.path,
   checkIn: state.shabbatCheckIn,
   attendance: state.shabbatAttendance,
 });
 
 const mapDispatchToProps = dispatch => ({
+  gotPathAction(path) {
+    dispatch(gotPathActionCreator(path));
+  },
   getShabbatCheckInStatusesThunk() {
     dispatch(getShabbatCheckInStatusesThunkCreator());
   },
@@ -90,8 +103,10 @@ Shabbat.propTypes = {
   auth: PropTypes.object,
   profile: PropTypes.object,
   updates: PropTypes.array,
+  path: PropTypes.string,
   checkIn: PropTypes.object,
   attendance: PropTypes.object,
+  gotPathAction: PropTypes.func,
   getShabbatCheckInStatusesThunk: PropTypes.func,
   getUsersShabbatAttendanceThunk: PropTypes.func,
 };
