@@ -8,15 +8,24 @@ import PropTypes from 'prop-types';
 
 import Welcome from './Welcome';
 import Notifications from './Notifications';
+import { gotPathActionCreator } from '../../store/reducers/pathReducer';
 import { getUserDataThunkCreator } from '../../store/reducers/userReducer';
 
 // Component
-const Dashboard = ({ auth, notifications, getUserDataThunk }) => {
+const Dashboard = ({
+  auth,
+  notifications,
+  gotPathAction,
+  getUserDataThunk,
+}) => {
+  const curPath = window.location.pathname;
+
   useEffect(() => {
     if (auth.uid) {
+      gotPathAction(curPath);
       getUserDataThunk(auth.uid);
     }
-  }, [auth, getUserDataThunk]);
+  }, [auth, curPath, gotPathAction, getUserDataThunk]);
 
   if (!auth.uid) {
     return <Redirect to="/signin" />;
@@ -40,6 +49,9 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
+  gotPathAction(path) {
+    dispatch(gotPathActionCreator(path));
+  },
   getUserDataThunk(userId) {
     dispatch(getUserDataThunkCreator(userId));
   },
@@ -63,5 +75,6 @@ export default compose(
 Dashboard.propTypes = {
   auth: PropTypes.object,
   notifications: PropTypes.array,
+  gotPathAction: PropTypes.func,
   getUserDataThunk: PropTypes.func,
 };
