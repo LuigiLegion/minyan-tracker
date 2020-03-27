@@ -1,3 +1,4 @@
+// Imports
 import { applyMiddleware, createStore } from 'redux';
 import thunkMiddleware from 'redux-thunk';
 import { createLogger } from 'redux-logger';
@@ -16,6 +17,7 @@ import 'firebase/firestore';
 import fbConfig from '../config/fbConfig';
 import rootReducer from './rootReducer';
 
+// Initializations
 const rrfConfig = {
   userProfile: 'users',
   useFirestoreForProfile: true,

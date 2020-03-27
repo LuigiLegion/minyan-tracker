@@ -1,3 +1,4 @@
+// Imports
 import { combineReducers } from 'redux';
 import { firebaseReducer } from 'react-redux-firebase';
 import { firestoreReducer } from 'redux-firestore';
@@ -15,6 +16,7 @@ import minchaCheckInReducer from './reducers/minchaCheckInReducer';
 import maarivCheckInReducer from './reducers/maarivCheckInReducer';
 import shabbatCheckInReducer from './reducers/shabbatCheckInReducer';
 
+// Initializations
 const rootReducer = combineReducers({
   firebase: firebaseReducer,
   firestore: firestoreReducer,
