@@ -47,10 +47,10 @@ const AdminPanel = ({
         <div className="row">
           <div className="col s12 m12">
             <div className="section">
-              <div className="card">
+              <div className="card grey lighten-5">
                 <div className="card-content grey-text text-darken-3">
                   <span className="card-title">
-                    <span className="bold-text-style">Admin Panel</span>
+                    <span className="text-style-bold">Admin Panel</span>
                   </span>
 
                   <form className="admin-form" onSubmit={handleSubmit}>
@@ -69,7 +69,7 @@ const AdminPanel = ({
                   <ul>
                     <li>
                       <NavLink to="/">
-                        <span className="bold-text-style">
+                        <span className="text-style-bold">
                           ← Back To Main Page
                         </span>
                       </NavLink>

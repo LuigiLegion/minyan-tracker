@@ -29,14 +29,14 @@ const MaarivCheckIn = ({ checkIn, updateMaarivCheckInStatusThunk }) => {
   return (
     <div className="col s12 m5 offset-m1">
       <div className="section">
-        <div className="card">
+        <div className="card grey lighten-5">
           <div className="card-content grey-text text-darken-3">
             <span className="card-title">
-              <span className="bold-text-style">Check-In</span>
+              <span className="text-style-bold">Check-In</span>
             </span>
 
             <form className="check-in-form">
-              <div className="bold-text-style blue-text-color">
+              <div className="text-style-bold text-color-blue">
                 Maariv Services
               </div>
 
@@ -48,12 +48,12 @@ const MaarivCheckIn = ({ checkIn, updateMaarivCheckInStatusThunk }) => {
                     type="checkbox"
                     value="sunday"
                     checked={sunday}
-                    onChange={event => handleChange(event)}
+                    onChange={handleChange}
                   />
 
-                  <span className="gray-text-color">
-                    Sunday{' '}
-                    <span className="bold-text-style italic-text-style">
+                  <span className="text-color-gray">
+                    {'Sunday '}
+                    <span className="text-style-bold text-style-italic">
                       Maariv
                     </span>
                   </span>
@@ -66,12 +66,12 @@ const MaarivCheckIn = ({ checkIn, updateMaarivCheckInStatusThunk }) => {
                     type="checkbox"
                     value="monday"
                     checked={monday}
-                    onChange={event => handleChange(event)}
+                    onChange={handleChange}
                   />
 
-                  <span className="gray-text-color">
-                    Monday{' '}
-                    <span className="bold-text-style italic-text-style">
+                  <span className="text-color-gray">
+                    {'Monday '}
+                    <span className="text-style-bold text-style-italic">
                       Maariv
                     </span>
                   </span>
@@ -84,12 +84,12 @@ const MaarivCheckIn = ({ checkIn, updateMaarivCheckInStatusThunk }) => {
                     type="checkbox"
                     value="tuesday"
                     checked={tuesday}
-                    onChange={event => handleChange(event)}
+                    onChange={handleChange}
                   />
 
-                  <span className="gray-text-color">
-                    Tuesday{' '}
-                    <span className="bold-text-style italic-text-style">
+                  <span className="text-color-gray">
+                    {'Tuesday '}
+                    <span className="text-style-bold text-style-italic">
                       Maariv
                     </span>
                   </span>
@@ -102,12 +102,12 @@ const MaarivCheckIn = ({ checkIn, updateMaarivCheckInStatusThunk }) => {
                     type="checkbox"
                     value="wednesday"
                     checked={wednesday}
-                    onChange={event => handleChange(event)}
+                    onChange={handleChange}
                   />
 
-                  <span className="gray-text-color">
-                    Wednesday{' '}
-                    <span className="bold-text-style italic-text-style">
+                  <span className="text-color-gray">
+                    {'Wednesday '}
+                    <span className="text-style-bold text-style-italic">
                       Maariv
                     </span>
                   </span>
@@ -120,12 +120,12 @@ const MaarivCheckIn = ({ checkIn, updateMaarivCheckInStatusThunk }) => {
                     type="checkbox"
                     value="thursday"
                     checked={thursday}
-                    onChange={event => handleChange(event)}
+                    onChange={handleChange}
                   />
 
-                  <span className="gray-text-color">
-                    Thursday{' '}
-                    <span className="bold-text-style italic-text-style">
+                  <span className="text-color-gray">
+                    {'Thursday '}
+                    <span className="text-style-bold text-style-italic">
                       Maariv
                     </span>
                   </span>
@@ -138,12 +138,12 @@ const MaarivCheckIn = ({ checkIn, updateMaarivCheckInStatusThunk }) => {
                     type="checkbox"
                     value="saturday"
                     checked={saturday}
-                    onChange={event => handleChange(event)}
+                    onChange={handleChange}
                   />
 
-                  <span className="gray-text-color">
-                    Saturday{' '}
-                    <span className="bold-text-style italic-text-style">
+                  <span className="text-color-gray">
+                    {'Saturday '}
+                    <span className="text-style-bold text-style-italic">
                       Maariv
                     </span>
                   </span>

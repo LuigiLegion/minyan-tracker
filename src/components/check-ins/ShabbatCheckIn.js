@@ -29,14 +29,14 @@ const ShabbatCheckIn = ({ checkIn, updateShabbatCheckInStatusThunk }) => {
   return (
     <div className="col s12 m5 offset-m1">
       <div className="section">
-        <div className="card">
+        <div className="card grey lighten-5">
           <div className="card-content grey-text text-darken-3">
             <span className="card-title">
-              <span className="bold-text-style">Check-In</span>
+              <span className="text-style-bold">Check-In</span>
             </span>
 
             <form className="check-in-form">
-              <div className="bold-text-style blue-text-color">
+              <div className="text-style-bold text-color-blue">
                 Shabbat Services
               </div>
 
@@ -48,12 +48,12 @@ const ShabbatCheckIn = ({ checkIn, updateShabbatCheckInStatusThunk }) => {
                     type="checkbox"
                     value="friday"
                     checked={friday}
-                    onChange={event => handleChange(event)}
+                    onChange={handleChange}
                   />
 
-                  <span className="gray-text-color">
-                    Friday{' '}
-                    <span className="bold-text-style italic-text-style">
+                  <span className="text-color-gray">
+                    {'Friday '}
+                    <span className="text-style-bold text-style-italic">
                       Maariv
                     </span>
                   </span>
@@ -66,12 +66,12 @@ const ShabbatCheckIn = ({ checkIn, updateShabbatCheckInStatusThunk }) => {
                     type="checkbox"
                     value="saturday"
                     checked={saturday}
-                    onChange={event => handleChange(event)}
+                    onChange={handleChange}
                   />
 
-                  <span className="gray-text-color">
-                    Saturday{' '}
-                    <span className="bold-text-style italic-text-style">
+                  <span className="text-color-gray">
+                    {'Saturday '}
+                    <span className="text-style-bold text-style-italic">
                       Shacharit
                     </span>
                   </span>
