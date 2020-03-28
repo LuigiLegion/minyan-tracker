@@ -107,7 +107,10 @@ const maarivCheckInReducer = (state = initialState, action) => {
       };
 
     case UPDATED_MAARIV_CHECK_IN_STATUS:
-      return { ...state, [action.day]: action.status };
+      return {
+        ...state,
+        [action.day]: action.status,
+      };
 
     default:
       return state;
