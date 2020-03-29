@@ -8,35 +8,33 @@ const Notifications = ({ notifications }) => {
   return (
     <div className="col s12 m5 offset-m1">
       <div className="section">
-        <div className="card">
+        <div className="card grey lighten-5">
           <div className="card-content grey-text text-darken-3">
             <span className="card-title">
-              <span className="bold-text-style">Notifications</span>
+              <span className="text-style-bold">Notifications</span>
             </span>
 
             <ul className="notifications">
               {notifications &&
-                notifications.map(curNotification => {
-                  return (
-                    <li key={curNotification.id}>
-                      <span className="blue-text-color">
-                        <span className="bold-text-style">
-                          {curNotification.user}
-                        </span>
+                notifications.map(curNotification => (
+                  <li key={curNotification.id}>
+                    <span className="text-color-blue">
+                      <span className="text-style-bold">
+                        {curNotification.user}
                       </span>
+                    </span>
 
-                      <span>{curNotification.content}</span>
+                    <span>{curNotification.content}</span>
 
-                      <span className="bold-text-style">
-                        {curNotification.congregation}
-                      </span>
+                    <span className="text-style-bold">
+                      {curNotification.congregation}
+                    </span>
 
-                      <div className="grey-text note-date">
-                        {moment(curNotification.timestamp.toDate()).fromNow()}
-                      </div>
-                    </li>
-                  );
-                })}
+                    <div className="grey-text note-date">
+                      {moment(curNotification.timestamp.toDate()).fromNow()}
+                    </div>
+                  </li>
+                ))}
             </ul>
           </div>
         </div>

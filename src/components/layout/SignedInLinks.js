@@ -13,45 +13,41 @@ const SignedInLinks = ({ profile, signOutThunk }) => {
     <ul className="right">
       <li>
         <NavLink to="/">
-          {profile.firstName ? (
-            <span className="navbar-text-color">
-              Hello, {profile.firstName}.
-            </span>
-          ) : (
-            <span className="navbar-text-color">Hello.</span>
-          )}
+          <span className="navbar-text-color">
+            {`Hello${profile.firstName ? ', ' + profile.firstName : ''}.`}
+          </span>
         </NavLink>
       </li>
 
       {profile.isAdmin ? (
         <li>
           <NavLink to="/admin">
-            <span className="bold-text-style navbar-text-color">Admin</span>
+            <span className="text-style-bold navbar-text-color">Admin</span>
           </NavLink>
         </li>
       ) : null}
 
       <li>
         <NavLink to="/shabbat">
-          <span className="bold-text-style navbar-text-color">Shabbat</span>
+          <span className="text-style-bold navbar-text-color">Shabbat</span>
         </NavLink>
       </li>
 
       <li>
         <NavLink to="/mincha">
-          <span className="bold-text-style navbar-text-color">Mincha</span>
+          <span className="text-style-bold navbar-text-color">Mincha</span>
         </NavLink>
       </li>
 
       <li>
         <NavLink to="/maariv">
-          <span className="bold-text-style navbar-text-color">Maariv</span>
+          <span className="text-style-bold navbar-text-color">Maariv</span>
         </NavLink>
       </li>
 
       <li>
         <NavLink to="/shacharit">
-          <span className="bold-text-style navbar-text-color">Shacharit</span>
+          <span className="text-style-bold navbar-text-color">Shacharit</span>
         </NavLink>
       </li>
 
@@ -61,13 +57,13 @@ const SignedInLinks = ({ profile, signOutThunk }) => {
           target="_blank"
           rel="noopener noreferrer"
         >
-          <span className="bold-text-style navbar-text-color">Contact Us</span>
+          <span className="text-style-bold navbar-text-color">Contact Us</span>
         </a>
       </li>
 
       <li>
         <NavLink to="/" onClick={signOutThunk}>
-          <span className="bold-text-style navbar-text-color">Sign Out</span>
+          <span className="text-style-bold navbar-text-color">Sign Out</span>
         </NavLink>
       </li>
     </ul>

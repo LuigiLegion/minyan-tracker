@@ -22,91 +22,80 @@ const SignedInLinksBurger = ({ profile, signOutThunk }) => {
   };
 
   return (
-    <div>
-      <Menu
-        isOpen={menuOpen}
-        onStateChange={state => handleStateChange(state)}
-        right
-        width="50%"
-        styles={burgerStyles}
-      >
-        <div className="remove-outline">
-          <div>
-            <NavLink to="/" onClick={() => closeMenu()}>
-              {profile.firstName ? (
-                <span className="navbar-text-color">
-                  Hello, {profile.firstName}.
-                </span>
-              ) : (
-                <span className="navbar-text-color">Hello.</span>
-              )}
-            </NavLink>
-          </div>
-
-          {profile.isAdmin ? (
-            <div>
-              <NavLink to="/admin" onClick={() => closeMenu()}>
-                <span className="bold-text-style navbar-text-color">Admin</span>
-              </NavLink>
-            </div>
-          ) : null}
-
-          <div>
-            <NavLink to="/shabbat" onClick={() => closeMenu()}>
-              <span className="bold-text-style navbar-text-color">Shabbat</span>
-            </NavLink>
-          </div>
-
-          <div>
-            <NavLink to="/mincha" onClick={() => closeMenu()}>
-              <span className="bold-text-style navbar-text-color">Mincha</span>
-            </NavLink>
-          </div>
-
-          <div>
-            <NavLink to="/maariv" onClick={() => closeMenu()}>
-              <span className="bold-text-style navbar-text-color">Maariv</span>
-            </NavLink>
-          </div>
-
-          <div>
-            <NavLink to="/shacharit" onClick={() => closeMenu()}>
-              <span className="bold-text-style navbar-text-color">
-                Shacharit
-              </span>
-            </NavLink>
-          </div>
-
-          <div>
-            <a
-              href={`mailto:${contactUsEmail}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={() => closeMenu()}
-            >
-              <span className="bold-text-style navbar-text-color">
-                Contact Us
-              </span>
-            </a>
-          </div>
-
-          <div>
-            <NavLink
-              to="/"
-              onClick={() => {
-                closeMenu();
-
-                signOutThunk();
-              }}
-            >
-              <span className="bold-text-style navbar-text-color">
-                Sign Out
-              </span>
-            </NavLink>
-          </div>
+    <Menu
+      styles={burgerStyles}
+      isOpen={menuOpen}
+      right
+      width="50%"
+      onStateChange={state => handleStateChange(state)}
+    >
+      <div className="remove-outline">
+        <div>
+          <NavLink to="/" onClick={closeMenu}>
+            <span className="navbar-text-color">
+              {`Hello${profile.firstName ? ', ' + profile.firstName : ''}.`}
+            </span>
+          </NavLink>
         </div>
-      </Menu>
-    </div>
+
+        {profile.isAdmin ? (
+          <div>
+            <NavLink to="/admin" onClick={closeMenu}>
+              <span className="text-style-bold navbar-text-color">Admin</span>
+            </NavLink>
+          </div>
+        ) : null}
+
+        <div>
+          <NavLink to="/shabbat" onClick={closeMenu}>
+            <span className="text-style-bold navbar-text-color">Shabbat</span>
+          </NavLink>
+        </div>
+
+        <div>
+          <NavLink to="/mincha" onClick={closeMenu}>
+            <span className="text-style-bold navbar-text-color">Mincha</span>
+          </NavLink>
+        </div>
+
+        <div>
+          <NavLink to="/maariv" onClick={closeMenu}>
+            <span className="text-style-bold navbar-text-color">Maariv</span>
+          </NavLink>
+        </div>
+
+        <div>
+          <NavLink to="/shacharit" onClick={closeMenu}>
+            <span className="text-style-bold navbar-text-color">Shacharit</span>
+          </NavLink>
+        </div>
+
+        <div>
+          <a
+            href={`mailto:${contactUsEmail}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={closeMenu}
+          >
+            <span className="text-style-bold navbar-text-color">
+              Contact Us
+            </span>
+          </a>
+        </div>
+
+        <div>
+          <NavLink
+            to="/"
+            onClick={() => {
+              closeMenu();
+              signOutThunk();
+            }}
+          >
+            <span className="text-style-bold navbar-text-color">Sign Out</span>
+          </NavLink>
+        </div>
+      </div>
+    </Menu>
   );
 };
 
