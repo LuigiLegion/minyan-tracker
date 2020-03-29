@@ -9,7 +9,7 @@ import PropTypes from 'prop-types';
 import { signInThunkCreator } from '../../store/reducers/authReducer';
 
 // Component
-const SignIn = ({ auth, signInAuthError, signInThunk }) => {
+const SignIn = ({ auth, signInError, signInThunk }) => {
   const [state, setState] = useState({
     email: '',
     password: '',
@@ -33,33 +33,33 @@ const SignIn = ({ auth, signInAuthError, signInThunk }) => {
   } else {
     return (
       <div className="container">
-        <form className="card white" onSubmit={handleSubmit}>
+        <form className="card grey lighten-5" onSubmit={handleSubmit}>
           <h5 className="grey-text text-darken-3">Sign In</h5>
 
           <div className="input-field">
             <label htmlFor="email">
-              Email<span className="red-text-color">*</span>
+              Email<span className="text-color-red">*</span>
             </label>
 
             <input
               type="email"
               id="email"
+              autoComplete="current-email"
               required
-              autoComplete="username"
               onChange={handleChange}
             />
           </div>
 
           <div className="input-field">
             <label htmlFor="password">
-              Password<span className="red-text-color">*</span>
+              Password<span className="text-color-red">*</span>
             </label>
 
             <input
               type="password"
               id="password"
-              required
               autoComplete="current-password"
+              required
               onChange={handleChange}
             />
           </div>
@@ -70,8 +70,8 @@ const SignIn = ({ auth, signInAuthError, signInThunk }) => {
             </button>
           </div>
 
-          <div className="red-text-color bold-text-style center">
-            {signInAuthError ? <p>{signInAuthError}</p> : null}
+          <div className="text-color-red text-style-bold center">
+            {signInError ? <div>{signInError}</div> : null}
           </div>
         </form>
       </div>
@@ -82,7 +82,7 @@ const SignIn = ({ auth, signInAuthError, signInThunk }) => {
 // Container
 const mapStateToProps = state => ({
   auth: state.firebase.auth,
-  signInAuthError: state.auth.signInAuthError,
+  signInError: state.auth.signInError,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -99,6 +99,6 @@ export default connect(
 // Prop Types
 SignIn.propTypes = {
   auth: PropTypes.object,
-  signInAuthError: PropTypes.string,
+  signInError: PropTypes.string,
   signInThunk: PropTypes.func,
 };
