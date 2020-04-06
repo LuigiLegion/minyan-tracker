@@ -43,4 +43,5 @@ export const rrfProps = {
   createFirestoreInstance,
 };
 
+// Exports
 export default store;

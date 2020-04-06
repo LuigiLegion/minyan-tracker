@@ -34,4 +34,5 @@ const rootReducer = combineReducers({
   shabbatCheckIn: shabbatCheckInReducer,
 });
 
+// Exports
 export default rootReducer;
