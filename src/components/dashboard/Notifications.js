@@ -30,7 +30,7 @@ const Notifications = ({ notifications }) => {
                       {curNotification.congregation}
                     </span>
 
-                    <div className="grey-text note-date">
+                    <div className="grey-text">
                       {moment(curNotification.timestamp.toDate()).fromNow()}
                     </div>
                   </li>
