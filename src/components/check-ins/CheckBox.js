@@ -11,12 +11,12 @@ const CheckBox = ({ value, checked, handleChange, day, type }) => {
           type="checkbox"
           value={value}
           checked={checked}
-          onChange={event => handleChange(event)}
+          onChange={handleChange}
         />
 
-        <span className="gray-text-color">
+        <span className="text-color-gray">
           {`${day} `}
-          <span className="bold-text-style italic-text-style">{type}</span>
+          <span className="text-style-bold text-style-italic">{type}</span>
         </span>
       </label>
     </div>

@@ -107,7 +107,10 @@ const shacharitCheckInReducer = (state = initialState, action) => {
       };
 
     case UPDATED_SHACHARIT_CHECK_IN_STATUS:
-      return { ...state, [action.day]: action.status };
+      return {
+        ...state,
+        [action.day]: action.status,
+      };
 
     default:
       return state;

@@ -11,7 +11,7 @@ import signupAccessToken from '../../config/signupConfig';
 import contactUsEmail from '../../config/emailConfig';
 
 // Component
-const SignUp = ({ auth, signUpAuthError, signUpThunk }) => {
+const SignUp = ({ auth, signUpError, signUpThunk }) => {
   const [state, setState] = useState({
     email: '',
     password: '',
@@ -52,82 +52,84 @@ const SignUp = ({ auth, signUpAuthError, signUpThunk }) => {
   } else {
     return (
       <div className="container">
-        <form className="card white" onSubmit={handleSubmit}>
+        <form className="card grey lighten-5" onSubmit={handleSubmit}>
           <h5 className="grey-text text-darken-3">Sign Up</h5>
 
           <div className="input-field">
             <label htmlFor="email">
-              Email<span className="red-text-color">*</span>
+              Email<span className="text-color-red">*</span>
             </label>
 
             <input
               type="email"
               id="email"
-              required
-              autoComplete="username"
               pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
               title="Example: cody@email.com"
+              autoComplete="email"
+              required
               onChange={handleChange}
             />
           </div>
 
           <div className="input-field">
             <label htmlFor="password">
-              Password<span className="red-text-color">*</span>
+              Password<span className="text-color-red">*</span>
             </label>
 
             <input
               type="password"
               id="password"
-              required
-              autoComplete="current-password"
               pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,32}"
               title="May only contain one uppercase letter, one lowercase letter, one digit, and at least 8 characters in total"
+              autoComplete="password"
+              required
               onChange={handleChange}
             />
           </div>
 
           <div className="input-field">
             <label htmlFor="firstName">
-              First Name<span className="red-text-color">*</span>
+              First Name<span className="text-color-red">*</span>
             </label>
 
             <input
               type="text"
               id="firstName"
-              required
               pattern="[A-Za-z]{2,32}"
               title="May only contain uppercase and lowercase letters, and at least 2 characters in total"
+              autoComplete="first-name"
+              required
               onChange={handleChange}
             />
           </div>
 
           <div className="input-field">
             <label htmlFor="lastName">
-              Last Name<span className="red-text-color">*</span>
+              Last Name<span className="text-color-red">*</span>
             </label>
 
             <input
               type="text"
               id="lastName"
-              required
               pattern="[A-Za-z]{2,32}"
               title="May only contain uppercase and lowercase letters, and at least 2 characters in total"
+              autoComplete="last-name"
+              required
               onChange={handleChange}
             />
           </div>
 
           <div className="input-field col s12">
             <label htmlFor="gender">
-              Gender<span className="red-text-color">*</span>
+              Gender<span className="text-color-red">*</span>
             </label>
 
             <br />
             <br />
 
             <select
-              id="gender"
               className="browser-default"
+              id="gender"
               required
               onChange={handleChange}
             >
@@ -143,15 +145,15 @@ const SignUp = ({ auth, signUpAuthError, signUpThunk }) => {
 
           <div className="input-field col s12">
             <label htmlFor="congregation">
-              Congregation<span className="red-text-color">*</span>
+              Congregation<span className="text-color-red">*</span>
             </label>
 
             <br />
             <br />
 
             <select
-              id="congregation"
               className="browser-default"
+              id="congregation"
               required
               onChange={handleChange}
             >
@@ -174,34 +176,33 @@ const SignUp = ({ auth, signUpAuthError, signUpThunk }) => {
             </select>
           </div>
 
-          <div className="gray-text-color">
+          <div className="text-color-gray">
             Is your congregation not on the list?
           </div>
-          <div className="gray-text-color">
-            {' '}
-            Contact us{' '}
+          <div className="text-color-gray">
+            {' Contact us '}
             <a
+              className="text-style-bold"
               href={`mailto:${contactUsEmail}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="bold-text-style"
             >
               here
-            </a>{' '}
-            to add it!
+            </a>
+            {' to add it! '}
           </div>
 
           <div className="input-field">
             <label htmlFor="accessToken">
-              Access Token<span className="red-text-color">*</span>
+              Access Token<span className="text-color-red">*</span>
             </label>
 
             <input
               type="text"
               id="accessToken"
+              title="Must match the access token you received via email invitation"
+              autoComplete="access-token"
               required
-              title="Must
-                match the access token you received via email invitation"
               onChange={handleChange}
             />
           </div>
@@ -210,11 +211,11 @@ const SignUp = ({ auth, signUpAuthError, signUpThunk }) => {
             Sign Up
           </button>
 
-          <div className="red-text-color bold-text-style center">
-            {signUpAuthError ? (
-              <p>{signUpAuthError}</p>
+          <div className="text-color-red text-style-bold center">
+            {signUpError ? (
+              <div>{signUpError}</div>
             ) : state.accessTokenError ? (
-              <p>Invalid access token! Please try again.</p>
+              <div>Invalid access token! Please try again.</div>
             ) : null}
           </div>
         </form>
@@ -226,7 +227,7 @@ const SignUp = ({ auth, signUpAuthError, signUpThunk }) => {
 // Container
 const mapStateToProps = state => ({
   auth: state.firebase.auth,
-  signUpAuthError: state.auth.signUpAuthError,
+  signUpError: state.auth.signUpError,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -243,6 +244,6 @@ export default connect(
 // Prop Types
 SignUp.propTypes = {
   auth: PropTypes.object,
-  signUpAuthError: PropTypes.string,
+  signUpError: PropTypes.string,
   signUpThunk: PropTypes.func,
 };

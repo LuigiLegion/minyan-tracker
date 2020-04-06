@@ -30,13 +30,10 @@ const Navbar = ({ auth, profile }) => {
   }, [width]);
 
   let curLinks;
-
-  if (auth.uid) {
-    if (largeViewCheck) {
-      curLinks = <SignedInLinks profile={profile} />;
-    } else {
-      curLinks = <SignedInLinksBurger profile={profile} />;
-    }
+  if (auth.uid && largeViewCheck) {
+    curLinks = <SignedInLinks profile={profile} />;
+  } else if (auth.uid) {
+    curLinks = <SignedInLinksBurger profile={profile} />;
   } else if (largeViewCheck) {
     curLinks = <SignedOutLinks />;
   } else {
@@ -47,8 +44,8 @@ const Navbar = ({ auth, profile }) => {
     <div className="navbar-fixed">
       <nav className="nav-wrapper navbar-background-color">
         <div>
-          <NavLink to="/" className="left brand-logo navbar-logo">
-            <span className="bold-text-style navbar-text-color">
+          <NavLink to="/" className="left navbar-logo">
+            <span className="text-style-bold navbar-text-color">
               {largeViewCheck ? 'Minyan Tracker' : 'MTracker'}
             </span>
           </NavLink>

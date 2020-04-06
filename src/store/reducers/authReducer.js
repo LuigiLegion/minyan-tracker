@@ -1,44 +1,44 @@
 // Initial State
 const initialState = {
-  signUpAuthError: null,
-  signInAuthError: null,
+  signUpError: null,
+  signInError: null,
+  signOutError: null,
 };
 
-// Action Types
-const SIGN_UP_SUCCESS = 'SIGN_UP_SUCCESS';
-const SIGN_UP_ERROR = 'SIGN_UP_ERROR';
-const SIGN_IN_SUCCESS = 'SIGN_IN_SUCCESS';
-const SIGN_IN_ERROR = 'SIGN_IN_ERROR';
-const SIGN_OUT_SUCCESS = 'SIGN_OUT_SUCCESS';
-const SIGN_OUT_ERROR = 'SIGN_OUT_ERROR';
+// Actions Types
+const SIGNED_UP_SUCCESS = 'SIGNED_UP_SUCCESS';
+const SIGNED_UP_ERROR = 'SIGNED_UP_ERROR';
+const SIGNED_IN_SUCCESS = 'SIGNED_IN_SUCCESS';
+const SIGNED_IN_ERROR = 'SIGNED_IN_ERROR';
+const SIGNED_OUT_SUCCESS = 'SIGNED_OUT_SUCCESS';
+const SIGNED_OUT_ERROR = 'SIGNED_OUT_ERROR';
 
 // Action Creators
-export const signUpSuccessActionCreator = newUser => ({
-  type: SIGN_UP_SUCCESS,
-  newUser,
+const signedUpSuccessActionCreator = () => ({
+  type: SIGNED_UP_SUCCESS,
 });
 
-export const signUpErrorActionCreator = error => ({
-  type: SIGN_UP_ERROR,
+const signedUpErrorActionCreator = error => ({
+  type: SIGNED_UP_ERROR,
   error,
 });
 
-export const signInSuccessActionCreator = userCredentials => ({
-  type: SIGN_IN_SUCCESS,
-  userCredentials,
+const signedInSuccessActionCreator = () => ({
+  type: SIGNED_IN_SUCCESS,
 });
 
-export const signInErrorActionCreator = error => ({
-  type: SIGN_IN_ERROR,
+const signedInErrorActionCreator = error => ({
+  type: SIGNED_IN_ERROR,
   error,
 });
 
-export const signOutSuccessActionCreator = () => ({
-  type: SIGN_OUT_SUCCESS,
+const signedOutSuccessActionCreator = () => ({
+  type: SIGNED_OUT_SUCCESS,
 });
 
-export const signOutErrorActionCreator = () => ({
-  type: SIGN_OUT_ERROR,
+const signedOutErrorActionCreator = error => ({
+  type: SIGNED_OUT_ERROR,
+  error,
 });
 
 // Thunk Creators
@@ -95,10 +95,10 @@ export const signUpThunkCreator = newUser => {
         .doc(user.uid)
         .set(newUserData);
 
-      dispatch(signUpSuccessActionCreator(newUser));
+      dispatch(signedUpSuccessActionCreator());
     } catch (error) {
       console.error(error);
-      dispatch(signUpErrorActionCreator(error));
+      dispatch(signedUpErrorActionCreator(error));
     }
   };
 };
@@ -115,10 +115,10 @@ export const signInThunkCreator = userCredentials => {
           userCredentials.password
         );
 
-      dispatch(signInSuccessActionCreator(userCredentials));
+      dispatch(signedInSuccessActionCreator());
     } catch (error) {
       console.error(error);
-      dispatch(signInErrorActionCreator(error));
+      dispatch(signedInErrorActionCreator(error));
     }
   };
 };
@@ -130,12 +130,12 @@ export const signOutThunkCreator = () => {
 
       await firebase.auth().signOut();
 
-      dispatch(signOutSuccessActionCreator());
+      dispatch(signedOutSuccessActionCreator());
 
       localStorage.clear();
     } catch (error) {
       console.error(error);
-      dispatch(signOutErrorActionCreator());
+      dispatch(signedOutErrorActionCreator(error));
     }
   };
 };
@@ -143,35 +143,44 @@ export const signOutThunkCreator = () => {
 // Reducer
 const authReducer = (state = initialState, action) => {
   switch (action.type) {
-    case SIGN_UP_SUCCESS:
-      console.log('Signed up successfully');
+    case SIGNED_UP_SUCCESS:
+      return {
+        ...state,
+        signUpError: null,
+      };
 
-      return { ...state, signUpAuthError: null };
+    case SIGNED_UP_ERROR:
+      console.error('Sign up error!', action.error.message);
+      return {
+        ...state,
+        signUpError: action.error.message,
+      };
 
-    case SIGN_UP_ERROR:
-      console.log('Sign up error!', action.error.message);
+    case SIGNED_IN_SUCCESS:
+      return {
+        ...state,
+        signInError: null,
+      };
 
-      return { ...state, signUpAuthError: action.error.message };
+    case SIGNED_IN_ERROR:
+      console.error('Sign in error!', action.error.message);
+      return {
+        ...state,
+        signInError: action.error.message,
+      };
 
-    case SIGN_IN_SUCCESS:
-      console.log('Signed in successfully');
+    case SIGNED_OUT_SUCCESS:
+      return {
+        ...state,
+        signOutError: null,
+      };
 
-      return { ...state, signInAuthError: null };
-
-    case SIGN_IN_ERROR:
-      console.log('Sign in error!', action.error.message);
-
-      return { ...state, signInAuthError: action.error.message };
-
-    case SIGN_OUT_SUCCESS:
-      console.log('Signed out successfully');
-
-      return state;
-
-    case SIGN_OUT_ERROR:
-      console.log('Sign out error!');
-
-      return state;
+    case SIGNED_OUT_ERROR:
+      console.error('Sign out error!', action.error.message);
+      return {
+        ...state,
+        signOutError: action.error.message,
+      };
 
     default:
       return state;

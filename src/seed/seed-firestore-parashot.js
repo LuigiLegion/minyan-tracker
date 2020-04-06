@@ -9,7 +9,10 @@ const seedCollection = async (collectionName, documentName, dataset) => {
     await firestore
       .collection(collectionName)
       .doc(documentName)
-      .set({ counter: 0, [documentName]: dataset });
+      .set({
+        counter: 0,
+        [documentName]: dataset,
+      });
 
     console.log('Document added successfully!');
   } catch (error) {

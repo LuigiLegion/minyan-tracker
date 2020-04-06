@@ -109,7 +109,10 @@ const minchaCheckInReducer = (state = initialState, action) => {
       };
 
     case UPDATED_MINCHA_CHECK_IN_STATUS:
-      return { ...state, [action.day]: action.status };
+      return {
+        ...state,
+        [action.day]: action.status,
+      };
 
     default:
       return state;

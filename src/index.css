@@ -102,23 +102,23 @@ textarea.materialize-textarea:focus:not([readonly]) {
   margin-top: 0px;
 }
 
-.bold-text-style {
+.text-style-bold {
   font-weight: bold;
 }
 
-.italic-text-style {
+.text-style-italic {
   font-style: italic;
 }
 
-.blue-text-color {
+.text-color-blue {
   color: #357da7;
 }
 
-.red-text-color {
+.text-color-red {
   color: #ef5350;
 }
 
-.gray-text-color {
+.text-color-gray {
   color: #424242;
 }
 

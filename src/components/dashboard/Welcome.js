@@ -11,40 +11,40 @@ const Welcome = () => {
   return (
     <div className="col s12 m6">
       <div className="section">
-        <div className="card">
+        <div className="card grey lighten-5">
           <div className="card-content grey-text text-darken-3">
             <span className="card-title">
-              <span className="bold-text-style">Services</span>
+              <span className="text-style-bold">Services</span>
             </span>
 
-            <span className="bold-text-style">This Week's Parasha: </span>
+            <span className="text-style-bold">This Week's Parasha: </span>
 
-            <span className="italic-text-style">
+            <span className="text-style-italic">
               {parashot[hebrewWeekOfYear - 1]}
             </span>
 
             <ul>
               <li>
                 <NavLink to="/shabbat">
-                  <span className="bold-text-style">Shabbat Services</span>
+                  <span className="text-style-bold">Shabbat Services</span>
                 </NavLink>
               </li>
 
               <li>
                 <NavLink to="/mincha">
-                  <span className="bold-text-style">Mincha Services</span>
+                  <span className="text-style-bold">Mincha Services</span>
                 </NavLink>
               </li>
 
               <li>
                 <NavLink to="/maariv">
-                  <span className="bold-text-style">Maariv Services</span>
+                  <span className="text-style-bold">Maariv Services</span>
                 </NavLink>
               </li>
 
               <li>
                 <NavLink to="/shacharit">
-                  <span className="bold-text-style">Shacharit Services</span>
+                  <span className="text-style-bold">Shacharit Services</span>
                 </NavLink>
               </li>
             </ul>
