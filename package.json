@@ -1,7 +1,17 @@
 {
   "name": "minyan-tracker",
   "version": "1.0.0",
-  "private": false,
+  "description": "",
+  "private": true,
+  "author": "Tal Luigi",
+  "license": "MIT",
+  "main": "index.js",
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
   "dependencies": {
     "axios": "^0.19.2",
     "firebase": "^7.10.0",
@@ -20,12 +30,6 @@
     "redux-firestore": "^0.13.0",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.3.0"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
   },
   "browserslist": {
     "production": [
