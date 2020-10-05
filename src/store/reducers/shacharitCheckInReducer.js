@@ -1,3 +1,4 @@
+// Imports
 import { getUserDataThunkCreator } from './userReducer';
 import { getUsersShacharitAttendanceThunkCreator } from './shacharitAttendanceReducer';
 
@@ -117,4 +118,5 @@ const shacharitCheckInReducer = (state = initialState, action) => {
   }
 };
 
+// Exports
 export default shacharitCheckInReducer;

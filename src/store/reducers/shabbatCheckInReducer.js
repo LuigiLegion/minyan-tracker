@@ -1,3 +1,4 @@
+// Imports
 import { getUserDataThunkCreator } from './userReducer';
 import { getUsersShabbatAttendanceThunkCreator } from './shabbatAttendanceReducer';
 
@@ -109,4 +110,5 @@ const shabbatCheckInReducer = (state = initialState, action) => {
   }
 };
 
+// Exports
 export default shabbatCheckInReducer;

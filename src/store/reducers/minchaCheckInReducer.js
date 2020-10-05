@@ -1,3 +1,4 @@
+// Imports
 import { getUserDataThunkCreator } from './userReducer';
 import { getUsersMinchaAttendanceThunkCreator } from './minchaAttendanceReducer';
 
@@ -119,4 +120,5 @@ const minchaCheckInReducer = (state = initialState, action) => {
   }
 };
 
+// Exports
 export default minchaCheckInReducer;

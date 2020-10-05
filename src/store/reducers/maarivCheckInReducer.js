@@ -1,3 +1,4 @@
+// Imports
 import { getUserDataThunkCreator } from './userReducer';
 import { getUsersMaarivAttendanceThunkCreator } from './maarivAttendanceReducer';
 
@@ -117,4 +118,5 @@ const maarivCheckInReducer = (state = initialState, action) => {
   }
 };
 
+// Exports
 export default maarivCheckInReducer;

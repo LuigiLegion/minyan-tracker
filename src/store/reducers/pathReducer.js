@@ -26,4 +26,5 @@ const pathReducer = (state = initialState, action) => {
   }
 };
 
+// Exports
 export default pathReducer;

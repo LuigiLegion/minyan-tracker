@@ -1,9 +1,11 @@
+// Imports
 const firebase = require('../config/fbConfig');
 require('firebase/firestore');
 const firestore = firebase.firestore();
 
 const { parashot } = require('../data/parashot');
 
+// Initializations
 const seedCollection = async (collectionName, documentName, dataset) => {
   try {
     await firestore

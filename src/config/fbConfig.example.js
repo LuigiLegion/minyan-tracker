@@ -1,3 +1,4 @@
+// Initializations
 const fbConfig = {
   apiKey: 'YOUR_API_KEY',
   authDomain: 'YOUR_DOMAIN_HERE',
@@ -8,4 +9,5 @@ const fbConfig = {
   appId: 'YOUR_APP_ID',
 };
 
+// Exports
 export default fbConfig;

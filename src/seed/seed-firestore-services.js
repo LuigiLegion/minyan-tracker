@@ -1,9 +1,11 @@
+// Imports
 const firebase = require('../config/fbConfig');
 require('firebase/firestore');
 const firestore = firebase.firestore();
 
 const { services } = require('../data/services');
 
+// Initializations
 const seedCollection = async (collectionName, dataset) => {
   try {
     const usersIdsArr = [];

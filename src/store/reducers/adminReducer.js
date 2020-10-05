@@ -1,3 +1,4 @@
+// Imports
 import defaultAttendees from '../../config/attendanceConfig';
 
 // Initial State
@@ -92,4 +93,5 @@ const adminReducer = (state = initialState, action) => {
   }
 };
 
+// Exports
 export default adminReducer;

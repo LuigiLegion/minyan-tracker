@@ -234,4 +234,5 @@ const minchaAttendanceReducer = (state = initialState, action) => {
   }
 };
 
+// Exports
 export default minchaAttendanceReducer;

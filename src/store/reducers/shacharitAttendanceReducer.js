@@ -208,4 +208,5 @@ const shacharitAttendanceReducer = (state = initialState, action) => {
   }
 };
 
+// Exports
 export default shacharitAttendanceReducer;
