@@ -85,19 +85,6 @@ const mapDispatchToProps = dispatch => ({
   },
 });
 
-export default compose(
-  connect(
-    mapStateToProps,
-    mapDispatchToProps
-  ),
-  firestoreConnect([
-    {
-      collection: 'updates',
-      orderBy: ['timestamp', 'desc'],
-    },
-  ])
-)(Shacharit);
-
 // Prop Types
 Shacharit.propTypes = {
   auth: PropTypes.object,
@@ -110,3 +97,17 @@ Shacharit.propTypes = {
   getShacharitCheckInStatusesThunk: PropTypes.func,
   getUsersShacharitAttendanceThunk: PropTypes.func,
 };
+
+// Exports
+export default compose(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  ),
+  firestoreConnect([
+    {
+      collection: 'updates',
+      orderBy: ['timestamp', 'desc'],
+    },
+  ])
+)(Shacharit);

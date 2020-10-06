@@ -92,15 +92,16 @@ const mapDispatchToProps = dispatch => ({
   },
 });
 
+// Prop Types
+ShabbatCheckIn.propTypes = {
+  checkIn: PropTypes.object,
+  updateShabbatCheckInStatusThunk: PropTypes.func,
+};
+
+// Exports
 export default compose(
   connect(
     null,
     mapDispatchToProps
   )
 )(ShabbatCheckIn);
-
-// Prop Types
-ShabbatCheckIn.propTypes = {
-  checkIn: PropTypes.object,
-  updateShabbatCheckInStatusThunk: PropTypes.func,
-};

@@ -102,6 +102,17 @@ const mapDispatchToProps = dispatch => ({
   },
 });
 
+// Prop Types
+AdminPanel.propTypes = {
+  auth: PropTypes.object,
+  profile: PropTypes.object,
+  users: PropTypes.array,
+  disabled: PropTypes.bool,
+  gotPathAction: PropTypes.func,
+  resetUsersAttendanceThunk: PropTypes.func,
+};
+
+// Exports
 export default compose(
   connect(
     mapStateToProps,
@@ -113,13 +124,3 @@ export default compose(
     },
   ])
 )(AdminPanel);
-
-// Prop Types
-AdminPanel.propTypes = {
-  auth: PropTypes.object,
-  profile: PropTypes.object,
-  users: PropTypes.array,
-  disabled: PropTypes.bool,
-  gotPathAction: PropTypes.func,
-  resetUsersAttendanceThunk: PropTypes.func,
-};

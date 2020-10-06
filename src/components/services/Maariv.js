@@ -85,19 +85,6 @@ const mapDispatchToProps = dispatch => ({
   },
 });
 
-export default compose(
-  connect(
-    mapStateToProps,
-    mapDispatchToProps
-  ),
-  firestoreConnect([
-    {
-      collection: 'updates',
-      orderBy: ['timestamp', 'desc'],
-    },
-  ])
-)(Maariv);
-
 // Prop Types
 Maariv.propTypes = {
   auth: PropTypes.object,
@@ -110,3 +97,17 @@ Maariv.propTypes = {
   getMaarivCheckInStatusesThunk: PropTypes.func,
   getUsersMaarivAttendanceThunk: PropTypes.func,
 };
+
+// Exports
+export default compose(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  ),
+  firestoreConnect([
+    {
+      collection: 'updates',
+      orderBy: ['timestamp', 'desc'],
+    },
+  ])
+)(Maariv);

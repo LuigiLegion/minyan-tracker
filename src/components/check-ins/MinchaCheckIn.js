@@ -190,15 +190,16 @@ const mapDispatchToProps = dispatch => ({
   },
 });
 
+// Prop Types
+MinchaCheckIn.propTypes = {
+  checkIn: PropTypes.object,
+  updateMinchaCheckInStatusThunk: PropTypes.func,
+};
+
+// Exports
 export default compose(
   connect(
     null,
     mapDispatchToProps
   )
 )(MinchaCheckIn);
-
-// Prop Types
-MinchaCheckIn.propTypes = {
-  checkIn: PropTypes.object,
-  updateMinchaCheckInStatusThunk: PropTypes.func,
-};

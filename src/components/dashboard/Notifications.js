@@ -43,9 +43,10 @@ const Notifications = ({ notifications }) => {
   );
 };
 
-export default Notifications;
-
 // Prop Types
 Notifications.propTypes = {
   notifications: PropTypes.array,
 };
+
+// Exports
+export default Notifications;

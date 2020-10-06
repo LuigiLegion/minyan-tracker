@@ -85,19 +85,6 @@ const mapDispatchToProps = dispatch => ({
   },
 });
 
-export default compose(
-  connect(
-    mapStateToProps,
-    mapDispatchToProps
-  ),
-  firestoreConnect([
-    {
-      collection: 'updates',
-      orderBy: ['timestamp', 'desc'],
-    },
-  ])
-)(Shabbat);
-
 // Prop Types
 Shabbat.propTypes = {
   auth: PropTypes.object,
@@ -110,3 +97,17 @@ Shabbat.propTypes = {
   getShabbatCheckInStatusesThunk: PropTypes.func,
   getUsersShabbatAttendanceThunk: PropTypes.func,
 };
+
+// Exports
+export default compose(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  ),
+  firestoreConnect([
+    {
+      collection: 'updates',
+      orderBy: ['timestamp', 'desc'],
+    },
+  ])
+)(Shabbat);

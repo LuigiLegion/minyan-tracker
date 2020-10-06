@@ -164,15 +164,16 @@ const mapDispatchToProps = dispatch => ({
   },
 });
 
+// Prop Types
+MaarivCheckIn.propTypes = {
+  checkIn: PropTypes.object,
+  updateMaarivCheckInStatusThunk: PropTypes.func,
+};
+
+// Exports
 export default compose(
   connect(
     null,
     mapDispatchToProps
   )
 )(MaarivCheckIn);
-
-// Prop Types
-MaarivCheckIn.propTypes = {
-  checkIn: PropTypes.object,
-  updateMaarivCheckInStatusThunk: PropTypes.func,
-};

@@ -85,19 +85,6 @@ const mapDispatchToProps = dispatch => ({
   },
 });
 
-export default compose(
-  connect(
-    mapStateToProps,
-    mapDispatchToProps
-  ),
-  firestoreConnect([
-    {
-      collection: 'updates',
-      orderBy: ['timestamp', 'desc'],
-    },
-  ])
-)(Mincha);
-
 // Prop Types
 Mincha.propTypes = {
   auth: PropTypes.object,
@@ -110,3 +97,17 @@ Mincha.propTypes = {
   getMinchaCheckInStatusesThunk: PropTypes.func,
   getUsersMinchaAttendanceThunk: PropTypes.func,
 };
+
+// Exports
+export default compose(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  ),
+  firestoreConnect([
+    {
+      collection: 'updates',
+      orderBy: ['timestamp', 'desc'],
+    },
+  ])
+)(Mincha);

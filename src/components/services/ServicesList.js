@@ -20,9 +20,10 @@ const ServicesList = ({ attendance }) => {
   );
 };
 
-export default ServicesList;
-
 // Prop Types
 ServicesList.propTypes = {
   attendance: PropTypes.object,
 };
+
+// Exports
+export default ServicesList;

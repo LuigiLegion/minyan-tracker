@@ -55,4 +55,5 @@ const Welcome = () => {
   );
 };
 
+// Exports
 export default Welcome;

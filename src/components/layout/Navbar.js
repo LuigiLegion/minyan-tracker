@@ -63,10 +63,11 @@ const mapStateToProps = state => ({
   profile: state.firebase.profile,
 });
 
-export default connect(mapStateToProps)(Navbar);
-
 // Prop Types
 SignedInLinksBurger.propTypes = {
   auth: PropTypes.object,
   profile: PropTypes.object,
 };
+
+// Exports
+export default connect(mapStateToProps)(Navbar);

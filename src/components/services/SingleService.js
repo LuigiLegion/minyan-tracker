@@ -57,9 +57,10 @@ const SingleService = ({ service }) => {
   );
 };
 
-export default SingleService;
-
 // Prop Types
 SingleService.propTypes = {
   service: PropTypes.object,
 };
+
+// Exports
+export default SingleService;

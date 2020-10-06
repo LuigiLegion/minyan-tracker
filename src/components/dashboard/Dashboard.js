@@ -57,6 +57,15 @@ const mapDispatchToProps = dispatch => ({
   },
 });
 
+// Prop Types
+Dashboard.propTypes = {
+  auth: PropTypes.object,
+  notifications: PropTypes.array,
+  gotPathAction: PropTypes.func,
+  getUserDataThunk: PropTypes.func,
+};
+
+// Exports
 export default compose(
   connect(
     mapStateToProps,
@@ -70,11 +79,3 @@ export default compose(
     },
   ])
 )(Dashboard);
-
-// Prop Types
-Dashboard.propTypes = {
-  auth: PropTypes.object,
-  notifications: PropTypes.array,
-  gotPathAction: PropTypes.func,
-  getUserDataThunk: PropTypes.func,
-};
