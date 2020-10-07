@@ -31,3 +31,6 @@ CheckBox.propTypes = {
   day: PropTypes.string,
   type: PropTypes.string,
 };
+
+// Exports
+export default CheckBox;
