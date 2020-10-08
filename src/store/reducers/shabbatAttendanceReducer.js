@@ -83,7 +83,7 @@ export const getUsersShabbatAttendanceThunkCreator = () => {
 };
 
 // Reducer
-const attendanceReducer = (state = initialState, action) => {
+const shabbatAttendanceReducer = (state = initialState, action) => {
   switch (action.type) {
     case GOT_USERS_SHABBAT_ATTENDANCE:
       return {
@@ -105,4 +105,5 @@ const attendanceReducer = (state = initialState, action) => {
   }
 };
 
-export default attendanceReducer;
+// Exports
+export default shabbatAttendanceReducer;
