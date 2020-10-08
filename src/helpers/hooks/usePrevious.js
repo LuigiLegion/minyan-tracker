@@ -1,13 +1,13 @@
 // Imports
 import { useEffect, useRef } from 'react';
 
-// Custom Hook
-const usePrevious = value => {
+// Initializations
+const usePrevious = val => {
   const ref = useRef();
 
   useEffect(() => {
-    ref.current = value;
-  }, [value]);
+    ref.current = val;
+  }, [val]);
 
   return ref.current;
 };
