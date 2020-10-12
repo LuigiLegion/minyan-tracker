@@ -8,7 +8,7 @@ import PropTypes from 'prop-types';
 
 import ShacharitCheckIn from '../check-ins/ShacharitCheckIn';
 import ServicesList from './ServicesList';
-import { usePrevious } from '../../helpers';
+import { usePrevious } from '../../utils';
 import { gotPathActionCreator } from '../../store/reducers/pathReducer';
 import { getShacharitCheckInStatusesThunkCreator } from '../../store/reducers/shacharitCheckInReducer';
 import { getUsersShacharitAttendanceThunkCreator } from '../../store/reducers/shacharitAttendanceReducer';

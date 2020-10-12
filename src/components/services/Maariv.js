@@ -8,7 +8,7 @@ import PropTypes from 'prop-types';
 
 import MaarivCheckIn from '../check-ins/MaarivCheckIn';
 import ServicesList from './ServicesList';
-import { usePrevious } from '../../helpers';
+import { usePrevious } from '../../utils';
 import { gotPathActionCreator } from '../../store/reducers/pathReducer';
 import { getMaarivCheckInStatusesThunkCreator } from '../../store/reducers/maarivCheckInReducer';
 import { getUsersMaarivAttendanceThunkCreator } from '../../store/reducers/maarivAttendanceReducer';
