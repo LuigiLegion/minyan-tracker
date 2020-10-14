@@ -6,7 +6,6 @@ import { slide as Menu } from 'react-burger-menu';
 import PropTypes from 'prop-types';
 
 import { signOutThunkCreator } from '../../store/reducers/authReducer';
-import contactUsEmail from '../../config/emailConfig';
 import { burgerStyles } from '../../styles';
 
 // Component
@@ -72,7 +71,7 @@ const SignedInLinksBurger = ({ profile, signOutThunk }) => {
 
         <div>
           <a
-            href={`mailto:${contactUsEmail}`}
+            href={`mailto:${process.env.REACT_APP_CONTACT_US_EMAIL}`}
             target="_blank"
             rel="noopener noreferrer"
             onClick={closeMenu}

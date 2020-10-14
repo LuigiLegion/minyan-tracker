@@ -2,8 +2,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
-import contactUsEmail from '../../config/emailConfig';
-
 // Component
 const SignedOutLinks = () => {
   return (
@@ -30,7 +28,7 @@ const SignedOutLinks = () => {
 
       <li>
         <a
-          href={`mailto:${contactUsEmail}`}
+          href={`mailto:${process.env.REACT_APP_CONTACT_US_EMAIL}`}
           target="_blank"
           rel="noopener noreferrer"
         >

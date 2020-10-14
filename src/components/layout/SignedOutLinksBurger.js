@@ -3,7 +3,6 @@ import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { slide as Menu } from 'react-burger-menu';
 
-import contactUsEmail from '../../config/emailConfig';
 import { burgerStyles } from '../../styles';
 
 // Component
@@ -49,7 +48,7 @@ const SignedOutLinksBurger = () => {
 
         <div>
           <a
-            href={`mailto:${contactUsEmail}`}
+            href={`mailto:${process.env.REACT_APP_CONTACT_US_EMAIL}`}
             target="_blank"
             rel="noopener noreferrer"
             onClick={closeMenu}
