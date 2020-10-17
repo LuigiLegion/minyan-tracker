@@ -1,0 +1,24 @@
+{
+  "attendees": [
+    {
+      "firstName": "Clark",
+      "lastName": "Kent",
+      "fullName": "Clark Kent",
+      "email": "superman@email.com",
+      "gender": "Male",
+      "congregation": "The Justice League",
+      "friday": true,
+      "saturday": true
+    },
+    {
+      "firstName": "Bruce",
+      "lastName": "Wayne",
+      "fullName": "Bruce Wayne",
+      "email": "batman@email.com",
+      "gender": "Male",
+      "congregation": "The Justice League",
+      "friday": true,
+      "saturday": true
+    }
+  ]
+}
