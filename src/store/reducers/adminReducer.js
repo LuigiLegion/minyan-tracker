@@ -1,5 +1,5 @@
 // Imports
-import defaultAttendees from '../../config/attendanceConfig';
+import { attendees } from '../../data/attendees';
 
 // Initial State
 const initialState = {
@@ -24,8 +24,7 @@ export const resetUsersAttendanceThunkCreator = users => {
         const { id, email } = curUser;
 
         const isDefaultAttendee =
-          email === defaultAttendees[0].email ||
-          email === defaultAttendees[1].email;
+          email === attendees[0].email || email === attendees[1].email;
 
         acc.push(
           firestore
