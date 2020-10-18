@@ -3,7 +3,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import moment from 'moment';
 
-import { parashot } from '../../data/parashot.json';
+import { parashot } from '../../data/parashot';
 const hebrewWeekOfYear = moment().week() + 10;
 
 // Component
