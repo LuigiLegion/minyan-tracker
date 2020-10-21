@@ -12,7 +12,7 @@ const seedCollection = async (collectionName, documentName, dataset) => {
       .collection(collectionName)
       .doc(documentName)
       .set({
-        counter: 0,
+        count: 0,
         [documentName]: dataset,
       });
 
