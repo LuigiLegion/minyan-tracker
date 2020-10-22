@@ -8,7 +8,7 @@ const { services } = require('../data/services');
 // Initializations
 const seedCollection = async (collectionName, dataset) => {
   try {
-    const usersIdsArr = [];
+    const userIds = [];
 
     const usersRef = firestore.collection('users');
     await usersRef
@@ -17,32 +17,29 @@ const seedCollection = async (collectionName, dataset) => {
         snapshot.forEach(user => {
           console.log(user.id, '=>', user.data());
 
-          usersIdsArr.push(user.id);
+          userIds.push(user.id);
         });
       })
       .catch(error => {
-        console.log('Error getting documents', error);
+        console.error('Error fetching documents: ', error);
       });
 
-    console.log({ usersIdsArr });
+    console.log({ userIds });
 
-    const usersUpdatesUnresolvedPromises = usersIdsArr.reduce(
-      (acc, curUserId) => {
-        acc.push(
-          firestore
-            .collection(collectionName)
-            .doc(curUserId)
-            .set(dataset, { merge: true })
-        );
+    const userUpdates = userIds.reduce((acc, userId) => {
+      acc.push(
+        firestore
+          .collection(collectionName)
+          .doc(userId)
+          .set(dataset, { merge: true })
+      );
 
-        return acc;
-      },
-      []
-    );
+      return acc;
+    }, []);
 
-    console.log({ usersUpdatesUnresolvedPromises });
+    console.log({ userUpdates });
 
-    Promise.all(usersUpdatesUnresolvedPromises);
+    Promise.all(userUpdates);
   } catch (error) {
     console.error('Error updating documents: ', error);
   }
