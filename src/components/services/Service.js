@@ -3,7 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 // Component
-const SingleService = ({ service }) => {
+const Service = ({ service }) => {
   const { day, type, going, notGoing } = service;
 
   return (
@@ -58,9 +58,9 @@ const SingleService = ({ service }) => {
 };
 
 // Prop Types
-SingleService.propTypes = {
+Service.propTypes = {
   service: PropTypes.object,
 };
 
 // Exports
-export default SingleService;
+export default Service;
