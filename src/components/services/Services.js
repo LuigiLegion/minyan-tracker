@@ -2,16 +2,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import SingleService from './SingleService';
+import Service from './Service';
 
 // Component
-const ServicesList = ({ attendance }) => {
+const Services = ({ attendance }) => {
   const attendanceArr = Object.values(attendance);
 
   return (
     <div className="col s12 m6">
       {attendanceArr.map(curService => (
-        <SingleService
+        <Service
           key={`${curService.day} ${curService.type}`}
           service={curService}
         />
@@ -21,9 +21,9 @@ const ServicesList = ({ attendance }) => {
 };
 
 // Prop Types
-ServicesList.propTypes = {
+Services.propTypes = {
   attendance: PropTypes.object,
 };
 
 // Exports
-export default ServicesList;
+export default Services;
