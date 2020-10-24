@@ -7,7 +7,7 @@ import { compose } from 'redux';
 import PropTypes from 'prop-types';
 
 import MaarivCheckIn from '../check-ins/MaarivCheckIn';
-import ServicesList from './ServicesList';
+import Services from './Services';
 import { usePrevious } from '../../utils';
 import { gotPathActionCreator } from '../../store/reducers/pathReducer';
 import { getMaarivCheckInStatusesThunkCreator } from '../../store/reducers/maarivCheckInReducer';
@@ -54,7 +54,7 @@ const Maariv = ({
     return (
       <div className="dashboard container">
         <div className="row">
-          <ServicesList profile={profile} attendance={attendance} />
+          <Services profile={profile} attendance={attendance} />
 
           <MaarivCheckIn checkIn={checkIn} />
         </div>

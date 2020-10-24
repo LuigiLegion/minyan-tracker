@@ -7,7 +7,7 @@ import { compose } from 'redux';
 import PropTypes from 'prop-types';
 
 import MinchaCheckIn from '../check-ins/MinchaCheckIn';
-import ServicesList from './ServicesList';
+import Services from './Services';
 import { usePrevious } from '../../utils';
 import { gotPathActionCreator } from '../../store/reducers/pathReducer';
 import { getMinchaCheckInStatusesThunkCreator } from '../../store/reducers/minchaCheckInReducer';
@@ -54,7 +54,7 @@ const Mincha = ({
     return (
       <div className="dashboard container">
         <div className="row">
-          <ServicesList profile={profile} attendance={attendance} />
+          <Services profile={profile} attendance={attendance} />
 
           <MinchaCheckIn checkIn={checkIn} />
         </div>

@@ -7,7 +7,7 @@ import { compose } from 'redux';
 import PropTypes from 'prop-types';
 
 import ShacharitCheckIn from '../check-ins/ShacharitCheckIn';
-import ServicesList from './ServicesList';
+import Services from './Services';
 import { usePrevious } from '../../utils';
 import { gotPathActionCreator } from '../../store/reducers/pathReducer';
 import { getShacharitCheckInStatusesThunkCreator } from '../../store/reducers/shacharitCheckInReducer';
@@ -54,7 +54,7 @@ const Shacharit = ({
     return (
       <div className="dashboard container">
         <div className="row">
-          <ServicesList profile={profile} attendance={attendance} />
+          <Services profile={profile} attendance={attendance} />
 
           <ShacharitCheckIn checkIn={checkIn} />
         </div>

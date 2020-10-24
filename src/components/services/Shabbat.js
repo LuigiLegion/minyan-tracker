@@ -7,7 +7,7 @@ import { compose } from 'redux';
 import PropTypes from 'prop-types';
 
 import ShabbatCheckIn from '../check-ins/ShabbatCheckIn';
-import ServicesList from './ServicesList';
+import Services from './Services';
 import { usePrevious } from '../../utils';
 import { gotPathActionCreator } from '../../store/reducers/pathReducer';
 import { getShabbatCheckInStatusesThunkCreator } from '../../store/reducers/shabbatCheckInReducer';
@@ -54,7 +54,7 @@ const Shabbat = ({
     return (
       <div className="dashboard container">
         <div className="row">
-          <ServicesList attendance={attendance} profile={profile} />
+          <Services attendance={attendance} profile={profile} />
 
           <ShabbatCheckIn checkIn={checkIn} />
         </div>
