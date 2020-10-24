@@ -4,32 +4,24 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 import PropTypes from 'prop-types';
 
-import { updateMinchaCheckInStatusThunkCreator } from '../../store/reducers/minchaCheckInReducer';
+import { updateMaarivCheckInStatusThunkCreator } from '../../store/reducers/maarivCheckInReducer';
 
 // Component
-const MinchaCheckIn = ({ checkIn, updateMinchaCheckInStatusThunk }) => {
-  const {
-    sunday,
-    monday,
-    tuesday,
-    wednesday,
-    thursday,
-    friday,
-    saturday,
-  } = checkIn;
+const CheckInMaariv = ({ checkIn, updateMaarivCheckInStatusThunk }) => {
+  const { sunday, monday, tuesday, wednesday, thursday, saturday } = checkIn;
 
   const handleChange = event => {
     const curCheckedVal = event.target.checked;
     const curDay = event.target.value;
 
     if (curCheckedVal) {
-      updateMinchaCheckInStatusThunk(curDay, true);
+      updateMaarivCheckInStatusThunk(curDay, true);
     } else {
       const changeConfirmation = window.confirm(
         'Are you sure you want to change your check-in status?'
       );
       if (changeConfirmation) {
-        updateMinchaCheckInStatusThunk(curDay, false);
+        updateMaarivCheckInStatusThunk(curDay, false);
       }
     }
   };
@@ -45,7 +37,7 @@ const MinchaCheckIn = ({ checkIn, updateMinchaCheckInStatusThunk }) => {
 
             <form className="check-in-form">
               <div className="text-style-bold text-color-blue">
-                Mincha Services
+                Maariv Services
               </div>
 
               <br />
@@ -62,7 +54,7 @@ const MinchaCheckIn = ({ checkIn, updateMinchaCheckInStatusThunk }) => {
                   <span className="text-color-gray">
                     {'Sunday '}
                     <span className="text-style-bold text-style-italic">
-                      Mincha
+                      Maariv
                     </span>
                   </span>
                 </label>
@@ -80,7 +72,7 @@ const MinchaCheckIn = ({ checkIn, updateMinchaCheckInStatusThunk }) => {
                   <span className="text-color-gray">
                     {'Monday '}
                     <span className="text-style-bold text-style-italic">
-                      Mincha
+                      Maariv
                     </span>
                   </span>
                 </label>
@@ -98,7 +90,7 @@ const MinchaCheckIn = ({ checkIn, updateMinchaCheckInStatusThunk }) => {
                   <span className="text-color-gray">
                     {'Tuesday '}
                     <span className="text-style-bold text-style-italic">
-                      Mincha
+                      Maariv
                     </span>
                   </span>
                 </label>
@@ -116,7 +108,7 @@ const MinchaCheckIn = ({ checkIn, updateMinchaCheckInStatusThunk }) => {
                   <span className="text-color-gray">
                     {'Wednesday '}
                     <span className="text-style-bold text-style-italic">
-                      Mincha
+                      Maariv
                     </span>
                   </span>
                 </label>
@@ -134,25 +126,7 @@ const MinchaCheckIn = ({ checkIn, updateMinchaCheckInStatusThunk }) => {
                   <span className="text-color-gray">
                     {'Thursday '}
                     <span className="text-style-bold text-style-italic">
-                      Mincha
-                    </span>
-                  </span>
-                </label>
-              </div>
-
-              <div>
-                <label>
-                  <input
-                    type="checkbox"
-                    value="friday"
-                    checked={friday}
-                    onChange={handleChange}
-                  />
-
-                  <span className="text-color-gray">
-                    {'Friday '}
-                    <span className="text-style-bold text-style-italic">
-                      Mincha
+                      Maariv
                     </span>
                   </span>
                 </label>
@@ -170,7 +144,7 @@ const MinchaCheckIn = ({ checkIn, updateMinchaCheckInStatusThunk }) => {
                   <span className="text-color-gray">
                     {'Saturday '}
                     <span className="text-style-bold text-style-italic">
-                      Mincha
+                      Maariv
                     </span>
                   </span>
                 </label>
@@ -185,15 +159,15 @@ const MinchaCheckIn = ({ checkIn, updateMinchaCheckInStatusThunk }) => {
 
 // Container
 const mapDispatchToProps = dispatch => ({
-  updateMinchaCheckInStatusThunk(day, status) {
-    dispatch(updateMinchaCheckInStatusThunkCreator(day, status));
+  updateMaarivCheckInStatusThunk(day, status) {
+    dispatch(updateMaarivCheckInStatusThunkCreator(day, status));
   },
 });
 
 // Prop Types
-MinchaCheckIn.propTypes = {
+CheckInMaariv.propTypes = {
   checkIn: PropTypes.object,
-  updateMinchaCheckInStatusThunk: PropTypes.func,
+  updateMaarivCheckInStatusThunk: PropTypes.func,
 };
 
 // Exports
@@ -202,4 +176,4 @@ export default compose(
     null,
     mapDispatchToProps
   )
-)(MinchaCheckIn);
+)(CheckInMaariv);

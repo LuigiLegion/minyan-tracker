@@ -7,7 +7,7 @@ import PropTypes from 'prop-types';
 import { updateShacharitCheckInStatusThunkCreator } from '../../store/reducers/shacharitCheckInReducer';
 
 // Component
-const ShacharitCheckIn = ({ checkIn, updateShacharitCheckInStatusThunk }) => {
+const CheckInShacharit = ({ checkIn, updateShacharitCheckInStatusThunk }) => {
   const { sunday, monday, tuesday, wednesday, thursday, friday } = checkIn;
 
   const handleChange = event => {
@@ -165,7 +165,7 @@ const mapDispatchToProps = dispatch => ({
 });
 
 // Prop Types
-ShacharitCheckIn.propTypes = {
+CheckInShacharit.propTypes = {
   checkIn: PropTypes.object,
   updateShacharitCheckInStatusThunk: PropTypes.func,
 };
@@ -176,4 +176,4 @@ export default compose(
     null,
     mapDispatchToProps
   )
-)(ShacharitCheckIn);
+)(CheckInShacharit);

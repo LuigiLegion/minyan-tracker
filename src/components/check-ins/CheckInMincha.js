@@ -4,24 +4,32 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 import PropTypes from 'prop-types';
 
-import { updateMaarivCheckInStatusThunkCreator } from '../../store/reducers/maarivCheckInReducer';
+import { updateMinchaCheckInStatusThunkCreator } from '../../store/reducers/minchaCheckInReducer';
 
 // Component
-const MaarivCheckIn = ({ checkIn, updateMaarivCheckInStatusThunk }) => {
-  const { sunday, monday, tuesday, wednesday, thursday, saturday } = checkIn;
+const CheckInMincha = ({ checkIn, updateMinchaCheckInStatusThunk }) => {
+  const {
+    sunday,
+    monday,
+    tuesday,
+    wednesday,
+    thursday,
+    friday,
+    saturday,
+  } = checkIn;
 
   const handleChange = event => {
     const curCheckedVal = event.target.checked;
     const curDay = event.target.value;
 
     if (curCheckedVal) {
-      updateMaarivCheckInStatusThunk(curDay, true);
+      updateMinchaCheckInStatusThunk(curDay, true);
     } else {
       const changeConfirmation = window.confirm(
         'Are you sure you want to change your check-in status?'
       );
       if (changeConfirmation) {
-        updateMaarivCheckInStatusThunk(curDay, false);
+        updateMinchaCheckInStatusThunk(curDay, false);
       }
     }
   };
@@ -37,7 +45,7 @@ const MaarivCheckIn = ({ checkIn, updateMaarivCheckInStatusThunk }) => {
 
             <form className="check-in-form">
               <div className="text-style-bold text-color-blue">
-                Maariv Services
+                Mincha Services
               </div>
 
               <br />
@@ -54,7 +62,7 @@ const MaarivCheckIn = ({ checkIn, updateMaarivCheckInStatusThunk }) => {
                   <span className="text-color-gray">
                     {'Sunday '}
                     <span className="text-style-bold text-style-italic">
-                      Maariv
+                      Mincha
                     </span>
                   </span>
                 </label>
@@ -72,7 +80,7 @@ const MaarivCheckIn = ({ checkIn, updateMaarivCheckInStatusThunk }) => {
                   <span className="text-color-gray">
                     {'Monday '}
                     <span className="text-style-bold text-style-italic">
-                      Maariv
+                      Mincha
                     </span>
                   </span>
                 </label>
@@ -90,7 +98,7 @@ const MaarivCheckIn = ({ checkIn, updateMaarivCheckInStatusThunk }) => {
                   <span className="text-color-gray">
                     {'Tuesday '}
                     <span className="text-style-bold text-style-italic">
-                      Maariv
+                      Mincha
                     </span>
                   </span>
                 </label>
@@ -108,7 +116,7 @@ const MaarivCheckIn = ({ checkIn, updateMaarivCheckInStatusThunk }) => {
                   <span className="text-color-gray">
                     {'Wednesday '}
                     <span className="text-style-bold text-style-italic">
-                      Maariv
+                      Mincha
                     </span>
                   </span>
                 </label>
@@ -126,7 +134,25 @@ const MaarivCheckIn = ({ checkIn, updateMaarivCheckInStatusThunk }) => {
                   <span className="text-color-gray">
                     {'Thursday '}
                     <span className="text-style-bold text-style-italic">
-                      Maariv
+                      Mincha
+                    </span>
+                  </span>
+                </label>
+              </div>
+
+              <div>
+                <label>
+                  <input
+                    type="checkbox"
+                    value="friday"
+                    checked={friday}
+                    onChange={handleChange}
+                  />
+
+                  <span className="text-color-gray">
+                    {'Friday '}
+                    <span className="text-style-bold text-style-italic">
+                      Mincha
                     </span>
                   </span>
                 </label>
@@ -144,7 +170,7 @@ const MaarivCheckIn = ({ checkIn, updateMaarivCheckInStatusThunk }) => {
                   <span className="text-color-gray">
                     {'Saturday '}
                     <span className="text-style-bold text-style-italic">
-                      Maariv
+                      Mincha
                     </span>
                   </span>
                 </label>
@@ -159,15 +185,15 @@ const MaarivCheckIn = ({ checkIn, updateMaarivCheckInStatusThunk }) => {
 
 // Container
 const mapDispatchToProps = dispatch => ({
-  updateMaarivCheckInStatusThunk(day, status) {
-    dispatch(updateMaarivCheckInStatusThunkCreator(day, status));
+  updateMinchaCheckInStatusThunk(day, status) {
+    dispatch(updateMinchaCheckInStatusThunkCreator(day, status));
   },
 });
 
 // Prop Types
-MaarivCheckIn.propTypes = {
+CheckInMincha.propTypes = {
   checkIn: PropTypes.object,
-  updateMaarivCheckInStatusThunk: PropTypes.func,
+  updateMinchaCheckInStatusThunk: PropTypes.func,
 };
 
 // Exports
@@ -176,4 +202,4 @@ export default compose(
     null,
     mapDispatchToProps
   )
-)(MaarivCheckIn);
+)(CheckInMincha);
