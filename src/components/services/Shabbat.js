@@ -6,7 +6,7 @@ import { firestoreConnect } from 'react-redux-firebase';
 import { compose } from 'redux';
 import PropTypes from 'prop-types';
 
-import ShabbatCheckIn from '../check-ins/ShabbatCheckIn';
+import CheckInShabbat from '../check-ins/CheckInShabbat';
 import Services from './Services';
 import { usePrevious } from '../../utils';
 import { gotPathActionCreator } from '../../store/reducers/pathReducer';
@@ -56,7 +56,7 @@ const Shabbat = ({
         <div className="row">
           <Services attendance={attendance} profile={profile} />
 
-          <ShabbatCheckIn checkIn={checkIn} />
+          <CheckInShabbat checkIn={checkIn} />
         </div>
       </div>
     );

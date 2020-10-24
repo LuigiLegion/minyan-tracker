@@ -6,7 +6,7 @@ import { firestoreConnect } from 'react-redux-firebase';
 import { compose } from 'redux';
 import PropTypes from 'prop-types';
 
-import MaarivCheckIn from '../check-ins/MaarivCheckIn';
+import CheckInMaariv from '../check-ins/CheckInMaariv';
 import Services from './Services';
 import { usePrevious } from '../../utils';
 import { gotPathActionCreator } from '../../store/reducers/pathReducer';
@@ -56,7 +56,7 @@ const Maariv = ({
         <div className="row">
           <Services profile={profile} attendance={attendance} />
 
-          <MaarivCheckIn checkIn={checkIn} />
+          <CheckInMaariv checkIn={checkIn} />
         </div>
       </div>
     );
