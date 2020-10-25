@@ -49,12 +49,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  gotPathAction(path) {
-    dispatch(gotPathActionCreator(path));
-  },
-  getUserDataThunk(userId) {
-    dispatch(getUserDataThunkCreator(userId));
-  },
+  gotPathAction: path => dispatch(gotPathActionCreator(path)),
+  getUserDataThunk: userId => dispatch(getUserDataThunkCreator(userId)),
 });
 
 // Prop Types

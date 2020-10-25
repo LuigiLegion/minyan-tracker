@@ -185,9 +185,8 @@ const CheckInMincha = ({ checkIn, updateMinchaCheckInStatusThunk }) => {
 
 // Container
 const mapDispatchToProps = dispatch => ({
-  updateMinchaCheckInStatusThunk(day, status) {
-    dispatch(updateMinchaCheckInStatusThunkCreator(day, status));
-  },
+  updateMinchaCheckInStatusThunk: (day, status) =>
+    dispatch(updateMinchaCheckInStatusThunkCreator(day, status)),
 });
 
 // Prop Types

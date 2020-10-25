@@ -71,9 +71,7 @@ const SignedInLinks = ({ profile, signOutThunk }) => {
 
 // Container
 const mapDispatchToProps = dispatch => ({
-  signOutThunk() {
-    dispatch(signOutThunkCreator());
-  },
+  signOutThunk: () => dispatch(signOutThunkCreator()),
 });
 
 // Prop Types

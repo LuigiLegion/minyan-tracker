@@ -74,15 +74,11 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  gotPathAction(path) {
-    dispatch(gotPathActionCreator(path));
-  },
-  getMinchaCheckInStatusesThunk() {
-    dispatch(getMinchaCheckInStatusesThunkCreator());
-  },
-  getUsersMinchaAttendanceThunk() {
-    dispatch(getUsersMinchaAttendanceThunkCreator());
-  },
+  gotPathAction: path => dispatch(gotPathActionCreator(path)),
+  getMinchaCheckInStatusesThunk: () =>
+    dispatch(getMinchaCheckInStatusesThunkCreator()),
+  getUsersMinchaAttendanceThunk: () =>
+    dispatch(getUsersMinchaAttendanceThunkCreator()),
 });
 
 // Prop Types

@@ -159,9 +159,8 @@ const CheckInMaariv = ({ checkIn, updateMaarivCheckInStatusThunk }) => {
 
 // Container
 const mapDispatchToProps = dispatch => ({
-  updateMaarivCheckInStatusThunk(day, status) {
-    dispatch(updateMaarivCheckInStatusThunkCreator(day, status));
-  },
+  updateMaarivCheckInStatusThunk: (day, status) =>
+    dispatch(updateMaarivCheckInStatusThunkCreator(day, status)),
 });
 
 // Prop Types

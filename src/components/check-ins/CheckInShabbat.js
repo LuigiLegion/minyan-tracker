@@ -87,9 +87,8 @@ const CheckInShabbat = ({ checkIn, updateShabbatCheckInStatusThunk }) => {
 
 // Container
 const mapDispatchToProps = dispatch => ({
-  updateShabbatCheckInStatusThunk(day, status) {
-    dispatch(updateShabbatCheckInStatusThunkCreator(day, status));
-  },
+  updateShabbatCheckInStatusThunk: (day, status) =>
+    dispatch(updateShabbatCheckInStatusThunkCreator(day, status)),
 });
 
 // Prop Types
