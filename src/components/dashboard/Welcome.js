@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom';
 import moment from 'moment';
 
 import { parashot } from '../../data/parashot';
-const hebrewWeekOfYear = moment().week() + 10;
+const weekOfHebrewYear = moment().week() + 10;
 
 // Component
 const Welcome = () => {
@@ -20,7 +20,7 @@ const Welcome = () => {
             <span className="text-style-bold">This Week's Parasha: </span>
 
             <span className="text-style-italic">
-              {parashot[hebrewWeekOfYear - 1]}
+              {parashot[weekOfHebrewYear - 1]}
             </span>
 
             <ul>
