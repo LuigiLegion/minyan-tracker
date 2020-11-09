@@ -7,6 +7,7 @@ import authReducer from './reducers/authReducer';
 import userReducer from './reducers/userReducer';
 import adminReducer from './reducers/adminReducer';
 import pathReducer from './reducers/pathReducer';
+import layoutReducer from './reducers/layoutReducer';
 import shacharitAttendanceReducer from './reducers/shacharitAttendanceReducer';
 import minchaAttendanceReducer from './reducers/minchaAttendanceReducer';
 import maarivAttendanceReducer from './reducers/maarivAttendanceReducer';
@@ -24,6 +25,7 @@ const rootReducer = combineReducers({
   user: userReducer,
   admin: adminReducer,
   path: pathReducer,
+  layout: layoutReducer,
   shacharitAttendance: shacharitAttendanceReducer,
   minchaAttendance: minchaAttendanceReducer,
   maarivAttendance: maarivAttendanceReducer,
