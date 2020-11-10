@@ -8,9 +8,10 @@ import SignedInLinks from '../links/SignedInLinks';
 import SignedInLinksBurger from '../links/SignedInLinksBurger';
 import SignedOutLinks from '../links/SignedOutLinks';
 import SignedOutLinksBurger from '../links/SignedOutLinksBurger';
+import Preloader from './Preloader';
 
 // Component
-const Navbar = ({ auth, profile }) => {
+const Navbar = ({ auth, profile, isLoading }) => {
   const [width, setWidth] = useState(window.innerWidth);
 
   const largeViewCheck = width > 1007;
@@ -42,7 +43,7 @@ const Navbar = ({ auth, profile }) => {
 
   return (
     <div className="navbar-fixed">
-      <nav className="nav-wrapper navbar-padding navbar-background-color">
+      <nav className="nav-wrapper navbar-background-color">
         <div>
           <NavLink to="/" className="left navbar-logo">
             <span className="text-style-bold navbar-text-color">
@@ -51,6 +52,8 @@ const Navbar = ({ auth, profile }) => {
           </NavLink>
 
           {curLinks}
+
+          <div>{isLoading ? <Preloader /> : null}</div>
         </div>
       </nav>
     </div>
@@ -61,12 +64,14 @@ const Navbar = ({ auth, profile }) => {
 const mapStateToProps = state => ({
   auth: state.firebase.auth,
   profile: state.firebase.profile,
+  isLoading: state.layout.isLoading,
 });
 
 // Prop Types
 SignedInLinksBurger.propTypes = {
   auth: PropTypes.object,
   profile: PropTypes.object,
+  isLoading: PropTypes.bool,
 };
 
 // Exports
