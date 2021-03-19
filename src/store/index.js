@@ -45,3 +45,16 @@ export const rrfProps = {
 
 // Exports
 export default store;
+export * from './reducers/authReducer';
+export * from './reducers/userReducer';
+export * from './reducers/adminReducer';
+export * from './reducers/pathReducer';
+export * from './reducers/layoutReducer';
+export * from './reducers/shacharitAttendanceReducer';
+export * from './reducers/minchaAttendanceReducer';
+export * from './reducers/maarivAttendanceReducer';
+export * from './reducers/shabbatAttendanceReducer';
+export * from './reducers/shacharitCheckInReducer';
+export * from './reducers/minchaCheckInReducer';
+export * from './reducers/maarivCheckInReducer';
+export * from './reducers/shabbatCheckInReducer';
