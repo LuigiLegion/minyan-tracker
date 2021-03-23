@@ -8,10 +8,12 @@ import PropTypes from 'prop-types';
 
 import CheckInMincha from '../check-ins/CheckInMincha';
 import Services from './Services';
+import {
+  gotPathActionCreator,
+  getMinchaCheckInStatusesThunkCreator,
+  getUsersMinchaAttendanceThunkCreator,
+} from '../../store';
 import { usePrevious } from '../../utils';
-import { gotPathActionCreator } from '../../store/reducers/pathReducer';
-import { getMinchaCheckInStatusesThunkCreator } from '../../store/reducers/minchaCheckInReducer';
-import { getUsersMinchaAttendanceThunkCreator } from '../../store/reducers/minchaAttendanceReducer';
 
 // Component
 const Mincha = ({

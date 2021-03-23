@@ -8,10 +8,12 @@ import PropTypes from 'prop-types';
 
 import CheckInMaariv from '../check-ins/CheckInMaariv';
 import Services from './Services';
+import {
+  gotPathActionCreator,
+  getMaarivCheckInStatusesThunkCreator,
+  getUsersMaarivAttendanceThunkCreator,
+} from '../../store';
 import { usePrevious } from '../../utils';
-import { gotPathActionCreator } from '../../store/reducers/pathReducer';
-import { getMaarivCheckInStatusesThunkCreator } from '../../store/reducers/maarivCheckInReducer';
-import { getUsersMaarivAttendanceThunkCreator } from '../../store/reducers/maarivAttendanceReducer';
 
 // Component
 const Maariv = ({

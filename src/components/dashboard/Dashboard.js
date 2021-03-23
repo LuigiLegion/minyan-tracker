@@ -8,8 +8,7 @@ import PropTypes from 'prop-types';
 
 import Welcome from './Welcome';
 import Notifications from './Notifications';
-import { gotPathActionCreator } from '../../store/reducers/pathReducer';
-import { getUserDataThunkCreator } from '../../store/reducers/userReducer';
+import { gotPathActionCreator, getUserDataThunkCreator } from '../../store';
 
 // Component
 const Dashboard = ({

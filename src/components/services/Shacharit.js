@@ -9,9 +9,11 @@ import PropTypes from 'prop-types';
 import CheckInShacharit from '../check-ins/CheckInShacharit';
 import Services from './Services';
 import { usePrevious } from '../../utils';
-import { gotPathActionCreator } from '../../store/reducers/pathReducer';
-import { getShacharitCheckInStatusesThunkCreator } from '../../store/reducers/shacharitCheckInReducer';
-import { getUsersShacharitAttendanceThunkCreator } from '../../store/reducers/shacharitAttendanceReducer';
+import {
+  gotPathActionCreator,
+  getShacharitCheckInStatusesThunkCreator,
+  getUsersShacharitAttendanceThunkCreator,
+} from '../../store';
 
 // Component
 const Shacharit = ({

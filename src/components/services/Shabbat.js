@@ -9,9 +9,11 @@ import PropTypes from 'prop-types';
 import CheckInShabbat from '../check-ins/CheckInShabbat';
 import Services from './Services';
 import { usePrevious } from '../../utils';
-import { gotPathActionCreator } from '../../store/reducers/pathReducer';
-import { getShabbatCheckInStatusesThunkCreator } from '../../store/reducers/shabbatCheckInReducer';
-import { getUsersShabbatAttendanceThunkCreator } from '../../store/reducers/shabbatAttendanceReducer';
+import {
+  gotPathActionCreator,
+  getShabbatCheckInStatusesThunkCreator,
+  getUsersShabbatAttendanceThunkCreator,
+} from '../../store';
 
 // Component
 const Shabbat = ({

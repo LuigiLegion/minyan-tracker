@@ -6,7 +6,7 @@ import { slide as Menu } from 'react-burger-menu';
 import PropTypes from 'prop-types';
 
 import Hello from './Hello';
-import { signOutThunkCreator } from '../../store/reducers/authReducer';
+import { signOutThunkCreator } from '../../store';
 import { burgerStyles } from '../../styles';
 
 // Component

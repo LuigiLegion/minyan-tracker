@@ -6,7 +6,7 @@ import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import { signUpThunkCreator } from '../../store/reducers/authReducer';
+import { signUpThunkCreator } from '../../store';
 
 // Component
 const SignUp = ({ auth, signUpError, signUpThunk }) => {

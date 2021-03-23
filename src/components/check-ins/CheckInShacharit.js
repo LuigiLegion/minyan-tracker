@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 import PropTypes from 'prop-types';
 
-import { updateShacharitCheckInStatusThunkCreator } from '../../store/reducers/shacharitCheckInReducer';
+import { updateShacharitCheckInStatusThunkCreator } from '../../store';
 
 // Component
 const CheckInShacharit = ({ checkIn, updateShacharitCheckInStatusThunk }) => {

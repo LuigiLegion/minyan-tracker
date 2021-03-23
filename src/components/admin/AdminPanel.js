@@ -8,8 +8,10 @@ import { firestoreConnect } from 'react-redux-firebase';
 import { compose } from 'redux';
 import PropTypes from 'prop-types';
 
-import { gotPathActionCreator } from '../../store/reducers/pathReducer';
-import { resetUsersAttendanceThunkCreator } from '../../store/reducers/adminReducer';
+import {
+  gotPathActionCreator,
+  resetUsersAttendanceThunkCreator,
+} from '../../store';
 
 // Component
 const AdminPanel = ({
