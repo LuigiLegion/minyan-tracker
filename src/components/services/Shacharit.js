@@ -6,14 +6,13 @@ import { firestoreConnect } from 'react-redux-firebase';
 import { compose } from 'redux';
 import PropTypes from 'prop-types';
 
-import CheckInShacharit from '../check-ins/CheckInShacharit';
-import Services from './Services';
-import { usePrevious } from '../../utils';
+import { CheckInShacharit, Services } from '..';
 import {
   gotPathActionCreator,
   getShacharitCheckInStatusesThunkCreator,
   getUsersShacharitAttendanceThunkCreator,
 } from '../../store';
+import { usePrevious } from '../../utils';
 
 // Component
 const Shacharit = ({

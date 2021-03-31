@@ -6,14 +6,13 @@ import { firestoreConnect } from 'react-redux-firebase';
 import { compose } from 'redux';
 import PropTypes from 'prop-types';
 
-import CheckInShabbat from '../check-ins/CheckInShabbat';
-import Services from './Services';
-import { usePrevious } from '../../utils';
+import { CheckInShabbat, Services } from '..';
 import {
   gotPathActionCreator,
   getShabbatCheckInStatusesThunkCreator,
   getUsersShabbatAttendanceThunkCreator,
 } from '../../store';
+import { usePrevious } from '../../utils';
 
 // Component
 const Shabbat = ({

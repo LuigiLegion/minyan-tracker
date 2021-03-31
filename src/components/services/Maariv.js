@@ -6,8 +6,7 @@ import { firestoreConnect } from 'react-redux-firebase';
 import { compose } from 'redux';
 import PropTypes from 'prop-types';
 
-import CheckInMaariv from '../check-ins/CheckInMaariv';
-import Services from './Services';
+import { CheckInMaariv, Services } from '..';
 import {
   gotPathActionCreator,
   getMaarivCheckInStatusesThunkCreator,

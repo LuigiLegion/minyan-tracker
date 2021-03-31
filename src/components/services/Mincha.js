@@ -6,8 +6,7 @@ import { firestoreConnect } from 'react-redux-firebase';
 import { compose } from 'redux';
 import PropTypes from 'prop-types';
 
-import CheckInMincha from '../check-ins/CheckInMincha';
-import Services from './Services';
+import { CheckInMincha, Services } from '..';
 import {
   gotPathActionCreator,
   getMinchaCheckInStatusesThunkCreator,

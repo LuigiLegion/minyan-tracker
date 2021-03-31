@@ -2,16 +2,18 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
-import Navbar from './components/navbar/Navbar';
-import SignIn from './components/auth/SignIn';
-import SignUp from './components/auth/SignUp';
-import AdminPanel from './components/admin/AdminPanel';
-import Dashboard from './components/dashboard/Dashboard';
-import Shacharit from './components/services/Shacharit';
-import Mincha from './components/services/Mincha';
-import Maariv from './components/services/Maariv';
-import Shabbat from './components/services/Shabbat';
-import PageNotFound from './components/404/PageNotFound';
+import {
+  Navbar,
+  SignIn,
+  SignUp,
+  AdminPanel,
+  Dashboard,
+  Shacharit,
+  Mincha,
+  Maariv,
+  Shabbat,
+  PageNotFound,
+} from './components';
 
 // Component
 const App = () => {

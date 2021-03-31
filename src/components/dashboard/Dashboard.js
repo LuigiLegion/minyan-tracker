@@ -6,8 +6,7 @@ import { firestoreConnect } from 'react-redux-firebase';
 import { compose } from 'redux';
 import PropTypes from 'prop-types';
 
-import Welcome from './Welcome';
-import Notifications from './Notifications';
+import { Welcome, Notifications } from '..';
 import { gotPathActionCreator, getUserDataThunkCreator } from '../../store';
 
 // Component

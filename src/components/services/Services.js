@@ -2,7 +2,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Service from './Service';
+import { Service } from '..';
 
 // Component
 const Services = ({ attendance }) => {
