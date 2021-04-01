@@ -4,6 +4,8 @@ import { NavLink } from 'react-router-dom';
 import moment from 'moment';
 
 import { parashot } from '../../data/parashot';
+
+// Initializations
 const weekOfHebrewYear = moment().week() + 10;
 
 // Component
