@@ -10,7 +10,7 @@ export { default as CheckInShacharit } from './check-ins/CheckInShacharit';
 export { default as Dashboard } from './dashboard/Dashboard';
 export { default as Notification } from './dashboard/Notification';
 export { default as Notifications } from './dashboard/Notifications';
-export { default as WorkSpaces } from './dashboard/WorkSpaces';
+export { default as Welcome } from './dashboard/Welcome';
 export { default as Hello } from './links/Hello';
 export { default as SignedInLinks } from './links/SignedInLinks';
 export { default as SignedInLinksBurger } from './links/SignedInLinksBurger';
