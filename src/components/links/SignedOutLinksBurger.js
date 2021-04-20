@@ -27,14 +27,14 @@ const SignedOutLinksBurger = () => {
     >
       <div className="remove-outline">
         <div>
-          <div>
-            <NavLink to="/" onClick={closeMenu}>
-              <span className="text-style-bold navbar-text-color">
-                Hello, guest.
-              </span>
-            </NavLink>
-          </div>
+          <NavLink to="/" onClick={closeMenu}>
+            <span className="text-style-bold navbar-text-color">
+              Hello, guest.
+            </span>
+          </NavLink>
+        </div>
 
+        <div>
           <NavLink to="/signin" onClick={closeMenu}>
             <span className="text-style-bold navbar-text-color">Sign In</span>
           </NavLink>
