@@ -35,18 +35,6 @@ const SignedOutLinksBurger = () => {
         </div>
 
         <div>
-          <NavLink to="/signin" onClick={closeMenu}>
-            <span className="text-style-bold navbar-text-color">Sign In</span>
-          </NavLink>
-        </div>
-
-        <div>
-          <NavLink to="/signup" onClick={closeMenu}>
-            <span className="text-style-bold navbar-text-color">Sign Up</span>
-          </NavLink>
-        </div>
-
-        <div>
           <a
             href={`mailto:${process.env.REACT_APP_CONTACT_US_EMAIL}`}
             target="_blank"
@@ -57,6 +45,18 @@ const SignedOutLinksBurger = () => {
               Contact Us
             </span>
           </a>
+        </div>
+
+        <div>
+          <NavLink to="/signin" onClick={closeMenu}>
+            <span className="text-style-bold navbar-text-color">Sign In</span>
+          </NavLink>
+        </div>
+
+        <div>
+          <NavLink to="/signup" onClick={closeMenu}>
+            <span className="text-style-bold navbar-text-color">Sign Up</span>
+          </NavLink>
         </div>
       </div>
     </Menu>
