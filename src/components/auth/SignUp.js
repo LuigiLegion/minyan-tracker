@@ -171,6 +171,7 @@ const SignUp = ({ auth, signUpError, signUpThunk }) => {
               <option value="Faculty of Agriculture">
                 Faculty of Agriculture
               </option>
+              <option value="Colman College">Colman College</option>
             </select>
           </div>
 
