@@ -20,7 +20,7 @@ const App = () => {
   return (
     <BrowserRouter>
       <div className="App">
-        <Navbar>Minyan Tracker</Navbar>
+        <Navbar />
 
         <Switch>
           <Route exact path="/signup" component={SignUp} />
