@@ -122,6 +122,15 @@ textarea.materialize-textarea:focus:not([readonly]) {
   color: #424242;
 }
 
+.navbar-logo {
+  font-size: xx-large;
+  padding-left: 0.5em;
+}
+
+.navbar-logo:hover {
+  text-decoration: none;
+}
+
 .navbar-background-color {
   background-color: #357da7;
 }
@@ -130,12 +139,8 @@ textarea.materialize-textarea:focus:not([readonly]) {
   color: #fafafa;
 }
 
-.navbar-logo {
-  left: 30px;
-}
-
-.navbar-logo:hover {
-  text-decoration: none;
+.navbar-link:hover {
+  background-color: #4d83a3;
 }
 
 .remove-outline {
