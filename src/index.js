@@ -4,8 +4,8 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { ReactReduxFirebaseProvider } from 'react-redux-firebase';
 
-import store, { rrfProps } from './store';
 import App from './App';
+import store, { rrfProps } from './store';
 import * as serviceWorker from './serviceWorker';
 import './index.css';
 
