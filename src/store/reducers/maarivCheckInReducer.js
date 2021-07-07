@@ -1,6 +1,8 @@
 // Imports
-import { getUserDataThunkCreator } from './userReducer';
-import { getUsersMaarivAttendanceThunkCreator } from './maarivAttendanceReducer';
+import {
+  getUserDataThunkCreator,
+  getUsersMaarivAttendanceThunkCreator,
+} from '..';
 
 // Initial State
 const initialState = {

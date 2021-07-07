@@ -1,6 +1,8 @@
 // Imports
-import { getUserDataThunkCreator } from './userReducer';
-import { getUsersMinchaAttendanceThunkCreator } from './minchaAttendanceReducer';
+import {
+  getUserDataThunkCreator,
+  getUsersMinchaAttendanceThunkCreator,
+} from '..';
 
 // Initial State
 const initialState = {
