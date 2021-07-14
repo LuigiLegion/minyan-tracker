@@ -54,7 +54,7 @@ const mapDispatchToProps = dispatch => ({
 // Prop Types
 Dashboard.propTypes = {
   auth: PropTypes.object,
-  notifications: PropTypes.array,
+  notifications: PropTypes.arrayOf(PropTypes.object),
   gotPathAction: PropTypes.func,
   getUserDataThunk: PropTypes.func,
 };

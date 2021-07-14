@@ -105,7 +105,7 @@ const mapDispatchToProps = dispatch => ({
 AdminPanel.propTypes = {
   auth: PropTypes.object,
   profile: PropTypes.object,
-  users: PropTypes.array,
+  users: PropTypes.arrayOf(PropTypes.object),
   disabled: PropTypes.bool,
   gotPathAction: PropTypes.func,
   resetUsersAttendanceThunk: PropTypes.func,

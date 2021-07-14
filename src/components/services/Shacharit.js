@@ -86,7 +86,7 @@ const mapDispatchToProps = dispatch => ({
 Shacharit.propTypes = {
   auth: PropTypes.object,
   profile: PropTypes.object,
-  updates: PropTypes.array,
+  updates: PropTypes.arrayOf(PropTypes.object),
   path: PropTypes.string,
   checkIn: PropTypes.object,
   attendance: PropTypes.object,

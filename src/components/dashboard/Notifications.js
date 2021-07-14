@@ -36,7 +36,7 @@ const Notifications = ({ notifications }) => {
 
 // Prop Types
 Notifications.propTypes = {
-  notifications: PropTypes.array,
+  notifications: PropTypes.arrayOf(PropTypes.object),
 };
 
 // Exports
