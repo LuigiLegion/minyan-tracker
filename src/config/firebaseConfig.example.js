@@ -1,5 +1,5 @@
 // Initializations
-const fbConfig = {
+const firebaseConfig = {
   apiKey: 'YOUR_API_KEY',
   authDomain: 'YOUR_DOMAIN_HERE',
   databaseURL: 'YOUR_DB_URL',
@@ -10,4 +10,4 @@ const fbConfig = {
 };
 
 // Exports
-export default fbConfig;
+export default firebaseConfig;
