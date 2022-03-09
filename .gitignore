@@ -25,6 +25,6 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-src/config/fbConfig.js
+src/config/firebaseConfig.js
 src/data/attendees.json
 firestore.rules
