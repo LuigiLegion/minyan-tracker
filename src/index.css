@@ -60,6 +60,18 @@ textarea.materialize-textarea:focus:not([readonly]) {
   box-shadow: none;
 }
 
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.white-space-pre {
+  white-space: pre;
+}
+
+.line-height-reset {
+  line-height: 1.25em;
+}
+
 .marker-me {
   width: 50px;
   height: 50px;
@@ -134,6 +146,10 @@ textarea.materialize-textarea:focus:not([readonly]) {
   color: #424242;
 }
 
+.outline-none {
+  outline: none;
+}
+
 .navbar-logo {
   font-size: xx-large;
   padding-left: 0.5em;
@@ -155,10 +171,19 @@ textarea.materialize-textarea:focus:not([readonly]) {
   background-color: #4d83a3;
 }
 
-.remove-outline {
-  outline: none;
+.hello-container {
+  padding-top: 1.5em;
+}
+
+.welcome-back-container {
+  padding-top: 2.5em;
+  padding-bottom: 1.25em;
 }
 
 .page-not-found-message {
   margin: 30px 0px;
+}
+
+.padding-right {
+  padding-right: 2em;
 }
