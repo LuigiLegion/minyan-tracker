@@ -6,16 +6,16 @@ import { firestoreReducer } from 'redux-firestore';
 import authReducer from './reducers/authReducer';
 import userReducer from './reducers/userReducer';
 import adminReducer from './reducers/adminReducer';
-import pathReducer from './reducers/pathReducer';
-import layoutReducer from './reducers/layoutReducer';
 import shacharitAttendanceReducer from './reducers/shacharitAttendanceReducer';
-import minchaAttendanceReducer from './reducers/minchaAttendanceReducer';
-import maarivAttendanceReducer from './reducers/maarivAttendanceReducer';
-import shabbatAttendanceReducer from './reducers/shabbatAttendanceReducer';
 import shacharitCheckInReducer from './reducers/shacharitCheckInReducer';
+import minchaAttendanceReducer from './reducers/minchaAttendanceReducer';
 import minchaCheckInReducer from './reducers/minchaCheckInReducer';
+import maarivAttendanceReducer from './reducers/maarivAttendanceReducer';
 import maarivCheckInReducer from './reducers/maarivCheckInReducer';
+import shabbatAttendanceReducer from './reducers/shabbatAttendanceReducer';
 import shabbatCheckInReducer from './reducers/shabbatCheckInReducer';
+import layoutReducer from './reducers/layoutReducer';
+import pathReducer from './reducers/pathReducer';
 
 // Initializations
 const rootReducer = combineReducers({
@@ -24,16 +24,16 @@ const rootReducer = combineReducers({
   auth: authReducer,
   user: userReducer,
   admin: adminReducer,
-  path: pathReducer,
-  layout: layoutReducer,
   shacharitAttendance: shacharitAttendanceReducer,
-  minchaAttendance: minchaAttendanceReducer,
-  maarivAttendance: maarivAttendanceReducer,
-  shabbatAttendance: shabbatAttendanceReducer,
   shacharitCheckIn: shacharitCheckInReducer,
+  minchaAttendance: minchaAttendanceReducer,
   minchaCheckIn: minchaCheckInReducer,
+  maarivAttendance: maarivAttendanceReducer,
   maarivCheckIn: maarivCheckInReducer,
+  shabbatAttendance: shabbatAttendanceReducer,
   shabbatCheckIn: shabbatCheckInReducer,
+  layout: layoutReducer,
+  path: pathReducer,
 });
 
 // Exports
