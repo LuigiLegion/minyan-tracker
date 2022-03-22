@@ -14,7 +14,7 @@ import firebase from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/firestore';
 
-import fbConfig from '../config/fbConfig';
+import firebaseConfig from '../config/firebaseConfig';
 import rootReducer from './rootReducer';
 
 // Initializations
@@ -23,7 +23,8 @@ const rrfConfig = {
   useFirestoreForProfile: true,
 };
 
-firebase.initializeApp(fbConfig);
+firebase.initializeApp(firebaseConfig);
+
 export const db = firebase.firestore();
 
 const middleware = composeWithDevTools(
@@ -31,7 +32,7 @@ const middleware = composeWithDevTools(
     thunkMiddleware.withExtraArgument({ getFirebase, getFirestore }),
     createLogger({ collapsed: true })
   ),
-  reduxFirestore(firebase, fbConfig)
+  reduxFirestore(firebase, firebaseConfig)
 );
 
 const store = createStore(rootReducer, middleware);
@@ -45,16 +46,16 @@ export const rrfProps = {
 
 // Exports
 export default store;
-export * from './reducers/adminReducer';
 export * from './reducers/authReducer';
-export * from './reducers/layoutReducer';
-export * from './reducers/maarivAttendanceReducer';
-export * from './reducers/maarivCheckInReducer';
-export * from './reducers/minchaAttendanceReducer';
-export * from './reducers/minchaCheckInReducer';
-export * from './reducers/pathReducer';
-export * from './reducers/shabbatAttendanceReducer';
-export * from './reducers/shabbatCheckInReducer';
+export * from './reducers/userReducer';
+export * from './reducers/adminReducer';
 export * from './reducers/shacharitAttendanceReducer';
 export * from './reducers/shacharitCheckInReducer';
-export * from './reducers/userReducer';
+export * from './reducers/minchaAttendanceReducer';
+export * from './reducers/minchaCheckInReducer';
+export * from './reducers/maarivAttendanceReducer';
+export * from './reducers/maarivCheckInReducer';
+export * from './reducers/shabbatAttendanceReducer';
+export * from './reducers/shabbatCheckInReducer';
+export * from './reducers/layoutReducer';
+export * from './reducers/pathReducer';
