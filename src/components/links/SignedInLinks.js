@@ -4,7 +4,6 @@ import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import { Hello } from '..';
 import { signOutThunkCreator } from '../../store';
 
 // Component
@@ -12,56 +11,79 @@ const SignedInLinks = ({ profile, signOutThunk }) => {
   return (
     <ul className="right">
       <li>
-        <NavLink to="/">
-          <Hello firstName={profile.firstName} />
+        <NavLink
+          className="navbar-text-color"
+          to="/"
+        >
+          {profile.firstName ? `Welcome back, ${profile.firstName}.` : 'Hello, guest.'}
         </NavLink>
       </li>
 
       {profile.isAdmin ? (
         <li>
-          <NavLink to="/admin">
-            <span className="text-style-bold navbar-text-color">Admin</span>
+          <NavLink
+            className="text-style-bold navbar-text-color"
+            to="/admin"
+          >
+            Admin
           </NavLink>
         </li>
       ) : null}
 
       <li>
-        <NavLink to="/shabbat">
-          <span className="text-style-bold navbar-text-color">Shabbat</span>
+        <NavLink
+          className="text-style-bold navbar-text-color"
+          to="/shabbat"
+        >
+          Shabbat
         </NavLink>
       </li>
 
       <li>
-        <NavLink to="/mincha">
-          <span className="text-style-bold navbar-text-color">Mincha</span>
+        <NavLink
+          className="text-style-bold navbar-text-color"
+          to="/mincha"
+        >
+          Mincha
         </NavLink>
       </li>
 
       <li>
-        <NavLink to="/maariv">
-          <span className="text-style-bold navbar-text-color">Maariv</span>
+        <NavLink
+          className="text-style-bold navbar-text-color"
+          to="/maariv"
+        >
+          Maariv
         </NavLink>
       </li>
 
       <li>
-        <NavLink to="/shacharit">
-          <span className="text-style-bold navbar-text-color">Shacharit</span>
+        <NavLink
+          className="text-style-bold navbar-text-color"
+          to="/shacharit"
+        >
+          Shacharit
         </NavLink>
       </li>
 
       <li>
         <a
+          className="text-style-bold navbar-text-color"
           href={`mailto:${process.env.REACT_APP_CONTACT_US_EMAIL}`}
           target="_blank"
           rel="noopener noreferrer"
         >
-          <span className="text-style-bold navbar-text-color">Contact Us</span>
+          Contact Us
         </a>
       </li>
 
       <li>
-        <NavLink to="/" onClick={signOutThunk}>
-          <span className="text-style-bold navbar-text-color">Sign Out</span>
+        <NavLink
+          className="text-style-bold navbar-text-color padding-right"
+          to="/"
+          onClick={signOutThunk}
+        >
+          Sign Out
         </NavLink>
       </li>
     </ul>
