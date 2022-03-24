@@ -5,7 +5,6 @@ import { connect } from 'react-redux';
 import { slide as Menu } from 'react-burger-menu';
 import PropTypes from 'prop-types';
 
-import { Hello } from '..';
 import { signOutThunkCreator } from '../../store';
 import { burgerStyles } from '../../styles';
 
@@ -29,67 +28,93 @@ const SignedInLinksBurger = ({ profile, signOutThunk }) => {
       width="50%"
       onStateChange={state => handleStateChange(state)}
     >
-      <div className="remove-outline">
-        <div>
-          <NavLink to="/" onClick={closeMenu}>
-            <Hello firstName={profile.firstName} />
+      <div className="outline-none">
+        <div className="welcome-back-container">
+          <NavLink
+            className="navbar-text-color"
+            to="/"
+            onClick={closeMenu}
+          >
+            <div className="white-space-pre line-height-reset">
+              {profile.firstName ? `Welcome back,\n${profile.firstName}.` : 'Hello, guest.'}
+            </div>
           </NavLink>
         </div>
 
         {profile.isAdmin ? (
           <div>
-            <NavLink to="/admin" onClick={closeMenu}>
-              <span className="text-style-bold navbar-text-color">Admin</span>
+            <NavLink
+              className="text-style-bold navbar-text-color"
+              to="/admin"
+              onClick={closeMenu}
+            >
+              Admin
             </NavLink>
           </div>
         ) : null}
 
         <div>
-          <NavLink to="/shabbat" onClick={closeMenu}>
-            <span className="text-style-bold navbar-text-color">Shabbat</span>
+          <NavLink
+            className="text-style-bold navbar-text-color"
+            to="/shabbat"
+            onClick={closeMenu}
+          >
+            Shabbat
           </NavLink>
         </div>
 
         <div>
-          <NavLink to="/mincha" onClick={closeMenu}>
-            <span className="text-style-bold navbar-text-color">Mincha</span>
+          <NavLink
+            className="text-style-bold navbar-text-color"
+            to="/mincha"
+            onClick={closeMenu}
+          >
+            Mincha
           </NavLink>
         </div>
 
         <div>
-          <NavLink to="/maariv" onClick={closeMenu}>
-            <span className="text-style-bold navbar-text-color">Maariv</span>
+          <NavLink
+            className="text-style-bold navbar-text-color"
+            to="/maariv"
+            onClick={closeMenu}
+          >
+            Maariv
           </NavLink>
         </div>
 
         <div>
-          <NavLink to="/shacharit" onClick={closeMenu}>
-            <span className="text-style-bold navbar-text-color">Shacharit</span>
+          <NavLink
+            className="text-style-bold navbar-text-color"
+            to="/shacharit"
+            onClick={closeMenu}
+          >
+            Shacharit
           </NavLink>
         </div>
 
         <div>
           <a
+            className="text-style-bold navbar-text-color"
             href={`mailto:${process.env.REACT_APP_CONTACT_US_EMAIL}`}
             target="_blank"
             rel="noopener noreferrer"
             onClick={closeMenu}
           >
-            <span className="text-style-bold navbar-text-color">
-              Contact Us
-            </span>
+            Contact Us
           </a>
         </div>
 
         <div>
           <NavLink
+            className="text-style-bold navbar-text-color"
             to="/"
             onClick={() => {
               closeMenu();
               signOutThunk();
             }}
           >
-            <span className="text-style-bold navbar-text-color">Sign Out</span>
+            Sign Out
           </NavLink>
         </div>
       </div>
