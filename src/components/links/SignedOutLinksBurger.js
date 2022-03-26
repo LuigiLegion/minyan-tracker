@@ -25,38 +25,47 @@ const SignedOutLinksBurger = () => {
       width="50%"
       onStateChange={state => handleStateChange(state)}
     >
-      <div className="remove-outline">
+      <div className="outline-none">
+        <div className="hello-container">
+          <NavLink
+            className="navbar-text-color"
+            to="/"
+            onClick={closeMenu}
+          >
+            Hello, guest.
+          </NavLink>
+        </div>
+
         <div>
-          <NavLink to="/" onClick={closeMenu}>
-            <span className="text-style-bold navbar-text-color">
-              Hello, guest.
-            </span>
+          <NavLink
+            className="text-style-bold navbar-text-color"
+            to="/signin"
+            onClick={closeMenu}
+          >
+            Sign In
+          </NavLink>
+        </div>
+
+        <div>
+          <NavLink
+            className="text-style-bold navbar-text-color"
+            to="/signup"
+            onClick={closeMenu}
+          >
+            Sign Up
           </NavLink>
         </div>
 
         <div>
           <a
+            className="text-style-bold navbar-text-color"
             href={`mailto:${process.env.REACT_APP_CONTACT_US_EMAIL}`}
             target="_blank"
             rel="noopener noreferrer"
             onClick={closeMenu}
           >
-            <span className="text-style-bold navbar-text-color">
-              Contact Us
-            </span>
+            Contact Us
           </a>
-        </div>
-
-        <div>
-          <NavLink to="/signin" onClick={closeMenu}>
-            <span className="text-style-bold navbar-text-color">Sign In</span>
-          </NavLink>
-        </div>
-
-        <div>
-          <NavLink to="/signup" onClick={closeMenu}>
-            <span className="text-style-bold navbar-text-color">Sign Up</span>
-          </NavLink>
         </div>
       </div>
     </Menu>
