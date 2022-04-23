@@ -67,7 +67,7 @@ const mapStateToProps = state => ({
 });
 
 // Prop Types
-SignedInLinksBurger.propTypes = {
+Navbar.propTypes = {
   auth: PropTypes.object,
   profile: PropTypes.object,
   isLoading: PropTypes.bool,
