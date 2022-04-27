@@ -1,5 +1,5 @@
 // Imports
-const firebase = require('../config/fbConfig');
+const firebaseConfig = require('../config/firebaseConfig');
 require('firebase/firestore');
 const firestore = firebase.firestore();
 
