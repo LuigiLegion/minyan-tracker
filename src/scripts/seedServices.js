@@ -1,10 +1,11 @@
 // Imports
-const firebaseConfig = require('../config/firebaseConfig');
+const firebase = require('firebase/app');
 require('firebase/firestore');
+const firebaseConfig = require('../config/firebaseConfig');
 const { services } = require('../data/services');
 
-
 // Initializations
+firebase.initializeApp(firebaseConfig);
 const firestore = firebase.firestore();
 
 const seedCollection = async (collectionName, dataset) => {
