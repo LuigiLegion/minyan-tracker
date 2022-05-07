@@ -1,7 +1,7 @@
 // Imports
 const firebase = require('firebase/app');
 require('firebase/firestore');
-const firebaseConfig = require('../config/firebaseConfig');
+const firebaseConfig = require('../config/firebaseConfig.json');
 const { parashot } = require('../data/parashot');
 
 // Initializations
