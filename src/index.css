@@ -167,10 +167,6 @@ textarea.materialize-textarea:focus:not([readonly]) {
   color: #fafafa;
 }
 
-.navbar-link:hover {
-  background-color: #4d83a3;
-}
-
 .hello-container {
   padding-top: 1.5em;
 }
