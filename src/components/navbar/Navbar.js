@@ -34,7 +34,7 @@ const Navbar = ({ isLoading }) => {
     <div className="navbar-fixed">
       <nav className="nav-wrapper navbar-background-color">
         <div>
-          <Logo isLargeView={isLargeView} />
+          <Logo />
 
           {isLargeView ? <Links /> : <LinksBurger />}
         </div>
