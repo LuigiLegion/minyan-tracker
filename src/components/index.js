@@ -1,5 +1,6 @@
 // Exports
 export { default as PageNotFound } from './404/PageNotFound';
+export { default as About } from './about/About';
 export { default as AdminPanel } from './admin/AdminPanel';
 export { default as SignIn } from './auth/SignIn';
 export { default as SignUp } from './auth/SignUp';
