@@ -12,7 +12,7 @@ Coming soon...
 
 ## Description
 
-Responsive web app that allows users to check-in to services at their congregations and share their check-in status with their fellow congregation members in real time.
+Responsive web app that helps members of small congregations organize services by allowing them to determine if they can form a minyan for a given service. The app allows users to check-in to services at their congregations and share their check-in status with their fellow congregation members in real time.
 
 MVP completed in 4 days for a solo project.
 
