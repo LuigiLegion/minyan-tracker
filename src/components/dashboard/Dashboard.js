@@ -1,6 +1,6 @@
 // Imports
 import React, { useEffect } from 'react';
-import { Redirect } from 'react-router-dom';
+import { Redirect, useLocation } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { firestoreConnect } from 'react-redux-firebase';
 import { compose } from 'redux';
@@ -16,14 +16,14 @@ const Dashboard = ({
   gotPathAction,
   getUserDataThunk,
 }) => {
-  const curPath = window.location.pathname;
+  const { pathname } = useLocation();
 
   useEffect(() => {
     if (auth.uid) {
-      gotPathAction(curPath);
+      gotPathAction(pathname);
       getUserDataThunk(auth.uid);
     }
-  }, [auth, curPath, gotPathAction, getUserDataThunk]);
+  }, [auth, pathname, gotPathAction, getUserDataThunk]);
 
   if (!auth.uid) {
     return <Redirect to="/signin" />;
