@@ -2,7 +2,7 @@
 
 // Imports
 import React, { useEffect } from 'react';
-import { Redirect, NavLink } from 'react-router-dom';
+import { Redirect, NavLink, useLocation } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { firestoreConnect } from 'react-redux-firebase';
 import { compose } from 'redux';
@@ -22,11 +22,11 @@ const AdminPanel = ({
   gotPathAction,
   resetUsersAttendanceThunk,
 }) => {
-  const curPath = window.location.pathname;
+  const { pathname } = useLocation();
 
   useEffect(() => {
-    gotPathAction(curPath);
-  }, [curPath, gotPathAction]);
+    gotPathAction(pathname);
+  }, [pathname, gotPathAction]);
 
   const handleSubmit = event => {
     event.preventDefault();
