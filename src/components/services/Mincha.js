@@ -1,6 +1,6 @@
 // Imports
 import React, { useEffect } from 'react';
-import { Redirect } from 'react-router-dom';
+import { Redirect, useLocation } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { firestoreConnect } from 'react-redux-firebase';
 import { compose } from 'redux';
@@ -27,15 +27,15 @@ const Mincha = ({
   getUsersMinchaAttendanceThunk,
 }) => {
   const prevUpdates = usePrevious(updates);
-  const curPath = window.location.pathname;
+  const { pathname } = useLocation();
 
   useEffect(() => {
     if (
       !updates ||
-      path !== curPath ||
+      path !== pathname ||
       (updates && prevUpdates && updates.length !== prevUpdates.length)
     ) {
-      gotPathAction(curPath);
+      gotPathAction(pathname);
       getMinchaCheckInStatusesThunk();
       getUsersMinchaAttendanceThunk();
     }
@@ -43,7 +43,7 @@ const Mincha = ({
     updates,
     prevUpdates,
     path,
-    curPath,
+    pathname,
     gotPathAction,
     getMinchaCheckInStatusesThunk,
     getUsersMinchaAttendanceThunk,
